@@ -2,7 +2,12 @@ var Product = require('../models/product');
 
 var mongoose = require('mongoose');
 
-mongoose.connect('localhost:27017/shopping');
+
+mongoose.connection.openUri('mongodb://localhost/the-wgb')
+  .once('open', () => console.log('MONGODB Good to go !'))
+  .on('error', (error) => {
+    console.warn('Warning', error);
+  });
 
 var products = [
     new Product({
