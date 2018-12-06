@@ -1,40 +1,21 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">Wegobuyam</a>
-        </div>
+ 
+    
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+      <h5 class="my-0 mr-md-auto font-weight-normal"><a class="navbar-brand" href="/">Wegobuyam</a></h5>
+      <nav class="my-2 my-md-0 mr-md-3">
+        {{# if login }}
+            <a href="/shopping-cart/">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i> Wegobuyam
+                <span class="badge">{{session.cart.totalQty}}</span>
+            </a>
+            <a href="/user/profile">User Account</a>
+            <a class="btn btn-outline-primary" href="/user/logout">Logout</a>
+        {{ else }}
+            <a class="p-2 text-dark" href="#">Support</a>
+            <a class="p-2 text-dark" href="#">Pricing</a>
+            <a class="btn btn-outline-primary" href="/user/signup">Sign up</a>
+            <a class="btn btn-outline-primary" href="/user/signin">Sign in</a>
+        {{/if}}
+      </nav>
+    </div>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="/shopping-cart/">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Wegobuyam
-                        <span class="badge">{{session.cart.totalQty}}</span>
-                    </a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> User Management <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        {{# if login }}
-                            <li><a href="/user/profile">User Account</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="/user/logout">Logout</a></li>
-                        {{ else }}
-                            <li><a href="/user/signup">Sign up</a></li>
-                            <li><a href="/user/signin">Sign in</a></li>
-                        {{/if}}
-
-                    </ul>
-                </li>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-</nav>

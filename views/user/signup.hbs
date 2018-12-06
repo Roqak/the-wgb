@@ -1,24 +1,42 @@
-<div class="row">
-    <div class="col-md-4 col-md-offset-4">
-        <h1>Sign Up</h1>
-        {{#if hasErrors}}
+<div class="container">
+<form action="/user/signup" method="post" class="form-signup">
+    {{#if hasErrors}}
             <div class="alert alert-danger">
                 {{# each messages }}
                     <p>{{this}}</p>
                 {{/each}}
             </div>
         {{/if}}
-        <form action="/user/signup" method="post">
-            <div class="form-group">
-                <label for="email">E-Mail</label>
-                <input type="text" id="email" name="email" class="form-control">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" class="form-control">
-            </div>
-            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            <button type="submit" class="btn btn-primary">Sign Up</button>
-        </form>
+      <div class="text-center mb-4">
+        <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
+        <p>Create your account with us to sell your goods asap</p>
+      </div>
+
+      <div class="form-label-group">
+        <label for="email">E-Mail</label>
+                <input type="email" id="email" name="email" class="form-control"placeholder="Email address" required autofocus />
+      </div>
+
+      <div class="form-label-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" class="form-control">
+      </div>
+
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+        <hr>
+        <p><button class="btn btn-block btn-social btn-twitter">
+            <span class="fa fa-twitter"></span> Sign in with Twitter
+        </button>
+        <button class="btn btn-block btn-social btn-google">
+            <span class="fa fa-google"></span> Sign in with Google
+        </button>
+         <p class="mt-5 mb-3 text-muted text-center">Already have a account sign in here</p>
+    </form>
     </div>
-</div>
