@@ -14,7 +14,7 @@ var MongoStore = require('connect-mongo')(session);
 
 var routes = require('./routes/index');
 var userRoutes = require('./routes/user');
-var keys = require('./Keys.js');
+var keys = require('./keys.js');
 
 var app = express();
 //mongodb://<dbuser>:<dbpassword>@ds227594.mlab.com:27594/the-wgb

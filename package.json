@@ -1,9 +1,9 @@
 {
   "name": "the-wgb",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.0.1",
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "node": "node ./bin/www"
   },
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
@@ -24,5 +24,26 @@
     "passport-local": "^1.0.0",
     "serve-favicon": "^2.5.0",
     "stripe": "^4.7.0"
-  }
+  },
+  "engines": {
+    "node": "10.x"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Foluwa/the-wgb.git"
+  },
+  "keywords": [
+    "start",
+    "node",
+    "nodemon"
+  ],
+  "author": "AKINTOLA MORONFOLUWA",
+  "description": "Whogobuyam",
+  "main": "app.js",
+  "devDependencies": {},
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Foluwa/the-wgb/issues"
+  },
+  "homepage": "https://github.com/Foluwa/the-wgb#readme"
 }
