@@ -1,12 +1,14 @@
-var Product = require('../models/product');
 
 var mongoose = require('mongoose');
+var Product = require('../models/product');
+var keys = require('../Keys.js');
 
-
-mongoose.connection.openUri('mongodb://localhost/the-wgb')
-  .once('open', () => console.log('MONGODB Good to go !'))
-  .on('error', (error) => {
-    console.warn('Warning', error);
+mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true }).then(
+    function(res){
+     console.log("Connected to Database Successfully.");
+    }
+  ).catch(function(){
+    console.log("Connection to Database failed.");
   });
 
 var products = [

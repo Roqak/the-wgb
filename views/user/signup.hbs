@@ -1,17 +1,17 @@
 <div class="container">
 <form action="/user/signup" method="post" class="form-signup">
+      <div class="text-center mb-4">
+        <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
+        <p>Create your account with us to sell your goods asap</p>
+      </div>
     {{#if hasErrors}}
             <div class="alert alert-danger">
                 {{# each messages }}
                     <p>{{this}}</p>
                 {{/each}}
             </div>
-        {{/if}}
-      <div class="text-center mb-4">
-        <img class="mb-4" src="../../assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
-        <p>Create your account with us to sell your goods asap</p>
-      </div>
+    {{/if}}
 
       <div class="form-label-group">
         <label for="email">E-Mail</label>

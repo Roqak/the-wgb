@@ -46,22 +46,7 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
 
 
 <div class="row">
@@ -73,16 +58,28 @@
 </div>
 
 
-{{# each products }}
-      <div class="album py-5 bg-light">
-        <div class="container">
-          <div class="row">
-              {{# each this }}
-            <div class="col-md-4">
-              <div class="card mb-4 shadow-sm">
-                <img class="card-img-top" data-src="{{ this.imagePath }}" alt="Card image cap">
+<ul class="nav">
+    <div class="input-group sm-4">
+    <input type="text" class="form-control" placeholder="Search this blog">
+    <div class="input-group-append">
+      <button class="btn btn-secondary" type="button">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+</ul><br>
+
+
+
+ 
+ <div class="container">
+  <div class="row">
+  {{# each products }}
+  {{# each this }}
+    <div class="card md-4 shadow-sm">
+      <img class="card-img-top img-fluid" src="https://static.toiimg.com/thumb/58475411/Kolkata-in-pictures.jpg?width=748&height=499" alt="Card image cap">
                 <div class="card-body">
-                    <h6>{{ this.title }}</h6>
+                    <h6>here</h6>
                   <p class="card-text">{{ this.description }}</p>
                   <p>${{ this.price }}</p>
                   <div class="d-flex justify-content-between align-items-center">
@@ -94,8 +91,14 @@
                     </div>
                     <small class="text-muted">9 mins</small>
                   </div>
-                 {{/each}}
                 </div>
-              </div>
-            </div>
-{{/each}}
+    </div>
+    {{/each}}
+    {{/each}}
+</div>
+</div>
+
+
+
+            
+

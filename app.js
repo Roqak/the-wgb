@@ -14,10 +14,12 @@ var MongoStore = require('connect-mongo')(session);
 
 var routes = require('./routes/index');
 var userRoutes = require('./routes/user');
+var keys = require('./Keys.js');
 
 var app = express();
-
-mongoose.connect("localhost:27017/shope", { useNewUrlParser: true }).then(
+//mongodb://<dbuser>:<dbpassword>@ds227594.mlab.com:27594/the-wgb
+//localhost:27017/shope
+mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true }).then(
   function(res){
    console.log("Connected to Database Successfully.");
   }
