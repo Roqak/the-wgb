@@ -9,3 +9,5 @@ module.exports = {
         dbURI: 'mongodb://wgbadmin:wgbadmin1@ds227594.mlab.com:27594/the-wgb'
     }
 };
+//DEPLOYING TO HEROKU
+//https://devcenter.heroku.com/articles/deploying-nodejs
