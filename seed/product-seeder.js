@@ -1,7 +1,7 @@
 
 var mongoose = require('mongoose');
 var Product = require('../models/product');
-var keys = require('../keys.js');
+var keys = require('../Keys.js');
 
 mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true }).then(
     function(res){

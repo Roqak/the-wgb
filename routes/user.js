@@ -23,6 +23,11 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
     });
 });
 
+router.get('/mystore',function(req, res, next) {
+    res.render('user/mystore');
+
+});
+
 router.get('/logout', isLoggedIn, function (req, res, next) {
     req.logout();
     res.redirect('/');
@@ -67,6 +72,12 @@ router.post('/signin', passport.authenticate('local.signin', {
         res.redirect('/user/profile');
     }
 });
+
+router.get('/forgotpassword',function(req, res, next) {
+    res.render('user/forgotpassword');
+
+});
+
 
 module.exports = router;
 

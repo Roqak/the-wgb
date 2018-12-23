@@ -16,6 +16,15 @@ var routes = require('./routes/index');
 var userRoutes = require('./routes/user');
 var keys = require('./keys.js');
 
+/*
+Cloud name:	
+evolve-hostelier
+API Key:	
+142283177922221
+API Secret:	
+uDwhC-bLqn9nJY48SeRaOY0KHwg
+ */
+
 var app = express();
 //mongodb://<dbuser>:<dbpassword>@ds227594.mlab.com:27594/the-wgb
 //localhost:27017/shope
