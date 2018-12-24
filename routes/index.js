@@ -108,6 +108,21 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
     }); 
 });
 
+/*
+router.get('/user/mystore',function(req, res, next) {
+    var product = new Product();
+    var a =  req.body.title;
+   product.title = req.body.title;
+    product.category = req.body.category;
+    product.price = req.body.price;
+    product.description = req.body.description;
+    product.imagePath = req.body.imagePath;
+    //
+    console.log(a);
+    res.render('user/mystore');
+
+});*/
+
 router.get('*', function(req, res, next) {
     res.render('error');
 });

@@ -1,13 +1,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var schema = new Schema({
-    imagePath: {type: String, required: true},
+var schema = new Schema({ 
     title: {type: String, required: true},
-    description: {type: String, required: true},
+    category: {type: String, required: true},
     price: {type: Number, required: true},
-    accountNumber: {type: Number, required: true},
-    accountName: {type: String, required: true}
+    description: {type: String, required: true},
+    imagePath: {type: String, required: true}
 });
 
 module.exports = mongoose.model('Product', schema);

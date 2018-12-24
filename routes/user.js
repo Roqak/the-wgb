@@ -5,6 +5,7 @@ var passport = require('passport');
 
 var Order = require('../models/order');
 var Cart = require('../models/cart');
+var Product = require('../models/product');
 
 var csrfProtection = csrf();
 router.use(csrfProtection);
@@ -23,10 +24,26 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
     });
 });
 
-router.get('/mystore',function(req, res, next) {
+router.get('/mystore', isLoggedIn,function(req, res, next) {
+    // var product = new Product();
+     var a =  req.body.title;
+     console.log('HELLO POST');
+     console.log(JSON.stringify(req.body));
+     res.render('/user/profile');
+ 
+ });
+/*
+router.get('/addproducts', function (req, res, next) {
+    var product = new Product();
+    product.title = req.body.title;
+    product.category = req.body.category;
+    product.price = req.body.price;
+    product.description = req.body.description;
+    product.imagePath = req.body.imagePath;
+    //
+    console.log(product.title);
     res.render('user/mystore');
-
-});
+ });*/
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
     req.logout();
@@ -77,7 +94,6 @@ router.get('/forgotpassword',function(req, res, next) {
     res.render('user/forgotpassword');
 
 });
-
 
 module.exports = router;
 
