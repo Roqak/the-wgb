@@ -41,6 +41,25 @@ router.get('/forgotpassword', function(req, res, next) {
  });
 
 //<!--PRODUCTS ROUTES
+//THIS IS A TEST NOT WORKING YET, YOU  CAN DELETE OR IGNORE IT
+/*router.get('/products',isLoggedIn,  function (req, res, next) { 
+    Product.find({},function (err, products) {
+        if(err){
+            return res.write('Error');
+        }
+        var product;
+        products.forEach(function(order){
+            product = new Product(product.products);
+            order.items = product.generateArray();
+        });
+        res.render('user/products', {orders:order,            
+            user: req.user,
+            products: productChunks,
+            successMsg: successMsg, 
+            noMessages: !successMsg,
+            csrfToken: req.csrfToken()});
+    });
+});*/
 router.get('/products',isLoggedIn,  function (req, res, next) { //products.findAll,
         var successMsg = req.flash('success')[0];
         Product.find(function (err, docs) {
