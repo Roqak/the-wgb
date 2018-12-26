@@ -2,10 +2,10 @@ var express = require('express');
 var router = express.Router();
 var csrf = require('csurf');
 var passport = require('passport');
+//
 
 var Order = require('../models/order');
 var Cart = require('../models/cart');
-var Product = require('../models/product');
 
 var csrfProtection = csrf();
 router.use(csrfProtection);
@@ -25,25 +25,16 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
 });
 
 router.get('/mystore', isLoggedIn,function(req, res, next) {
-    // var product = new Product();
-     var a =  req.body.title;
-     console.log('HELLO POST');
-     console.log(JSON.stringify(req.body));
-     res.render('/user/profile');
+    
+     res.render('user/mystore');
  
  });
-/*
-router.get('/addproducts', function (req, res, next) {
-    var product = new Product();
-    product.title = req.body.title;
-    product.category = req.body.category;
-    product.price = req.body.price;
-    product.description = req.body.description;
-    product.imagePath = req.body.imagePath;
-    //
-    console.log(product.title);
-    res.render('user/mystore');
- });*/
+
+ router.post('/addproducts',isLoggedIn, function (req, res, next) {
+    console.log(req.body.category +" and " + req.body.price);
+        res.redirect('/user/profile');
+});
+
 
 router.get('/logout', isLoggedIn, function (req, res, next) {
     req.logout();
@@ -73,14 +64,18 @@ router.post('/signup', passport.authenticate('local.signup', {
 });
 
 router.get('/signin', function (req, res, next) {
-    var messages = req.flash('error');
-    res.render('user/signin', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
+    var messages = req.flash('error'); res.render('user/signin', {
+        csrfToken: req.csrfToken(), 
+        user: req.user,
+        messages: messages, 
+        hasErrors: messages.length > 0});
 });
 
 router.post('/signin', passport.authenticate('local.signin', {
     failureRedirect: '/user/signin',
     failureFlash: true
 }), function (req, res, next) {
+    console.log(req.body.email +" and " + req.body.password);
     if (req.session.oldUrl) {
         var oldUrl = req.session.oldUrl;
         req.session.oldUrl = null;
@@ -91,9 +86,16 @@ router.post('/signin', passport.authenticate('local.signin', {
 });
 
 router.get('/forgotpassword',function(req, res, next) {
+    console.log('foluwa is here');
     res.render('user/forgotpassword');
-
+    
 });
+
+router.get('/addproducts',isLoggedIn, function(req, res){
+    res.render('user/mystore');
+});
+
+
 
 module.exports = router;
 

@@ -13,20 +13,19 @@
                 <span class="badge">{{session.cart.totalQty}}</span>
             </a>
 					</li>
-					<li><a href="/user/logout">logout</a></li>
-					<li><a href="/user/profile">User Account</a></li>
-					<li><a href="/user/mystore">Mystore</a></li>
+					<li><a href="/logout">logout</a></li>
+					<li><a href="/profile">User Account</a></li>
+					<li><a href="/products">Products</a></li>
 					{{ else }}
-					<li><a href="/user/signup"> Create Account </a></li>
-					<li><a href="/user/signin">Login</a></li>
+					<li><a href="/signup"> Create Account </a></li>
+					<li><a href="/signin">Login</a></li>
 					<li><a href="/">Help</a></li>
-					<li><a href="/user/mystore">Mystore</a></li>
 					{{/if}}
 
 				</ul>
 			</div>
 			<div class="product_list_header">  
-					<form action="#" method="post" class="last"> 
+					<form action="/" method="post" class="last"> 
 						<input type="hidden" name="cmd" value="_cart">
 						<input type="hidden" name="display" value="1">
 						<a  >

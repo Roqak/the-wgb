@@ -1,0 +1,160 @@
+<script  type="text/javascript">
+	$( document ).ready(function() {
+	
+	// SUBMIT FORM
+    $("#insertProduct").submit(function(event) {
+		// Prevent the form from submitting via the browser.
+		event.preventDefault();
+		ajaxPost();
+	});
+     
+    function ajaxPost(){
+    	
+    	// PREPARE FORM DATA
+    		title : $("#title").val(),
+    		category :  $("#category").val(),
+			price :  $("#price").val(),
+			description :  $("#description").val()
+			console.log(user.title +" and " + user.price);
+    	}
+    	
+    	// DO POST
+    	$.ajax({
+			type : "POST",
+			contentType : "application/json",
+			url : window.location + "localhost:9000/products",
+			data : JSON.stringify(formData),
+			dataType : 'json',
+			success : function(user) {
+				$("#products-right").html("<p>" + 
+					"Post Successfully! <br>" +
+					"--> " + user.title + " " + user.category + "</p>");
+			},
+			error : function(e) {
+				alert("Error!")
+				console.log("ERROR: ", e);
+			}
+		});
+    	// Reset FormData after Posting
+    	resetData();
+    }
+    function resetData(){
+    	    	// PREPARE FORM DATA
+    		 $("#title").val(),
+    		 $("#category").val(),
+			 $("#price").val(),
+			 $("#description").val()
+    }
+</script>
+
+<script>
+
+
+	
+</script>
+
+<!--- household --->
+	<div class="products">
+		<div class="container">
+			<div class="col-md-4 products-left">
+				<div class="categories">
+					<h2>Add your goods</h2>
+					<ul class="cate">
+						<li><a>Include your goods here</a></li>
+						<li>
+							{{#if hasErrors}}
+								<div class="alert alert-danger">
+									{{# each messages }}
+										<p>{{this}}</p>
+									{{/each}}
+								</div>
+        					{{/if}}
+						</li>
+						<li> 
+							<form action="/products" method="post" >
+									<input type="text" name="title" id="title" placeholder="Goods name" class="form-control" required><br>
+									<select name="category" id="category" class="form-control">
+										<option>Automobile</option>
+										<option>Body accessory</option>
+										<option>Electronics</option>
+										<option>Home Appliance</option>
+										<option>Office Appliance</option>
+										<option>Others</option>
+									</select><br>
+									<input name="price" id="price" type="number" class="form-control" placeholder="₦20000"><br>
+									<textarea name="description" id="description" class="form-control" placeholder="description"></textarea><br>
+									<input name="imagePath" class="form-control" type="file" accept="image/*"><br>
+									<input name="_csrf" type="hidden"  value="{{ csrfToken }}">
+									<input type="submit" id="insertProduct" value="Upload">
+							</form>
+						</li>
+					</ul>
+				</div>																																												
+			</div>
+
+				<div class="col-md-8 products-right" id="displayHere">
+				<div class="agile_top_brands_grids">
+					{{# each products }}
+					<div class="col-md-4 top_brand_left">
+						<div class="hover14 column">
+							{{# each this }}
+							<div class="agile_top_brand_left_grid">
+								<div class="agile_top_brand_left_grid_pos">
+									<img src="images/offer.png" alt=" " class="img-responsive">
+								</div>
+								<div class="agile_top_brand_left_grid1">
+									<figure>
+										<div class="snipcart-item block">
+											<div class="snipcart-thumb">
+												<a href="/"><img title=" " alt=" " src="images/hh1.png"></a>		
+												<p>{{ this.title }}</p>
+												<p>{{ this.description }}</p>
+												<p>{{ this.category }}</p>
+												<h4>${{ this.price }}</h4>
+											</div>
+											<div class="snipcart-details top_brand_home_details">
+												<form action="#" method="post">
+													<fieldset>
+														<input type="submit" name="submit" value="Add to cart" class="button">
+													</fieldset>
+												</form>
+											</div>
+										</div>
+									</figure>
+								</div>
+							</div>
+							{{/each}}
+						</div>
+					</div>
+					{{/each}}
+						<div class="clearfix"> </div>
+	
+				</div>
+				</div>
+				<nav class="numbering">
+					<ul class="pagination paging">
+						<li>
+							<a href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">3</a></li>
+						<li><a href="#">4</a></li>
+						<li><a href="#">5</a></li>
+						<li>
+							<a href="#" aria-label="Next">
+							<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+<!--- household --->
+
+
+		

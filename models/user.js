@@ -9,6 +9,7 @@ var userSchema = new Schema({
     resetPasswordExpires: {type: Date}
 });
 
+//OLD CODE
 userSchema.methods.encryptPassword = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(5), null);  
 };
@@ -33,6 +34,13 @@ userSchema.pre('save', function(next) {
       next();
     });
   });
-});*/
+});
 
+userSchema.methods.comparePassword = function(candidatePassword, cb) {
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+    if (err) return cb(err);
+    cb(null, isMatch);
+  });
+};
+*/
 module.exports = mongoose.model('User', userSchema);

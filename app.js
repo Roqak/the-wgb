@@ -11,15 +11,9 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
-//
-var nodemailer = require('nodemailer');
-var LocalStrategy = require('passport-local').Strategy;
-var bcrypt = require('bcrypt-nodejs');
-var async = require('async');
-var crypto = require('crypto');
 
 var routes = require('./routes/index');
-var userRoutes = require('./routes/user');
+//var userRoutes = require('./routes/user');
 var keys = require('./keys.js');
 
 /*
@@ -73,7 +67,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.use('/user', userRoutes);
+//app.use('/user', userRoutes);
 app.use('/', routes);
 
 // catch 404 and forward to error handler
