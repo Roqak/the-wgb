@@ -3,6 +3,8 @@ var router = express.Router();
 var csrf = require('csurf');
 var passport = require('passport');
 
+const products =   require('../controllers/product.controller.js');
+
 var Cart = require('../models/cart');
 var Product = require('../models/product');
 var Order = require('../models/order');
@@ -31,35 +33,28 @@ router.get('/', function (req, res, next) {
 });
 
 //FORGET PASSWORD
+router.post('/forgotpassword', function(req, res, next) {
+    var myemail =  req.body.email;
+    console.log(myemail);
+    console.log('post forgot pssword');
+     res.render('/', {
+        user: req.user
+      });
+ });
+
+
 router.get('/forgotpassword', function(req, res, next) {
     var myemail =  req.body.email;
     console.log(req.body.email);
     console.log('foluwa is here');
      res.render('user/forgotpassword', {
-        user: req.user
+        email: req.email
       });
  });
 
-//<!--PRODUCTS ROUTES
-//THIS IS A TEST NOT WORKING YET, YOU  CAN DELETE OR IGNORE IT
-/*router.get('/products',isLoggedIn,  function (req, res, next) { 
-    Product.find({},function (err, products) {
-        if(err){
-            return res.write('Error');
-        }
-        var product;
-        products.forEach(function(order){
-            product = new Product(product.products);
-            order.items = product.generateArray();
-        });
-        res.render('user/products', {orders:order,            
-            user: req.user,
-            products: productChunks,
-            successMsg: successMsg, 
-            noMessages: !successMsg,
-            csrfToken: req.csrfToken()});
-    });
-});*/
+
+
+//GET PRODUCT ROUTES
 router.get('/products',isLoggedIn,  function (req, res, next) { //products.findAll,
         var successMsg = req.flash('success')[0];
         Product.find(function (err, docs) {
@@ -79,35 +74,15 @@ router.get('/products',isLoggedIn,  function (req, res, next) { //products.findA
         });
 });
 
-router.post('/products', function (req, res, next) {
-    console.log('Post a User: ' + JSON.stringify(req.body));
-    console.log('Product: ' +''+ req.body.title +''+ req.body.description +''+ req.body.price);
-	
-    // Create a Customer
-    var product = new Product({ 
-        title : req.body.title,
-        category: req.body.category,
-        price: req.body.price,
-        description: req.body.description
-    });
- 
-    // Save a Product in the MongoDB
-    product.save()
-    .then(data => {
-        //res.send(data);
-        console.log('Product Created successfully');
-    }).catch(err => {
-        res.status(500).send({
-            message: err.message
-        });
-    });
-
-    res.render('user/products');
+router.post('/products', products.save, function (req, res, next) {
+    //console.log('Post a User: ' + JSON.stringify(req.body));
+    res.redirect('/products');
 });
 //<!--//PRODUCTS ROUTES
 
 //GET PROFILE ROUTES
 router.get('/profile', isLoggedIn, function (req, res, next) {
+  var email =  req.body.email;
     Order.find({user: req.user}, function(err, orders) {
         if (err) {
             return res.write('Error!');
@@ -117,7 +92,7 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
             cart = new Cart(order.cart);
             order.items = cart.generateArray();
         });
-        res.render('user/profile', { orders: orders });
+        res.render('user/profile', { orders: orders,email:email });
     });
 });
 
