@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
     <meta name="keywords" content="" />
+	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
     <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
     <link rel='stylesheet' href='/stylesheets/font-awesome.css' />
     <link rel='stylesheet' href='/stylesheets/skdslider.css' />
@@ -22,7 +23,7 @@
 </head>
 <body>
 {{> header }}
-    <div class=""> 
+    <div> 
         {{{body}}}
     </div>
 {{> footer }}
@@ -39,7 +40,7 @@
 		</script>
 		<!-- //here ends scrolling icon -->
 		<script src='/javascripts/minicart.min.js'></script>
-		<script>
+		<script>/*
 			// Mini Cart
 			paypal.minicart.render({
 				action: '#'
@@ -47,7 +48,7 @@
 
 			if (~window.location.search.indexOf('reset=true')) {
 				paypal.minicart.reset();
-			}
+			}*/
 		</script>
 		<!-- main slider-banner -->
 		<script src='/javascripts/skdslider.min.js'></script>

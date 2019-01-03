@@ -1,15 +1,17 @@
-<script  type="text/javascript">
+
+<script type="text/javascript">
 	$( document ).ready(function() {
-	
+	console.log("Submit button clicked");
 	// SUBMIT FORM
     $("#insertProduct").submit(function(event) {
 		// Prevent the form from submitting via the browser.
 		event.preventDefault();
+		console.log("Submit button clicked1");
 		ajaxPost();
 	});
      
     function ajaxPost(){
-    	
+    	console.log("Submit button clicked2");
     	// PREPARE FORM DATA
     		title : $("#title").val(),
     		category :  $("#category").val(),
@@ -39,19 +41,15 @@
     	resetData();
     }
     function resetData(){
-    	    	// PREPARE FORM DATA
+    	    // PREPARE FORM DATA
     		 $("#title").val(),
     		 $("#category").val(),
 			 $("#price").val(),
 			 $("#description").val()
     }
+}
 </script>
 
-<script>
-
-
-	
-</script>
 
 <!--- household --->
 	<div class="products">
@@ -61,6 +59,7 @@
 					<h2>Add your goods</h2>
 					<ul class="cate">
 						<li><a>Include your goods here</a></li>
+						<h3>{{this.user}}</h3>
 						<li>
 							{{#if hasErrors}}
 								<div class="alert alert-danger">
@@ -72,6 +71,7 @@
 						</li>
 						<li> 
 							<form action="/products" method="post" >
+									<input name="userId" id="userId" type="hidden" class="form-control" value="{{this.user}}">
 									<input type="text" name="title" id="title" placeholder="Goods name" class="form-control" required><br>
 									<select name="category" id="category" class="form-control">
 										<option>Automobile</option>
@@ -83,9 +83,9 @@
 									</select><br>
 									<input name="price" id="price" type="number" class="form-control" placeholder="₦20000"><br>
 									<textarea name="description" id="description" class="form-control" placeholder="description"></textarea><br>
-									<input name="imagePath" class="form-control" type="file" accept="image/*"><br>
+									<input name="imagePath" id="imagePath" class="form-control" ><br>
 									<input name="_csrf" type="hidden"  value="{{ csrfToken }}">
-									<input type="submit" id="insertProduct" value="Upload">
+									<button type="submit" id="insertProduct"> Upload </button>
 							</form>
 						</li>
 					</ul>
@@ -111,18 +111,12 @@
 												<p>{{ this.description }}</p>
 												<p>{{ this.category }}</p>
 												<h4>${{ this.price }}</h4>
+												<p>{{ this.userId }}</p>
 											</div>
 											<div style="display:flex;" class="snipcart-details top_brand_home_details">
-												<form  action="#" method="post">
-													<fieldset>
-														<input type="submit" name="submit" value="Update" class="button">
-													</fieldset>
-												</form><form>H</form>
-												<form action="#" method="post">
-													<fieldset>
-														<input type="submit" name="delBtn" value="Delete" class="button">
-													</fieldset>
-												</form>
+											  <p>
+												<a href='/delete?id=#'{{this._id}} onclick='return confirm("You are going to delete this record. Continue?")'>Delete</a>
+											  </p>
 											</div>
 										</div>
 									</figure>
@@ -159,37 +153,5 @@
 			<div class="clearfix"> </div>
 		</div>
 	</div>
-<!--- household --->
 
 
-<!-- IMAGE UPLOAD -->
-<script>
-	cloudinary.cloudinary_js_config()
-	$(function() {
-  if($.fn.cloudinary_fileupload !== undefined) {
-    $("input.cloudinary-fileupload[type=file]").cloudinary_fileupload();
-  }
-	});
-
-	var cloudinary_cors = "https://" + request.headers.host + "/cloudinary_cors.html";
-
-	cloudinary.v2.uploader.image_upload_tag('image_id', {callback: cloudinary_cors});
-
-	var url = require('url');
-	var url_parts = url.parse(request.url, true);
-	var query = url_parts.query;
-
-	var preloaded_file = new cloudinary.PreloadedFile(query.image_id);
-	if (preloaded_file.is_valid()) {
-	photo.image_id = preloaded_file.identifier();
-	} else {
-	throw("Invalid upload signature");
-	}
-	cloudinary.image(photo.public_id, { format: "jpg", crop: "fill", width: 120, height: 80 });
-
-</script>
-<script type="text/javascript" src="../public/javascripts/jquery.min.js"></script>
-<script type="text/javascript" src="../public/javascripts/jquery.ui.widget.js"></script>
-<script type="text/javascript" src="../public/javascripts/jquery.iframe-transport.js"></script>
-<script type="text/javascript" src="../public/javascripts/jquery.fileupload.js"></script>
-<script type="text/javascript" src="../public/javascripts/jquery.cloudinary.js"></script>

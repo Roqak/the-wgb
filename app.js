@@ -26,8 +26,7 @@ uDwhC-bLqn9nJY48SeRaOY0KHwg
  */
 
 var app = express();
-//mongodb://<dbuser>:<dbpassword>@ds227594.mlab.com:27594/the-wgb
-//localhost:27017/shope
+
 mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true }).then(
   function(res){
    console.log("Connected to Database Successfully.");
