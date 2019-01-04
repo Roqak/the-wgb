@@ -114,12 +114,13 @@ router.get('/products' ,isLoggedIn, function (req, res, next) {
         });
 });
 
-router.post('/products', products.save, function(req, res, next) {
+router.post('/products', products.save, function(req, res) {
     var user = req.user.email;
-    var isAjaxRequest = req.xhr;
-    console.log(isAjaxRequest);
+    // var isAjaxRequest = req.xhr;
+    // console.log(isAjaxRequest);
     console.log('Post a User: ' + JSON.stringify(req.body));
-    res.redirect('/products',{user: user});
+    // res.redirect('/products',{user: user});
+    res.json({'msg':'lll'}).status(200);
 });
 //<!--//PRODUCTS ROUTES
 

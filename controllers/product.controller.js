@@ -2,7 +2,7 @@ var Product = require('../models/product');
 
 
 //Save Products data into MongoDB
-exports.save =  (req, res) =>  {
+exports.save =  (req, res,next) =>  {
     console.log("About to save to the db");
     var product = new Product({ 
         userId:req.body.userId,
@@ -17,13 +17,14 @@ exports.save =  (req, res) =>  {
             console.log('Saving to database');
             //res.send(data);
             console.log('Product Created successfully');
+            next();
             }).catch(err => {
             res.status(500).send({
             message: err.message
           });
         });
-        var isAjaxRequest = req.xhr;
-        console.log('AJAX request is '+isAjaxRequest);
+        // var isAjaxRequest = req.xhr;
+        // console.log('AJAX request is '+isAjaxRequest);
 }
 
 //Delete Products data from MongoDB

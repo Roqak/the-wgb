@@ -17,7 +17,8 @@
         					{{/if}}
 						</li>
 						<li> 
-							<form action="/products" method="post">
+
+							<form class="addMyProduct" action="/products" method="post">
 									<input name="userId" id="userId" type="hidden" class="form-control" value="{{this.user}}">
 									<input type="text" name="title" id="title" placeholder="Goods name" class="form-control" required><br>
 									<select name="category" id="category" class="form-control">
@@ -105,7 +106,7 @@
   crossorigin="anonymous"></script>
 
 <script type="text/javascript" >
-	$.('.todo-list-group').on('click', '#delete-btn', function(event) {
+	$('.todo-list-group').on('click', '#delete-btn', function(event) {
 		event.preventDefault();
 		const id = $(this).attr('data-id');
 				$.ajax({
@@ -121,5 +122,25 @@
 				}
 			});
 	});
+	$('.addMyProduct').on('submit',function(e){
+		e.preventDefault();
+		$.ajax({
+			url: "/products",
+			method: "post",
+			data: $('.addMyProduct').serialize(),
+			beforeSend: function(){
+				console.log("Sending....");
+				$("#insertProduct").html("Sending.....");
+			},
+			success: function(res){
+				alert('done');
+				$("#insertProduct").html("Upload");
+			},
+			error: function(err){
+				alert("Not Done")
+				console.log(err);
+			}
+		})
+	})
 </script>
 
