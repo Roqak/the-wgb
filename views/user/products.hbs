@@ -1,4 +1,9 @@
 <!--- household --->
+<br><br>
+<div id="suc">
+
+</div>
+
 	<div class="products">
 		<div class="container">
 			<div class="col-md-4 products-left">
@@ -135,10 +140,14 @@
 			success: function(res){
 				alert('done');
 				$("#insertProduct").html("Upload");
+				$("#suc").html('<div class="alert alert-success"><p>Added Successfully</p></div>')
 			},
 			error: function(err){
 				alert("Not Done")
+				$("#suc").html('<div class="alert alert-danger"><p>Error Uploading Product</p></div>')
 				console.log(err);
+				$("#insertProduct").html("Upload");
+
 			}
 		})
 	})
