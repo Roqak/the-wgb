@@ -32,8 +32,9 @@ mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true }).then(
   function(res){
    console.log("Connected to Database Successfully.");
   }
-).catch(function(){
+).catch(function(err){
   console.log("Connection to Database failed.");
+  console.log(err)
 });
 
 require('./config/passport');
