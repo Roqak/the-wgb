@@ -198,6 +198,7 @@ router.get('/forgotpassword', function (req, res, next) {
 });
 
 router.post('/forgotpassword', products.forgotpassword, function(req, res, next) {
+    console.log('Post a User: ' + JSON.stringify(req.body));
     res.render('forgotpassword');
 });
 
@@ -211,6 +212,13 @@ router.get('/reset/:token', function(req, res) {
     });
   });
 
+router.get('/stocks', function(req, res) {
+      res.render('user/stocks');
+});
+
+router.get('/help', function(req, res) {
+    res.render('user/help');
+});
 
 //GET LOGOUT ROUTES
 router.get('/logout', isLoggedIn, function (req, res, next) {
