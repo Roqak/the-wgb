@@ -1,56 +1,3 @@
-
-<script type="text/javascript">
-	$( document ).ready(function() {
-	console.log("Submit button clicked");
-	// SUBMIT FORM
-    $("#insertProduct").submit(function(event) {
-		// Prevent the form from submitting via the browser.
-		event.preventDefault();
-		console.log("Submit button clicked1");
-		ajaxPost();
-	});
-     
-    function ajaxPost(){
-    	console.log("Submit button clicked2");
-    	// PREPARE FORM DATA
-    		title : $("#title").val(),
-    		category :  $("#category").val(),
-			price :  $("#price").val(),
-			description :  $("#description").val()
-			console.log(user.title +" and " + user.price);
-    	}
-    	
-    	// DO POST
-    	$.ajax({
-			type : "POST",
-			contentType : "application/json",
-			url : window.location + "localhost:9000/products",
-			data : JSON.stringify(formData),
-			dataType : 'json',
-			success : function(user) {
-				$("#products-right").html("<p>" + 
-					"Post Successfully! <br>" +
-					"--> " + user.title + " " + user.category + "</p>");
-			},
-			error : function(e) {
-				alert("Error!")
-				console.log("ERROR: ", e);
-			}
-		});
-    	// Reset FormData after Posting
-    	resetData();
-    }
-    function resetData(){
-    	    // PREPARE FORM DATA
-    		 $("#title").val(),
-    		 $("#category").val(),
-			 $("#price").val(),
-			 $("#description").val()
-    }
-}
-</script>
-
-
 <!--- household --->
 	<div class="products">
 		<div class="container">
@@ -70,7 +17,7 @@
         					{{/if}}
 						</li>
 						<li> 
-							<form action="/products" method="post" >
+							<form action="/products" method="post">
 									<input name="userId" id="userId" type="hidden" class="form-control" value="{{this.user}}">
 									<input type="text" name="title" id="title" placeholder="Goods name" class="form-control" required><br>
 									<select name="category" id="category" class="form-control">
@@ -115,7 +62,8 @@
 											</div>
 											<div style="display:flex;" class="snipcart-details top_brand_home_details">
 											  <p>
-												<a href='/delete?id=#'{{this._id}} onclick='return confirm("You are going to delete this record. Continue?")'>Delete</a>
+												<button class="todo-list-group" id="delete-btn" data-id={{this._id}} onclick='return confirm("You are going to delete this record. Continue?")'>Delete</button>
+												<!-- href='/delete?id=#'{{this._id}} -->
 											  </p>
 											</div>
 										</div>
@@ -153,5 +101,25 @@
 			<div class="clearfix"> </div>
 		</div>
 	</div>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 
+<script type="text/javascript" >
+	$.('.todo-list-group').on('click', '#delete-btn', function(event) {
+		event.preventDefault();
+		const id = $(this).attr('data-id');
+				$.ajax({
+			url: '/delete/'+id,
+			method: 'DELETE',
+			data: { id: id }
+			}).done(function(res) {
+				if (res.success) {
+				console.log('id from ajax call is', res);
+				window.location.reload();
+			} else {
+				console.log('error...ajax');
+				}
+			});
+	});
+</script>
 

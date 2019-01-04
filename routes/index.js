@@ -140,9 +140,17 @@ router.post('/edit', function(req, res, next) {
 
 
   ////DELETE
-  router.get('/delete',products.delete, function(req, res, next) {
-    console.log('performing delete db post');
-    res.redirect('/product');
+  router.get('/delete/:id', function(req, res, next) {//products.delete,
+    console.log(req.params.id);
+    product.deleteOne({ _id: req.params.id })
+    .then(() => {
+        res.json({ success: true });
+    })
+    .catch(err => {
+        res.status.json({ err: err });
+    });
+   // console.log('performing delete db post');
+    //res.redirect('/product');
    // var id = req.query.id;
     /*MongoClient.connect(dburl, function(err, db) {
       if(err) { throw err;  }
