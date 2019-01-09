@@ -68,8 +68,11 @@
 											</div>
 											<div style="display:flex;" class="snipcart-details top_brand_home_details">
 											  <p>
-												<button class="todo-list-group" id="delete-btn" data-id={{this._id}} onclick='return confirm("You are going to delete this record. Continue?")'>Delete</button>
+												{{!-- <button class="todo-list-group" id="delete-btn" data-id={{this._id}} onclick='return confirm("You are going to delete this record. Continue?")'>Delete</button> --}}
 												<!-- href='/delete?id=#'{{this._id}} -->
+												<input type="text" value={{this._id}} id="current_id">
+												<button class="todo-list-group" id="delete-btn" data-id={{this._id}}>Delete</button>
+
 											  </p>
 											</div>
 										</div>
@@ -111,9 +114,10 @@
   crossorigin="anonymous"></script>
 
 <script type="text/javascript" >
-	$('.todo-list-group').on('click', '#delete-btn', function(event) {
+	$('#delete-btn').on('click', function(event) {
+		alert("");
 		event.preventDefault();
-		const id = $(this).attr('data-id');
+		const id = $('#current_id').val();
 				$.ajax({
 			url: '/delete/'+id,
 			method: 'DELETE',

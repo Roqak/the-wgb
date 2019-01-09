@@ -30,7 +30,8 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "serve-favicon": "^2.5.0",
-    "stripe": "^4.7.0"
+    "stripe": "^4.7.0",
+    "xoauth2": "^1.2.0"
   },
   "engines": {
     "node": "10.x"

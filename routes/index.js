@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var csrf = require('csurf');
 var bodyParser = require('body-parser');
+var xoauth2 = require('xoauth2');
 
 var products =   require('../controllers/product.controller.js');
 
@@ -13,8 +14,6 @@ var Order = require('../models/order');
 
 var csrfProtection = csrf();
 router.use(csrfProtection);
-
-
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
@@ -40,70 +39,17 @@ router.get('/products' ,isLoggedIn, function (req, res, next) {
     var user = req.user.email;
     var isAjaxRequest = req.xhr;
     console.log(isAjaxRequest);
-    /*
-    var successMsg = req.flash('success')[0];
-    Product.find({user:req.user},function (err, docs) {
-        var productChunks = [];
-        var chunkSize = 3;
-        for (var i = 0; i < docs.length; i += chunkSize) {
-            productChunks.push(docs.slice(i, i + chunkSize));
-        }
-        res.render('user/products', 
-        {title: 'Wegobuyam', 
-        user: user,
-        docs:docs,
-        products: productChunks,
-        successMsg: successMsg, 
-        noMessages: !successMsg,
-        csrfToken: req.csrfToken()
-        });
-    });*/
-    /*
-    var successMsg = req.flash('success')[0];
-    Product.find({user:req.user}, function(err,orders){
-        var productChunks = [];
-            var chunkSize = 3;
-            for (var i = 0; i < orders.length; i += chunkSize) {
-                productChunks.push(orders.slice(i, i + chunkSize));
-            }
-            res.render('user/products', 
-            {title: 'Wegobuyam', 
-            user: req.user,
-            orders:orders,
-            successMsg: successMsg, 
-            noMessages: !successMsg,
-            csrfToken: req.csrfToken()
-            });
-
-    });*/
-   /* Product.find({user:req.user}, function(err,orders){
-        if(err){
-            return res.write('Error!');
-        }
-        var product;
-        products.forEach(function(order){
-            product = new Product(order.product);
-            order.items = product.generateArray();
-        });
-        res.render('user/products', 
-            {title: 'Wegobuyam', 
-            user: req.user,
-            orders:orders,
-            successMsg: successMsg, 
-            noMessages: !successMsg,
-            csrfToken: req.csrfToken()
-            });
-
-    });*/
-
         var successMsg = req.flash('success')[0];
-        Product.find(function (err, docs) {
-            var productChunks = [];
-            var chunkSize = 3;
-            for (var i = 0; i < docs.length; i += chunkSize) {
-                productChunks.push(docs.slice(i, i + chunkSize));
+        var productChunks = [];
+        Product.find({userId: user}).then((result)=>{
+            if(result){
+                     for (var i = 0; i < result.length; i++) {
+                // productChunks.push(result[i]);
+                productChunks.push([result[i]])
             }
-            res.render('user/products', 
+                // res.send({productChunks})
+                // console.log(result[0].userId)
+     res.render('user/products', 
             {title: 'Wegobuyam', 
             user: req.user.email,
             products: productChunks,
@@ -111,9 +57,11 @@ router.get('/products' ,isLoggedIn, function (req, res, next) {
             noMessages: !successMsg,
             csrfToken: req.csrfToken()
             });
-        });
-});
-
+            }
+        }).catch((err)=>{
+            console.log("Error ",err)
+        })
+    })
 router.post('/products', products.save, function(req, res) {
     var user = req.user.email;
     // var isAjaxRequest = req.xhr;
@@ -141,7 +89,7 @@ router.post('/edit', function(req, res, next) {
 
 
   ////DELETE
-  router.get('/delete/:id', function(req, res, next) {//products.delete,
+  router.post('/delete/:id', function(req, res) {//products.delete,
     console.log(req.params.id);
     product.deleteOne({ _id: req.params.id })
     .then(() => {
@@ -150,25 +98,8 @@ router.post('/edit', function(req, res, next) {
     .catch(err => {
         res.status.json({ err: err });
     });
-   // console.log('performing delete db post');
-    //res.redirect('/product');
-   // var id = req.query.id;
-    /*MongoClient.connect(dburl, function(err, db) {
-      if(err) { throw err;  }
-  
-      db.collection('Products', function(err, products) {
-        Products.deleteOne({_id: new mongodb.ObjectID(id)});
-        if (err){
-           throw err;
-         }else{
-            db.close();
-            res.redirect('/');
-         }
-      });
-    });*/
   });
   
-
 //GET PROFILE ROUTES
 router.get('/profile', isLoggedIn, function (req, res, next) {
   var email =  req.body.email;
@@ -199,7 +130,7 @@ router.get('/forgotpassword', function (req, res, next) {
 
 router.post('/forgotpassword', products.forgotpassword, function(req, res, next) {
     console.log('Post a User: ' + JSON.stringify(req.body));
-    res.render('forgotpassword');
+    res.render('forgotpassword',{user:req.user});
 });
 
 router.get('/reset/:token', function(req, res) {
@@ -210,7 +141,53 @@ router.get('/reset/:token', function(req, res) {
       }
       res.render('user/reset', {user: req.user, csrfToken: req.csrfToken()});
     });
+});
+
+router.post('/reset/:token', function(req, res) {
+    async.waterfall([
+      function(done) {
+        User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+          if (!user) {
+            req.flash('error', 'Password reset token is invalid or has expired.');
+            return res.redirect('back');
+          }
+  
+          user.password = req.body.password;
+          user.resetPasswordToken = undefined;
+          user.resetPasswordExpires = undefined;
+  
+          user.save(function(err) {
+            req.logIn(user, function(err) {
+              done(err, user);
+            });
+          });
+        });
+      },
+      function(user, done) {
+        var smtpTransport = nodemailer.createTransport('SMTP', {
+            service: 'SendGrid',
+            auth: {
+              user: 'moronfoluwaakintola@gmail.com',
+              pass: 'Moronfoluwa@2020'
+            }
+        });
+        var mailOptions = {
+          to: user.email,
+          from: 'moronfoluwaakintola@gmail.com',
+          subject: 'Your password has been changed',
+          text: 'Hello,\n\n' +
+            'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+        };
+        smtpTransport.sendMail(mailOptions, function(err) {
+          req.flash('success', 'Success! Your password has been changed.');
+          done(err);
+        });
+      }
+    ], function(err) {
+      res.redirect('/');
+    });
   });
+
 
 router.get('/stocks', function(req, res) {
       res.render('user/stocks');
