@@ -72,7 +72,7 @@ input[type="submit"],#PPMiniCart .minicart-submit,.w3ls_vegetables ul li a,input
 	-ms-transition: .5s ease-in;
 }
 .agileits_header {
-    background: #1a0000; //#333333;
+    background: #333333;
     padding: 12px 0;
 }
 .w3l_offers {
@@ -115,7 +115,7 @@ i.fa.fa-phone {
     font-size: 20px;
 }
 button.btn.btn-default.search {
-    background: #fe9126;
+  background: #56c590; 
     padding: 11px 12px 11px;
     float: right;
     outline: none;
@@ -190,7 +190,7 @@ button.w3view-cart:focus{
 }
 .w3ls_logo_products_left h1 a{
 	font-size: 40px;
-    color: #fe9126;
+    color: #56c590; 
     text-decoration: none;
     text-transform: uppercase;
     display: block;
@@ -281,9 +281,8 @@ ul.multi-column-dropdown h6 {
 .multi-gd-img img {
     width: 100%;
 }
-//
 .navigation-agileits {
-    background:#3FF09F;/*#fe9126;*/
+    background: #56c590;
 }
 .navbar-nav > li {
     float: left;
@@ -536,13 +535,13 @@ div#myTabContent {
 }
 .nav-tabs>li>a:hover, .nav>li>a:focus {
 	text-decoration: none;
-	background: #fe9126;
+	background: #56c590; /*#fe9126;*/
 	color: #FFF;
 	border:  0px solid transparent;
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
     color: #FFF;
-    background: #fe9126;
+    background: #56c590; /*#fe9126;*/
 	border:  0px solid transparent;
 }
 .nav-tabs {
@@ -759,7 +758,7 @@ i.gray-star {
 /*-- footer --*/
 .footer {
     padding: 5em 0 2em;
-    background: #1a0000; //#2b2a2a;
+    background: #2b2a2a;
 }
 .w3_footer_grid h3 {
     color: #ffffff;
