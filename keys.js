@@ -6,7 +6,7 @@ module.exports = {
         clientSecret:'Gn4RGjFH6RsYcoGhq9tWIVJ0'
     },
     mongodb:{
-        dbURI: 'mongodb://wgbadmin:wgbadmin1@ds227594.mlab.com:27594/the-wgb'
+        dbURI: 'mongodb://localhost/testForAuth'
     }
 };
 //DEPLOYING TO HEROKU
