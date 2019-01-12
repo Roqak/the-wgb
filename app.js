@@ -11,11 +11,9 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
-
 var routes = require('./routes/index');
-//var userRoutes = require('./routes/user');
 var keys = require('./keys.js');
-
+var app = express();
 /*
 Cloud name:	
 evolve-hostelier
@@ -25,7 +23,14 @@ API Secret:
 uDwhC-bLqn9nJY48SeRaOY0KHwg
  */
 
-var app = express();
+
+/*
+console.time('looper');
+var i =0;
+while(i < 10000){
+    i++;
+}
+console.timeEnd('looper');*/
 
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongodb.dbURI, { useMongoClient: true }).then(//useNewUrlParser: true,
@@ -34,7 +39,7 @@ mongoose.connect(keys.mongodb.dbURI, { useMongoClient: true }).then(//useNewUrlP
   }
 ).catch(function(err){
   console.log("Connection to Database failed.");
-  console.log(err)
+  console.log(err);
 });
 
 require('./config/passport');
@@ -68,7 +73,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-//app.use('/user', userRoutes);
 app.use('/', routes);
 
 // catch 404 and forward to error handler
@@ -79,7 +83,6 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {

@@ -45,7 +45,7 @@ router.get('/products' ,isLoggedIn, function (req, res, next) {
             if(result){
                      for (var i = 0; i < result.length; i++) {
                 // productChunks.push(result[i]);
-                productChunks.push([result[i]])
+                productChunks.push([result[i]]);
             }
                 // res.send({productChunks})
                 // console.log(result[0].userId)
@@ -59,9 +59,9 @@ router.get('/products' ,isLoggedIn, function (req, res, next) {
             });
             }
         }).catch((err)=>{
-            console.log("Error ",err)
-        })
-    })
+            console.log("Error ",err);
+        });
+    });
 router.post('/products', products.save, function(req, res) {
     var user = req.user.email;
     // var isAjaxRequest = req.xhr;
@@ -190,7 +190,30 @@ router.post('/reset/:token', function(req, res) {
 
 
 router.get('/stocks', function(req, res) {
-      res.render('user/stocks');
+    var user = req.user.email;
+    var isAjaxRequest = req.xhr;
+    console.log(isAjaxRequest);
+        var successMsg = req.flash('success')[0];
+        var productChunks = [];
+        Product.find({userId: user}).then((result)=>{
+            if(result){
+                     for (var i = 0; i < result.length; i++) {
+                // productChunks.push(result[i]);
+                productChunks.push([result[i]]);
+            }
+                // res.send({productChunks})
+                // console.log(result[0].userId)
+     res.render('user/stocks', 
+            {title: 'Wegobuyam', 
+            user: req.user.email,
+            products: productChunks,
+            successMsg: successMsg, 
+            noMessages: !successMsg
+            });
+            }
+        }).catch((err)=>{
+            console.log("Error ",err);
+        });
 });
 
 router.get('/help', function(req, res) {
