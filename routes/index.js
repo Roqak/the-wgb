@@ -188,7 +188,6 @@ router.post('/reset/:token', function(req, res) {
     });
   });
 
-
 router.get('/stocks', function(req, res) {
     var user = req.user.email;
     var isAjaxRequest = req.xhr;
@@ -216,6 +215,56 @@ router.get('/stocks', function(req, res) {
         });
 });
 
+router.get('/stocks/:id', function(req, res){
+    console.log('Your parameters are ' + req.params.id);
+    var successMsg = req.flash('success')[0];
+    var productChunks = [];
+    Product.find({ category: req.params.id}).then((result)=>{
+        if(result){
+                 for (var i = 0; i < result.length; i++) {
+            // productChunks.push(result[i]);
+            productChunks.push([result[i]]);
+        }
+        res.render('user/stocks', 
+            {title: 'Wegobuyam', 
+            user: req.user.email,
+            products: productChunks,
+            successMsg: successMsg, 
+            noMessages: !successMsg
+            });
+            }
+        }).catch((err)=>{
+            console.log("Error ",err);
+        });
+
+});
+
+router.get('/search', function(req, res){
+    console.log('Your search is ' + req.query.search);
+    var successMsg = req.flash('success')[0];
+    var productChunks = [];
+    Product.find({ category: req.query.search}).then((result)=>{
+        if(result){
+                 for (var i = 0; i < result.length; i++) {
+            // productChunks.push(result[i]);
+            productChunks.push([result[i]]);
+            console.log(result[i]);
+        }
+        res.render('user/stocks',
+            {title: 'Wegobuyam', 
+            // user: req.user.email,
+            user: req.query.search,
+            products: productChunks,
+            successMsg: successMsg, 
+            noMessages: !successMsg
+            });
+            }
+        }).catch((err)=>{
+            console.log("Error ",err);
+        });
+
+});
+
 router.get('/help', function(req, res) {
     res.render('user/help');
 });
@@ -225,7 +274,6 @@ router.get('/logout', isLoggedIn, function (req, res, next) {
     req.logout();
     res.redirect('/');
 });
-
 
 router.use('/', notLoggedIn, function (req, res, next) {
     next();
@@ -237,6 +285,7 @@ router.get('/signup', function (req, res, next) {
     var messages = req.flash('error');
     res.render('user/signup', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
 });
+
 
 //POST SIGNUP ROUTES
 router.post('/signup', passport.authenticate('local.signup', {
@@ -252,6 +301,7 @@ router.post('/signup', passport.authenticate('local.signup', {
     }
 });
 
+
 //GET SIGNIN ROUTES
 router.get('/signin', function (req, res, next) {
     var messages = req.flash('error'); res.render('user/signin', {
@@ -260,6 +310,7 @@ router.get('/signin', function (req, res, next) {
         messages: messages, 
         hasErrors: messages.length > 0});
 });
+
 
 //POST SIGNIN ROUTES
 router.post('/signin', passport.authenticate('local.signin', {
@@ -275,7 +326,6 @@ router.post('/signin', passport.authenticate('local.signin', {
         res.redirect('/profile');
     }
 });
-
 
 
 //ERROR 404 ROUTES
