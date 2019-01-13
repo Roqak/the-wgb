@@ -221,7 +221,7 @@ router.get('/stocks/:id', function(req, res){
     var productChunks = [];
     Product.find({ category: req.params.id}).then((result)=>{
         if(result){
-                 for (var i = 0; i < result.length; i++) {
+            for (var i = 0; i < result.length; i++) {
             // productChunks.push(result[i]);
             productChunks.push([result[i]]);
         }
