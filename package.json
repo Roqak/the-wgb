@@ -2,8 +2,8 @@
   "name": "the-wgb",
   "version": "0.0.1",
   "scripts": {
-    "start": "node ./www",
-    "nodemon": "node ./bin/www",
+    "start": "node www",
+    "nodemon": "node ./bin/www"
   },
   "dependencies": {
     "async": "^2.6.1",
