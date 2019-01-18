@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var csrf = require('csurf');
+var cloudinary = require('cloudinary');
 var bodyParser = require('body-parser');
 var xoauth2 = require('xoauth2');
 
@@ -10,6 +11,12 @@ var products =   require('../controllers/product.controller.js');
 var Cart = require('../models/cart');
 var Product = require('../models/product');
 var Order = require('../models/order');
+
+// cloudinary.config({ 
+//     cloud_name: 'sample', 
+//     api_key: '874837483274837', 
+//     api_secret: 'a676b67565c6767a6767d6767f676fe1' 
+//   });
 
 
 var csrfProtection = csrf();
@@ -66,6 +73,11 @@ router.post('/products', products.save, function(req, res) {
     var user = req.user.email;
     // var isAjaxRequest = req.xhr;
     // console.log(isAjaxRequest);
+
+    cloudinary.v2.uploader.upload("http://www.example.com/image.jpg", 
+  function(error, result) {console.log(result, error)});
+
+  
     console.log('Post a User: ' + JSON.stringify(req.body));
     // res.redirect('/products',{user: user});
     res.json({'msg':'lll'}).status(200);
