@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{{title}}</title>
+    <title>{{ title }}</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="Accept-CH" content="DPR, Viewport-Width, Width">
-    <meta name="keywords" content="" />
+	<meta name="theme-color" content="#56c590">
+	<meta Property="og:description" Content="online marketplace,Used,Clothings, Buy and sell electronics, cars, fashion, Apparel, collectibles,  goods, digital cameras, baby items, and everything else on eBay" />
+    <meta name="description" content="online marketplace,Used,Clothings, Buy and sell electronics, cars, fashion, Apparel, collectibles,  goods, digital cameras, baby items, and everything else on eBay" />
+	<meta name="keywords" content="" />
+	<link rel="manifest" href="/manifest.json"/>
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
     <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
     <link rel='stylesheet' href='/stylesheets/font-awesome.css' />
@@ -27,6 +31,7 @@
         {{{body}}}
     </div>
 {{> footer }}
+        <script src='/sw.js'></script>
         <script src='/javascripts/jquery-1.11.1.min.js'></script>
         <script src='/javascripts/bootstrap.min.js'></script>
         <script src='/javascripts/move-top.js'></script>
@@ -40,16 +45,6 @@
 		</script>
 		<!-- //here ends scrolling icon -->
 		<script src='/javascripts/minicart.min.js'></script>
-		<script>/*
-			// Mini Cart
-			paypal.minicart.render({
-				action: '#'
-			});
-
-			if (~window.location.search.indexOf('reset=true')) {
-				paypal.minicart.reset();
-			}*/
-		</script>
 		<!-- main slider-banner -->
 		<script src='/javascripts/skdslider.min.js'></script>
 		<script type="text/javascript">

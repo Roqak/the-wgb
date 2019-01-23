@@ -1,23 +1,23 @@
 	<!-- main-slider -->
 		<ul id="demo1">
 			<li>
-				<img src="images/11.jpg" alt="" />
+				<img src="images/11.svg" alt="Slider Image 1" />
 				<!--Slider Description example-->
 				<div class="slide-desc">
-					<h3>Buy goods  at your convininence</h3>
+					<!-- <h3>Buying at your convininence</h3> -->
 				</div>
 			</li>
 			<li>
-				<img src="images/22.jpg" alt="" />
+				<img src="images/22.svg" alt="Slider Image 2" />
 				  <div class="slide-desc">
-					<h3>Sell products faster</h3>
+				<!--	<h3>Sell products faster</h3>-->
 				</div>
 			</li>
 			
 			<li>
-				<img src="images/44.jpg" alt="" />
+				<img src="images/44.svg" alt="Slider Image 3" />
 				<div class="slide-desc">
-					<h3>Reach your customers faster</h3>
+				<!--	<h3>Reach your customers faster</h3>-->
 				</div>
 			</li>
 		</ul>
@@ -45,13 +45,12 @@
 								<div class="col-md-4 top_brand_left">
 									{{# each this }}
 									<div class="hover14 column">
-										
 										<div class="agile_top_brand_left_grid">
 											<div class="agile_top_brand_left_grid1">
 												<figure>
 													<div class="snipcart-item block" >
 														<div class="snipcart-thumb">
-															<a href=""><img title=" " alt=" " width="150px" height="140px" height src="images/ankara1.jpg" /></a>		
+															<a href=""><img title="ankara picture" alt="sAmkara picture 1" width="150px" height="140px" height src="images/ankara1.jpg" /></a>		
 															<p>{{ this.title }}</p>
 															<p>{{ this.description }}</p>
 															<h4>${{ this.price }}</h4>
@@ -59,7 +58,7 @@
 														<div class="snipcart-details top_brand_home_details">
 															<form action="#" method="post">
 																<fieldset>
-																	<input type="submit" name="submit" value="Add to cart" class="button" />
+																	<input type="submit" name="submit" value="Purchase" class="button" />
 																</fieldset>
 															</form>
 														</div>
@@ -67,17 +66,13 @@
 												</figure>
 											</div>
 										</div>
-										
-									</div>
+									</div><br>
 									{{/each}}
 								</div>
 								{{/each}}
-								
 								<div class="clearfix"></div>
 							</div>
 						</div>
-
-
 						<!-- SECOND TAB -->
 						<div role="tabpanel" class="tab-pane fade" id="tours" aria-labelledby="tours-tab">
 							<div class="agile-tp">
@@ -88,29 +83,17 @@
 								<div class="col-md-4 top_brand_left">
 									<div class="hover14 column">
 										<div class="agile_top_brand_left_grid">
-											<div class="agile_top_brand_left_grid_pos">
-												<img src="images/offer.png" alt=" " class="img-responsive" />
-											</div>
 											<div class="agile_top_brand_left_grid1">
 												<figure>
 													<div class="snipcart-item block" >
 														<div class="snipcart-thumb">
-															<a href=""><img title=" " alt=" " src="images/7.png" /></a>		
+															<a href=""><img title=" " alt=" image 7" src="images/7.png" /></a>		
 															<p>Sona-masoori-rice</p>
 															<h4>$35.99</h4>
 														</div>
 														<div class="snipcart-details top_brand_home_details">
 															<form action="#" method="post">
 																<fieldset>
-																	<input type="hidden" name="cmd" value="_cart" />
-																	<input type="hidden" name="add" value="1" />
-																	<input type="hidden" name="business" value=" " />
-																	<input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
-																	<input type="hidden" name="amount" value="35.99" />
-																	<input type="hidden" name="discount_amount" value="1.00" />
-																	<input type="hidden" name="currency_code" value="USD" />
-																	<input type="hidden" name="return" value=" " />
-																	<input type="hidden" name="cancel_return" value=" " />
 																	<input type="submit" name="submit" value="Add to cart" class="button" />
 																</fieldset>
 															</form>
@@ -124,9 +107,6 @@
 								<div class="col-md-4 top_brand_left">
 									<div class="hover14 column">
 										<div class="agile_top_brand_left_grid">
-											<div class="agile_top_brand_left_grid_pos">
-												<img src="images/offer.png" alt=" " class="img-responsive" />
-											</div>
 											<div class="agile_top_brand_left_grid1">
 												<figure>
 													<div class="snipcart-item block" >
@@ -138,15 +118,6 @@
 														<div class="snipcart-details top_brand_home_details">
 															<form action="#" method="post">
 																<fieldset>
-																	<input type="hidden" name="cmd" value="_cart" />
-																	<input type="hidden" name="add" value="1" />
-																	<input type="hidden" name="business" value=" " />
-																	<input type="hidden" name="item_name" value="basmati rise" />
-																	<input type="hidden" name="amount" value="30.99" />
-																	<input type="hidden" name="discount_amount" value="1.00" />
-																	<input type="hidden" name="currency_code" value="USD" />
-																	<input type="hidden" name="return" value=" " />
-																	<input type="hidden" name="cancel_return" value=" " />
 																	<input type="submit" name="submit" value="Add to cart" class="button" />
 																</fieldset>
 															</form>
@@ -177,15 +148,6 @@
 														<div class="snipcart-details top_brand_home_details">
 															<form action="#" method="post">
 																<fieldset>
-																	<input type="hidden" name="cmd" value="_cart" />
-																	<input type="hidden" name="add" value="1" />
-																	<input type="hidden" name="business" value=" " />
-																	<input type="hidden" name="item_name" value="Pepsi soft drink" />
-																	<input type="hidden" name="amount" value="80.00" />
-																	<input type="hidden" name="discount_amount" value="1.00" />
-																	<input type="hidden" name="currency_code" value="USD" />
-																	<input type="hidden" name="return" value=" " />
-																	<input type="hidden" name="cancel_return" value=" " />
 																	<input type="submit" name="submit" value="Add to cart" class="button" />
 																</fieldset>
 															</form>
@@ -216,15 +178,6 @@
 														<div class="snipcart-details top_brand_home_details">
 															<form action="#" method="post">
 																<fieldset>
-																	<input type="hidden" name="cmd" value="_cart" />
-																	<input type="hidden" name="add" value="1" />
-																	<input type="hidden" name="business" value=" " />
-																	<input type="hidden" name="item_name" value="Fortune Sunflower Oil" />
-																	<input type="hidden" name="amount" value="20.99" />
-																	<input type="hidden" name="discount_amount" value="1.00" />
-																	<input type="hidden" name="currency_code" value="USD" />
-																	<input type="hidden" name="return" value=" " />
-																	<input type="hidden" name="cancel_return" value=" " />
 																	<input type="submit" name="submit" value="Add to cart" class="button" />
 																</fieldset>
 															</form>
@@ -252,15 +205,6 @@
 														<div class="snipcart-details top_brand_home_details">
 															<form action="#" method="post">
 																<fieldset>
-																	<input type="hidden" name="cmd" value="_cart" />
-																	<input type="hidden" name="add" value="1" />
-																	<input type="hidden" name="business" value=" " />
-																	<input type="hidden" name="item_name" value="basmati rise" />
-																	<input type="hidden" name="amount" value="20.99" />
-																	<input type="hidden" name="discount_amount" value="1.00" />
-																	<input type="hidden" name="currency_code" value="USD" />
-																	<input type="hidden" name="return" value=" " />
-																	<input type="hidden" name="cancel_return" value=" " />
 																	<input type="submit" name="submit" value="Add to cart" class="button" />
 																</fieldset>
 															</form>
@@ -288,15 +232,6 @@
 														<div class="snipcart-details top_brand_home_details">
 															<form action="#" method="post">
 																<fieldset>
-																	<input type="hidden" name="cmd" value="_cart" />
-																	<input type="hidden" name="add" value="1" />
-																	<input type="hidden" name="business" value=" " />
-																	<input type="hidden" name="item_name" value="Pepsi soft drink" />
-																	<input type="hidden" name="amount" value="40.00" />
-																	<input type="hidden" name="discount_amount" value="1.00" />
-																	<input type="hidden" name="currency_code" value="USD" />
-																	<input type="hidden" name="return" value=" " />
-																	<input type="hidden" name="cancel_return" value=" " />
 																	<input type="submit" name="submit" value="Add to cart" class="button" />
 																</fieldset>
 															</form>
@@ -322,12 +257,12 @@
 		<div class="container">
 		<h3>Brand Store</h3><br>
 			  <p class="footer-main">
-			    Creativity helps stores stand out.WhogobuyDoing something a little different can help your bottom line a lot.They build themselves on being a website that offers unique gifts.
-				great example of an online store design that stands out in the crowd.Their products are beautiful and clean.
-				‘what best suits you'. It breaks it down for the customer and makes it enjoyable to look at.stunning design. 
+			    Creativity helps stores stand out. Whogobuyam is doing something different that can help your bottom line a lot.We have built a website that offers unique products.
+				Great example of collections of online stores that stands out in the crowd.Our products are beautiful,clean
+				and what best suits you. Selling breaks down for the customer and makes it enjoyable to look at. We have stunning design
 				to the other shops is that they sell their products on other platforms. 
-				However,they use their website for extra design functionality and to highlight their story
-				So if you have it flaunt it, integrate your social media platforms in to your ecommerce website design.
+				However,we use our website for extra design functionality and to highlight everyone's story
+				So if you have it flaunt it, Also integrate your social media platforms in to your ecommerce website design.
 			  </p>
 		</div>
 	</div>

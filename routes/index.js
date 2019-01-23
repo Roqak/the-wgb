@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var csrf = require('csurf');
+var cloudinary = require('cloudinary');
 var bodyParser = require('body-parser');
 var xoauth2 = require('xoauth2');
 
@@ -10,6 +11,12 @@ var products =   require('../controllers/product.controller.js');
 var Cart = require('../models/cart');
 var Product = require('../models/product');
 var Order = require('../models/order');
+
+// cloudinary.config({ 
+//     cloud_name: 'sample', 
+//     api_key: '874837483274837', 
+//     api_secret: 'a676b67565c6767a6767d6767f676fe1' 
+//   });
 
 
 var csrfProtection = csrf();
@@ -45,7 +52,7 @@ router.get('/products' ,isLoggedIn, function (req, res, next) {
             if(result){
                      for (var i = 0; i < result.length; i++) {
                 // productChunks.push(result[i]);
-                productChunks.push([result[i]])
+                productChunks.push([result[i]]);
             }
                 // res.send({productChunks})
                 // console.log(result[0].userId)
@@ -59,13 +66,18 @@ router.get('/products' ,isLoggedIn, function (req, res, next) {
             });
             }
         }).catch((err)=>{
-            console.log("Error ",err)
-        })
-    })
+            console.log("Error ",err);
+        });
+    });
 router.post('/products', products.save, function(req, res) {
     var user = req.user.email;
     // var isAjaxRequest = req.xhr;
     // console.log(isAjaxRequest);
+
+    cloudinary.v2.uploader.upload("http://www.example.com/image.jpg", 
+  function(error, result) {console.log(result, error)});
+
+  
     console.log('Post a User: ' + JSON.stringify(req.body));
     // res.redirect('/products',{user: user});
     res.json({'msg':'lll'}).status(200);
@@ -188,9 +200,81 @@ router.post('/reset/:token', function(req, res) {
     });
   });
 
-
 router.get('/stocks', function(req, res) {
-      res.render('user/stocks');
+    var user = req.user.email;
+    var isAjaxRequest = req.xhr;
+    console.log(isAjaxRequest);
+        var successMsg = req.flash('success')[0];
+        var productChunks = [];
+        Product.find({userId: user}).then((result)=>{
+            if(result){
+                     for (var i = 0; i < result.length; i++) {
+                // productChunks.push(result[i]);
+                productChunks.push([result[i]]);
+            }
+                // res.send({productChunks})
+                // console.log(result[0].userId)
+     res.render('user/stocks', 
+            {title: 'Wegobuyam', 
+            user: req.user.email,
+            products: productChunks,
+            successMsg: successMsg, 
+            noMessages: !successMsg
+            });
+            }
+        }).catch((err)=>{
+            console.log("Error ",err);
+        });
+});
+
+router.get('/stocks/:id', function(req, res){
+    console.log('Your parameters are ' + req.params.id);
+    var successMsg = req.flash('success')[0];
+    var productChunks = [];
+    Product.find({ category: req.params.id}).then((result)=>{
+        if(result){
+            for (var i = 0; i < result.length; i++) {
+            // productChunks.push(result[i]);
+            productChunks.push([result[i]]);
+        }
+        res.render('user/stocks', 
+            {title: 'Wegobuyam', 
+            user: req.user.email,
+            products: productChunks,
+            successMsg: successMsg, 
+            noMessages: !successMsg
+            });
+            }
+        }).catch((err)=>{
+            console.log("Error ",err);
+        });
+
+});
+
+router.get('/search', function(req, res){
+    console.log('Your search is ' + req.query.search);
+    var successMsg = req.flash('success')[0];
+    var productChunks = [];
+    Product.find({ category: req.query.search}).then((result)=>{
+        if(result){
+                 for (var i = 0; i < result.length; i++) {
+            // productChunks.push(result[i]);
+            productChunks.push([result[i]]);
+            console.log(result[i]);
+        }
+        res.render('user/stocks',
+            {title: 'Wegobuyam', 
+            // user: req.user.email,
+            user: req.query.search,
+            products: productChunks,
+            successMsg: successMsg, 
+            noMessages: !successMsg
+            });
+            }
+        }).catch((err)=>{
+            console.log("Error ",err);
+        });
+
 });
 
 router.get('/help', function(req, res) {
@@ -203,7 +287,6 @@ router.get('/logout', isLoggedIn, function (req, res, next) {
     res.redirect('/');
 });
 
-
 router.use('/', notLoggedIn, function (req, res, next) {
     next();
 });
@@ -214,6 +297,7 @@ router.get('/signup', function (req, res, next) {
     var messages = req.flash('error');
     res.render('user/signup', {csrfToken: req.csrfToken(), messages: messages, hasErrors: messages.length > 0});
 });
+
 
 //POST SIGNUP ROUTES
 router.post('/signup', passport.authenticate('local.signup', {
@@ -229,6 +313,7 @@ router.post('/signup', passport.authenticate('local.signup', {
     }
 });
 
+
 //GET SIGNIN ROUTES
 router.get('/signin', function (req, res, next) {
     var messages = req.flash('error'); res.render('user/signin', {
@@ -237,6 +322,7 @@ router.get('/signin', function (req, res, next) {
         messages: messages, 
         hasErrors: messages.length > 0});
 });
+
 
 //POST SIGNIN ROUTES
 router.post('/signin', passport.authenticate('local.signin', {
@@ -252,7 +338,6 @@ router.post('/signin', passport.authenticate('local.signin', {
         res.redirect('/profile');
     }
 });
-
 
 
 //ERROR 404 ROUTES

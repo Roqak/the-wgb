@@ -11,11 +11,9 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var MongoStore = require('connect-mongo')(session);
-
 var routes = require('./routes/index');
-//var userRoutes = require('./routes/user');
 var keys = require('./keys.js');
-
+var app = express();
 /*
 Cloud name:	
 evolve-hostelier
@@ -25,15 +23,23 @@ API Secret:
 uDwhC-bLqn9nJY48SeRaOY0KHwg
  */
 
-var app = express();
 
-mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true }).then(
+/*
+console.time('looper');
+var i =0;
+while(i < 10000){
+    i++;
+}
+console.timeEnd('looper');*/
+
+mongoose.Promise = global.Promise;
+mongoose.connect(keys.mongodb.dbURI, { useMongoClient: true }).then(//useNewUrlParser: true,
   function(res){
    console.log("Connected to Database Successfully.");
   }
 ).catch(function(err){
   console.log("Connection to Database failed.");
-  console.log(err)
+  console.log(err);
 });
 
 require('./config/passport');
@@ -61,13 +67,19 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.use('/robots.txt', function (req, res, next) {
+  res.type('text/plain')
+  res.send("User-agent: *\nDisallow: /");
+});
+
+
 app.use(function(req, res, next) {
     res.locals.login = req.isAuthenticated();
     res.locals.session = req.session;
     next();
 });
 
-//app.use('/user', userRoutes);
 app.use('/', routes);
 
 // catch 404 and forward to error handler
@@ -78,7 +90,6 @@ app.use(function(req, res, next) {
 });
 
 // error handlers
-
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
