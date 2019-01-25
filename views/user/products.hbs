@@ -129,6 +129,7 @@
 	});
 	$('.addMyProduct').on('submit',function(e){
 		e.preventDefault();
+		console.log($('#imagePath').val())
 		$.ajax({
 			url: "/products",
 			method: "post",

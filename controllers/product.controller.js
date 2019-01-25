@@ -44,6 +44,7 @@ exports.save =  (req, res,next) =>  {
         description: req.body.description
         // imagePath: req.body.imagePath
     });
+    console.log(`Image path: ${req.body.imagePath}`);
     product.save()
     .then(data => {
             console.log('Saving to database');
