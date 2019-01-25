@@ -23,15 +23,6 @@ API Secret:
 uDwhC-bLqn9nJY48SeRaOY0KHwg
  */
 
-
-/*
-console.time('looper');
-var i =0;
-while(i < 10000){
-    i++;
-}
-console.timeEnd('looper');*/
-
 mongoose.Promise = global.Promise;
 mongoose.connect(keys.mongodb.dbURI, { useMongoClient: true }).then(//useNewUrlParser: true,
   function(res){

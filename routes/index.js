@@ -5,7 +5,6 @@ var csrf = require('csurf');
 var cloudinary = require('cloudinary');
 var bodyParser = require('body-parser');
 var xoauth2 = require('xoauth2');
-
 var products =   require('../controllers/product.controller.js');
 
 var Cart = require('../models/cart');
@@ -69,20 +68,17 @@ router.get('/products' ,isLoggedIn, function (req, res, next) {
             console.log("Error ",err);
         });
     });
+
 router.post('/products', products.save, function(req, res) {
     var user = req.user.email;
-    // var isAjaxRequest = req.xhr;
-    // console.log(isAjaxRequest);
+   // cloudinary.v2.uploader.upload("http://www.example.com/image.jpg", 
+    //function(error, result) {console.log(result, error);});
 
-    cloudinary.v2.uploader.upload("http://www.example.com/image.jpg", 
-  function(error, result) {console.log(result, error);});
-
-  
     console.log('Post a User: ' + JSON.stringify(req.body));
     // res.redirect('/products',{user: user});
     res.json({'msg':'lll'}).status(200);
 });
-//<!--//PRODUCTS ROUTES
+//
 
 /////
 router.post('/edit', function(req, res, next) {
