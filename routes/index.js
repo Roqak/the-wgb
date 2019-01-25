@@ -75,7 +75,7 @@ router.post('/products', products.save, function(req, res) {
     // console.log(isAjaxRequest);
 
     cloudinary.v2.uploader.upload("http://www.example.com/image.jpg", 
-  function(error, result) {console.log(result, error)});
+  function(error, result) {console.log(result, error);});
 
   
     console.log('Post a User: ' + JSON.stringify(req.body));
