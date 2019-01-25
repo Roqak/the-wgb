@@ -39,18 +39,11 @@ var upload = multer({ storage: Storage }).array("imgUploader", 3);
 //Save Products data into MongoDB
 exports.save =  (req, res,next) =>  {
   console.log("About to save Image");
-<<<<<<< HEAD
   //var image = req.file.imagePath;
   //console.log(image);
 
   cloudinary.v2.uploader.upload(image, 
   function(error, result) {console.log(result, error);});
-=======
-  // var image = req.file.imagePath;
-// console.log(image)
-  // cloudinary.v2.uploader.upload(image, 
-  // function(error, result) {console.log(result, error)});
->>>>>>> a439b0a35e08b418540f8311b7186442ad05ece9
   //console.log(result);
   console.log("About to save to the db");
   var product = new Product({ 
@@ -58,13 +51,8 @@ exports.save =  (req, res,next) =>  {
         title : req.body.title,
         category: req.body.category,
         price: req.body.price,
-<<<<<<< HEAD
         description: req.body.description,
         //imagePath: req.body.imagePath
-=======
-        description: req.body.description
-        // imagePath: req.body.imagePath
->>>>>>> a439b0a35e08b418540f8311b7186442ad05ece9
     });
     console.log(`Image path: ${req.body.imagePath}`);
     product.save()
@@ -77,14 +65,7 @@ exports.save =  (req, res,next) =>  {
             res.status(500).send({
             message: err.message
           });
-<<<<<<< HEAD
         });
-=======
-        })
-        .catch((uploaderror)=>{
-          console.log(uploaderror);
-        })
->>>>>>> a439b0a35e08b418540f8311b7186442ad05ece9
 };
 
 
