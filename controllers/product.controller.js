@@ -4,6 +4,8 @@ var xoauth2 = require('xoauth2');
 var async = require('async');
 var crypto = require('crypto');
 
+var multer = require('multer');
+
 var mg = require('nodemailer-mailgun-transport');
 var mailgun = require("mailgun-js");
 
@@ -24,37 +26,45 @@ cloudinary.config({
   api_secret: 'uDwhC-bLqn9nJY48SeRaOY0KHwg' 
 });
 
-
+var Storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+      callback(null, "./Images");
+  },
+  filename: function (req, file, callback) {
+      callback(null, file.fieldname + "_" + Date.now() + "_" + file.originalname);
+  }
+});
+var upload = multer({ storage: Storage }).array("imgUploader", 3);
 
 //Save Products data into MongoDB
 exports.save =  (req, res,next) =>  {
   console.log("About to save Image");
-  var image = req.file.imagePath;
-console.log(image)
-  cloudinary.v2.uploader.upload(image, 
-  function(error, result) {console.log(result, error)});
-  //console.log(result);
+  //var image = req.file.imagePath;
+  //console.log(image);
 
+  cloudinary.v2.uploader.upload(image, 
+  function(error, result) {console.log(result, error);});
+  //console.log(result);
   console.log("About to save to the db");
-  // var product = new Product({ 
-  //       userId:req.body.userId,
-  //       title : req.body.title,
-  //       category: req.body.category,
-  //       price: req.body.price,
-  //       description: req.body.description,
-  //       imagePath: req.body.imagePath
-  //   });
-  //   product.save()
-  //   .then(data => {
-  //           console.log('Saving to database');
-  //           //res.send(data);
-  //           console.log('Product Created successfully');
-  //           next();
-  //           }).catch(err => {
-  //           res.status(500).send({
-  //           message: err.message
-  //         });
-  //       });
+  var product = new Product({ 
+        userId:req.body.userId,
+        title : req.body.title,
+        category: req.body.category,
+        price: req.body.price,
+        description: req.body.description,
+        //imagePath: req.body.imagePath
+    });
+    product.save()
+    .then(data => {
+            console.log('Saving to database');
+            //res.send(data);
+            console.log('Product Created successfully');
+            next();
+            }).catch(err => {
+            res.status(500).send({
+            message: err.message
+          });
+        });
 };
 
 
