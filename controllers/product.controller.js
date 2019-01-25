@@ -60,7 +60,7 @@ console.log(image)
 
 //Delete Products data from MongoDB
 exports.delete = (req, res) => {
-    console.log('performing delete db post');
+    console.log('performing delete db post..');
     var id = req.body.id;
     product.deleteOne({_id: new mongodb.ObjectID(id)});
     if (err){
