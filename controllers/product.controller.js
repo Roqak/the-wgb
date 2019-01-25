@@ -36,25 +36,25 @@ console.log(image)
   //console.log(result);
 
   console.log("About to save to the db");
-  // var product = new Product({ 
-  //       userId:req.body.userId,
-  //       title : req.body.title,
-  //       category: req.body.category,
-  //       price: req.body.price,
-  //       description: req.body.description,
-  //       imagePath: req.body.imagePath
-  //   });
-  //   product.save()
-  //   .then(data => {
-  //           console.log('Saving to database');
-  //           //res.send(data);
-  //           console.log('Product Created successfully');
-  //           next();
-  //           }).catch(err => {
-  //           res.status(500).send({
-  //           message: err.message
-  //         });
-  //       });
+  var product = new Product({ 
+        userId:req.body.userId,
+        title : req.body.title,
+        category: req.body.category,
+        price: req.body.price,
+        description: req.body.description,
+        imagePath: req.body.imagePath
+    });
+    product.save()
+    .then(data => {
+            console.log('Saving to database');
+            //res.send(data);
+            console.log('Product Created successfully');
+            next();
+            }).catch(err => {
+            res.status(500).send({
+            message: err.message
+          });
+        });
 };
 
 
