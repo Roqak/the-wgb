@@ -29,10 +29,10 @@ cloudinary.config({
 //Save Products data into MongoDB
 exports.save =  (req, res,next) =>  {
   console.log("About to save Image");
-  var image = req.file.imagePath;
-console.log(image)
-  cloudinary.v2.uploader.upload(image, 
-  function(error, result) {console.log(result, error)});
+  // var image = req.file.imagePath;
+// console.log(image)
+  // cloudinary.v2.uploader.upload(image, 
+  // function(error, result) {console.log(result, error)});
   //console.log(result);
 
   console.log("About to save to the db");
@@ -41,8 +41,8 @@ console.log(image)
         title : req.body.title,
         category: req.body.category,
         price: req.body.price,
-        description: req.body.description,
-        imagePath: req.body.imagePath
+        description: req.body.description
+        // imagePath: req.body.imagePath
     });
     product.save()
     .then(data => {
@@ -54,7 +54,10 @@ console.log(image)
             res.status(500).send({
             message: err.message
           });
-        });
+        })
+        .catch((uploaderror)=>{
+          console.log(uploaderror);
+        })
 };
 
 
