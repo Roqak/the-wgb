@@ -42,8 +42,8 @@ exports.save =  (req, res,next) =>  {
   //var image = req.file.imagePath;
   //console.log(image);
 
-  cloudinary.v2.uploader.upload(image, 
-  function(error, result) {console.log(result, error);});
+  // cloudinary.v2.uploader.upload(image, 
+  // function(error, result) {console.log(result, error);});
   //console.log(result);
   console.log("About to save to the db");
   var product = new Product({ 
