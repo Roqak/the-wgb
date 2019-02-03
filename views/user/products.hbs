@@ -1,7 +1,5 @@
-<!--- household --->
+{{!-- <!--- household --->
 <br>
-<div id="suc">
-</div>
 	<div class="products">
 		<div class="container">
 			<div class="col-md-4 products-left">
@@ -42,7 +40,77 @@
 						</li>
 					</ul>
 				</div>																																												
+			</div> --}}
+		<div class="products">
+		<div class="container">
+			<div class="col-md-4 products-left">
+				<div class="categories">
+					<h2>Account Details</h2>
+					<ul class="cate">
+                        <form class="addMyProduct" action="/products" method="post">
+                            {{!-- <span class="input input--ichiro">
+                                <input class="input__field input__field--ichiro" type="email" name="userId" id="userId" value={{this.user}} />
+								<label class="input__label input__label--ichiro" for="userId">
+                                    <span class="input__label-content input__label-content--ichiro">Your Email</span>
+                                </label>
+                            </span> --}}
+							<input class="input__field input__field--ichiro" type="hidden" name="userId" id="userId" value="{{this.user}}" />
+                            <span class="input input--ichiro">
+                                <input class="input__field input__field--ichiro" type="text" name="title" id="title" placeholder="Goods name"/>
+                                <label class="input__label input__label--ichiro" for="title">
+                                    <span class="input__label-content input__label-content--ichiro">Product Name</span>
+                                </label>
+                            </span>
+                            <span class="input input--ichiro">
+                                	<select name="category" id="category" class="form-control">
+										<option>Automobile</option>
+										<option>Academic Maetrials</option>
+										<option>Body accessories</option>
+										<option>Clothings</option>
+										<option>Food Stuffs</option>
+										<option>Electronics</option>
+										<option>Home Appliance</option>
+										<option>Office Appliance</option>
+										<option>Others</option>
+									</select>
+                            </span>
+                            <span class="input input--ichiro">
+                                <input class="input__field input__field--ichiro" name="price" id="price" type="number" placeholder="₦20000" />
+                                <label class="input__label input__label--ichiro" for="price">
+                                    <span class="input__label-content input__label-content--ichiro">Product Price</span>
+                                </label>
+                            </span>
+							<span class="input input--ichiro">
+								{{!-- <textarea name="description" id="description" class="form-control" placeholder="description"></textarea><br> --}}
+                                <textarea class="input__field input__field--ichiro" name="description" id="description" placeholder="description"></textarea>
+                                <label class="input__label input__label--ichiro" for="description">
+                                    <span class="input__label-content input__label-content--ichiro">Product Description</span>
+                                </label>
+                            </span>
+						    {{!-- <span class="input input--ichiro">
+                                <input class="input__field input__field--ichiro" type="location" id="location" name="location" />
+                                <label class="input__label input__label--ichiro" for="location">
+                                    <span class="input__label-content input__label-content--ichiro">Location</span>
+                                </label>
+                            </span> --}}
+							{{!-- <span class="input input--ichiro">
+                                <input class="input__field input__field--ichiro" type="file" name="imagePath" id="imagePath" style="outline: none;border: none;padding: 10px 0;font-size: 1em;color: #fff;display: block;width: 100%;background: #3399cc;margin: 1.5em 0 0;" multiple />
+                                <label class="input__label input__label--ichiro" for="imagePath">
+                                    <span class="input__label-content input__label-content--ichiro">Upload Pictures</span>
+                                </label>
+                            </span> --}}
+                            <span class="input input--ichiro">
+								<input name="_csrf" type="hidden"  value="{{ csrfToken }}">
+                                {{!-- <input type="submit" id="insertProduct" value="Upload" style="outline: none;border: none;padding: 10px 0;font-size: 1em;color: #fff;display: block;width: 100%;background: #3399cc;margin: 1.5em 0 0;"> --}}
+								<button type="submit" id="insertProduct"> Upload </button>
+						    </span>
+                        </form>
+                    </ul>
+				</div>																																												
 			</div>
+
+
+
 
 				<div class="col-md-8 products-right" id="displayHere">
 				<div class="agile_top_brands_grids">

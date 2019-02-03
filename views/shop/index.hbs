@@ -1,3 +1,8 @@
+
+
+
+	
+	
 	<!-- main-slider -->
 		<ul id="demo1">
 			<li>
@@ -8,7 +13,7 @@
 				</div>
 			</li>
 			<li>
-				<img src="images/22.svg" alt="Slider Image 2" />
+				<img src="images/22.jpg" alt="Slider Image 2" />
 				  <div class="slide-desc">
 				<!--	<h3>Sell products faster</h3>-->
 				</div>
@@ -27,18 +32,11 @@
 	<!-- top-brands -->
 	<div class="top-brands">
 		<div class="container">
-		<h2>Top selling offers</h2>
-			<div class="grid_3 grid_5">
-				<div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
-					<ul id="myTab" class="nav nav-tabs" role="tablist">
-						<li role="presentation" class="active"><a href="#expeditions" id="expeditions-tab" role="tab" data-toggle="tab" aria-controls="expeditions" aria-expanded="true">Advertised offers</a></li>
-						<li role="presentation"><a href="#tours" role="tab" id="tours-tab" data-toggle="tab" aria-controls="tours">Today Offers</a></li>
-					</ul>
-					<div id="myTabContent" class="tab-content">
-						<div role="tabpanel" class="tab-pane fade in active" id="expeditions" aria-labelledby="expeditions-tab">
-							<div class="agile-tp">
-								<h5>Advertised this week</h5>
-								<p class="w3l-ad">We've pulled together all our advertised offers into one place, so you won't miss out on a great deal.</p>
+		<h2>Special offers</h2>
+							<div class="container-fluid agile-tp">
+								<p class="w3l-ad" style="color:">
+									We have pulled together our advertised offers into one place, so you won't miss out on any great deal.
+								</p>
 							</div>
 							<div class="agile_top_brands_grids">
 								{{# each products }}
@@ -53,12 +51,15 @@
 															<a href=""><img title="ankara picture" alt="sAmkara picture 1" width="150px" height="140px" height src="images/ankara1.jpg" /></a>		
 															<p>{{ this.title }}</p>
 															<p>{{ this.description }}</p>
-															<h4>${{ this.price }}</h4>
+															<p>Osogbo</p>
+															<h4>₦{{ this.price }} </h4>
 														</div>
 														<div class="snipcart-details top_brand_home_details">
 															<form action="#" method="post">
 																<fieldset>
-																	<input type="submit" name="submit" value="Purchase" class="button" />
+																	<button type="button" name="submit" value="Contact" class="button btn btn-success" data-toggle="modal" data-target=".modal" style="background-color:#56c590;">Contact</button>
+																	{{!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button> --}}
+																	{{!-- <input type="submit" name="submit" value="Contact" class="button" /> --}}
 																</fieldset>
 															</form>
 														</div>
@@ -74,196 +75,47 @@
 							</div>
 						</div>
 						<!-- SECOND TAB -->
-						<div role="tabpanel" class="tab-pane fade" id="tours" aria-labelledby="tours-tab">
-							<div class="agile-tp">
-								<h5>This week</h5>
-								<p class="w3l-ad">We've pulled together all our advertised offers into one place, so you won't miss out on a great deal.</p>
-							</div>
-							<div class="agile_top_brands_grids">
-								<div class="col-md-4 top_brand_left">
-									<div class="hover14 column">
-										<div class="agile_top_brand_left_grid">
-											<div class="agile_top_brand_left_grid1">
-												<figure>
-													<div class="snipcart-item block" >
-														<div class="snipcart-thumb">
-															<a href=""><img title=" " alt=" image 7" src="images/7.png" /></a>		
-															<p>Sona-masoori-rice</p>
-															<h4>$35.99</h4>
-														</div>
-														<div class="snipcart-details top_brand_home_details">
-															<form action="#" method="post">
-																<fieldset>
-																	<input type="submit" name="submit" value="Add to cart" class="button" />
-																</fieldset>
-															</form>
-														</div>
-													</div>
-												</figure>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-4 top_brand_left">
-									<div class="hover14 column">
-										<div class="agile_top_brand_left_grid">
-											<div class="agile_top_brand_left_grid1">
-												<figure>
-													<div class="snipcart-item block" >
-														<div class="snipcart-thumb">
-															<a href=""><img title=" " alt=" " src="images/8.png" /></a>		
-															<p>Milky-mist-paneer</p>
-															<h4>$30.99</h4>
-														</div>
-														<div class="snipcart-details top_brand_home_details">
-															<form action="#" method="post">
-																<fieldset>
-																	<input type="submit" name="submit" value="Add to cart" class="button" />
-																</fieldset>
-															</form>
-														</div>
-													</div>
-												</figure>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-4 top_brand_left">
-									<div class="hover14 column">
-										<div class="agile_top_brand_left_grid">
-											<div class="agile_top_brand_left_grid_pos">
-												<img src="images/offer.png" alt=" " class="img-responsive" />
-											</div>
-											<div class="agile_top_brand_left_grid_pos">
-												<img src="images/offer.png" alt=" " class="img-responsive" />
-											</div>
-											<div class="agile_top_brand_left_grid1">
-												<figure>
-													<div class="snipcart-item block">
-														<div class="snipcart-thumb">
-															<a href=""><img src="images/9.png" alt=" " class="img-responsive" /></a>
-															<p>Basmati-Rice</p>
-															<h4>$80.99</h4>
-														</div>
-														<div class="snipcart-details top_brand_home_details">
-															<form action="#" method="post">
-																<fieldset>
-																	<input type="submit" name="submit" value="Add to cart" class="button" />
-																</fieldset>
-															</form>
-														</div>
-													</div>
-												</figure>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="clearfix"> </div>
-							</div>
-							<div class="agile_top_brands_grids">
-								<div class="col-md-4 top_brand_left">
-									<div class="hover14 column">
-										<div class="agile_top_brand_left_grid">
-											<div class="agile_top_brand_left_grid_pos">
-												<img src="images/offer.png" alt=" " class="img-responsive" />
-											</div>
-											<div class="agile_top_brand_left_grid1">
-												<figure>
-													<div class="snipcart-item block" >
-														<div class="snipcart-thumb">
-															<a href=""><img title=" " alt=" " src="images/10.png" /></a>		
-															<p>Fortune-sunflower</p>
-															<h4>$20.99</h4>
-														</div>
-														<div class="snipcart-details top_brand_home_details">
-															<form action="#" method="post">
-																<fieldset>
-																	<input type="submit" name="submit" value="Add to cart" class="button" />
-																</fieldset>
-															</form>
-														</div>
-													</div>
-												</figure>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-4 top_brand_left">
-									<div class="hover14 column">
-										<div class="agile_top_brand_left_grid">
-											<div class="agile_top_brand_left_grid_pos">
-												<img src="images/offer.png" alt=" " class="img-responsive" />
-											</div>
-											<div class="agile_top_brand_left_grid1">
-												<figure>
-													<div class="snipcart-item block" >
-														<div class="snipcart-thumb">
-															<a href=""><img title=" " alt=" " src="images/12.png" /></a>		
-															<p>Nestle-a-slim</p>
-															<h4>$20.99</h4>
-														</div>
-														<div class="snipcart-details top_brand_home_details">
-															<form action="#" method="post">
-																<fieldset>
-																	<input type="submit" name="submit" value="Add to cart" class="button" />
-																</fieldset>
-															</form>
-														</div>
-													</div>
-												</figure>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-4 top_brand_left">
-									<div class="hover14 column">
-										<div class="agile_top_brand_left_grid">
-											<div class="agile_top_brand_left_grid_pos">
-												<img src="images/offer.png" alt=" " class="img-responsive" />
-											</div>
-											<div class="agile_top_brand_left_grid1">
-												<figure>
-													<div class="snipcart-item block">
-														<div class="snipcart-thumb">
-															<a href=""><img src="images/13.png" alt=" " class="img-responsive" /></a>
-															<p>Bread-sandwich</p>
-															<h4>$40.99</h4>
-														</div>
-														<div class="snipcart-details top_brand_home_details">
-															<form action="#" method="post">
-																<fieldset>
-																	<input type="submit" name="submit" value="Add to cart" class="button" />
-																</fieldset>
-															</form>
-														</div>
-													</div>
-												</figure>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 <!-- //top-brands -->
 
 <!--brands-->
 	<div class="brands">
-		<div class="container">
+		<div class="container-fluid">
 		<h3>Brand Store</h3><br>
-			  <p class="footer-main">
+			  <p class="footer-main" style="font-family:  Geneva, 'Segoe UI', Tahoma, Verdana, sans-serif;">
 			    Creativity helps stores stand out. Whogobuyam is doing something different that can help your bottom line a lot.We have built a website that offers unique products.
-				Great example of collections of online stores that stands out in the crowd.Our products are beautiful,clean
-				and what best suits you. Selling breaks down for the customer and makes it enjoyable to look at. We have stunning design
-				to the other shops is that they sell their products on other platforms. 
-				However,we use our website for extra design functionality and to highlight everyone's story
-				So if you have it flaunt it, Also integrate your social media platforms in to your ecommerce website design.
+				Great example of collections of online stores that stands out in the crowd.Our products 
+	           best suits you.{{!-- Selling breaks down for the customer and makes it enjoyable to look at. We have stunning design
+				to the other shops is that they sell their products on other platforms.  --}}
+				{{!-- However,we use our website for extra design functionality and to highlight everyone's story
+				So if you have it flaunt it, Also integrate your social media platforms in to your ecommerce website design. --}}
 			  </p>
 		</div>
 	</div>
 <!--//brands-->
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">{{ this.title }}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+				 <p>{{ this.title }}</p>
+			   <p>{{ this.description }}</p>
+			   <h4>${{ this.price }} </h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">facebook</button>
+        <button type="button" class="btn btn-primary">twitter</button>
+      </div>
+    </div>
+  </div>
+</div>
