@@ -52,7 +52,7 @@ exports.save =  (req, res,next) =>  {
         category: req.body.category,
         price: req.body.price,
         description: req.body.description,
-        //imagePath: req.body.imagePath
+        imagePath: req.body.image
     });
     console.log(`Image path: ${req.body.imagePath}`);
     product.save()

@@ -39,6 +39,12 @@ router.get('/', function (req, res, next) {
         });
     });
 });
+router.get('/mon',(req,res)=>{
+    Product.find({})
+    .then((ress)=>{
+        res.json({ress}).status(200)
+    })
+})
 
 //GET PRODUCT ROUTES
 router.get('/products' ,isLoggedIn, function (req, res, next) { 
