@@ -36,8 +36,48 @@ router.get('/', function (req, res, next) {
          successMsg: successMsg, 
          noMessages: !successMsg
         });
+        /*JSON.stringify(
+        {
+            title: 'Wegobuyam', 
+        user: req.user,
+        products: productChunks,
+         successMsg: successMsg, 
+         noMessages: !successMsg
+        }));*/
     });
 });
+////////////////////////
+
+router.get('/jsonproducts', function (req, res, next) {
+    var successMsg = req.flash('success')[0];
+    Product.find(function (err, docs) {
+        var productChunks = [];
+        var chunkSize = 3;
+        for (var i = 0; i < docs.length; i += chunkSize) {
+            productChunks.push(docs.slice(i, i + chunkSize));
+        }
+        res.send (JSON.stringify(
+            {
+                title: 'Wegobuyam', 
+            user: req.user,
+            products: productChunks,
+             successMsg: successMsg, 
+             noMessages: !successMsg
+            }));
+        /*JSON.stringify(
+        {
+            title: 'Wegobuyam', 
+        user: req.user,
+        products: productChunks,
+         successMsg: successMsg, 
+         noMessages: !successMsg
+        }));*/
+    });
+});
+
+
+
+///////////////////////////////
 
 //GET PRODUCT ROUTES
 router.get('/products' ,isLoggedIn, function (req, res, next) { 
@@ -243,10 +283,10 @@ router.get('/stocks/:id', function(req, res){
 });
 
 router.get('/search', function(req, res){
-    console.log('Your search is ' + req.query.search);
+    console.log('Your search is ' + req.params.search);
     var successMsg = req.flash('success')[0];
     var productChunks = [];
-    Product.find({ category: req.query.search}).then((result)=>{
+    Product.find({ category: req.params.search}).then((result)=>{
         if(result){
                  for (var i = 0; i < result.length; i++) {
             // productChunks.push(result[i]);
@@ -256,7 +296,7 @@ router.get('/search', function(req, res){
         res.render('user/stocks',
             {title: 'Wegobuyam', 
             // user: req.user.email,
-            user: req.query.search,
+            user: req.params.search,
             products: productChunks,
             successMsg: successMsg, 
             noMessages: !successMsg

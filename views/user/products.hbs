@@ -112,7 +112,7 @@
 
 
 
-				<div class="col-md-8 products-right" id="displayHere">
+			<!--	<div class="col-md-8 products-right" id="displayHere">
 				<div class="agile_top_brands_grids">
 					{{# each products }}
 					<div class="col-md-4 top_brand_left">
@@ -133,7 +133,7 @@
 											<div style="display:flex;" class="snipcart-details top_brand_home_details">
 											  <p>
 												{{!-- <button class="todo-list-group" id="delete-btn" data-id={{this._id}} onclick='return confirm("You are going to delete this record. Continue?")'>Delete</button> --}}
-												<!-- href='/delete?id=#'{{this._id}} -->
+												<!-- href='/delete?id=#'{{this._id}} 
 												<input type="text" value={{this._id}} id="current_id">
 												<button class="todo-list-group" id="delete-btn" data-id={{this._id}}>Delete</button>
 
@@ -151,29 +151,51 @@
 	
 				</div>
 				</div>
-				<nav class="numbering">
-					<ul class="pagination paging">
-						<li>
-							<a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-						<li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li>
-							<a href="#" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
-					</ul>
-				</nav>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
+	</div>-->
+
+				<div class="col-md-8 products-right">
+				<div class="agile_top_brands_grids">
+					{{# each products }}
+					<div class="col-md-4 top_brand_left">
+						{{# each this }}
+						<div class="hover14 column">
+							<div class="agile_top_brand_left_grid">
+								<div class="agile_top_brand_left_grid1">
+									<figure>
+										<div class="snipcart-item block">
+											<div class="snipcart-thumb">
+												<a href="/"><img title=" " alt=" " src="images/pc1.png"></a>		
+												<p>
+													<p>{{ this.title }}</p>
+												    <h4>${{ this.price }}</h4>
+													<p>{{ this.description }}</p>
+												    <p>{{ this.category }}</p>
+												    <p>{{ this.userId }}</p>
+												</p>
+											</div>
+											<div class="snipcart-details top_brand_home_details">
+												<form action="/" method="post">
+													<fieldset>
+														<input type="submit" name="submit" value="Delete" class="button">
+													</fieldset>
+												</form>
+											</div>
+										</div>
+									</figure>
+								</div>
+							</div>
+						</div><br>
+						{{/each}}
+					</div>
+					{{/each}}
+						<div class="clearfix"> </div>
+				</div>
 	</div>
+	
+												
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 
