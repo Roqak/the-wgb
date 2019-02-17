@@ -37,6 +37,7 @@
 			window.scrollTo(0, 1);
 		}
 	</script>
+	<script src='/sw.js'></script>
 </head>
 <body>
 {{> header }}
@@ -44,8 +45,10 @@
         {{{body}}}
     </div>
 {{> footer }}
-        <script src='/sw.js'></script>
-        <script src='/javascripts/jquery-1.11.1.min.js'></script>
+        
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        {{!-- <script src='/javascripts/jquery-1.11.1.min.js'></script> --}}
+		{{!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
         <script src='/javascripts/bootstrap.min.js'></script>
         <script src='/javascripts/move-top.js'></script>
         <script src='/javascripts/responsiveslides.min.js'></script>
@@ -71,5 +74,16 @@
 				});
 		</script>	
 		<!-- //main slider-banner --> 
+		<!--//CARD -->
+		<script type="text/javascript">
+		$(function(){
+			$('#show').on('click',function(){        
+				$('.card-reveal').slideToggle('slow');
+			});
+			$('.card-reveal .close').on('click',function(){
+				$('.card-reveal').slideToggle('slow');
+			});
+		});
+	</script>
 </body>
 </html>
