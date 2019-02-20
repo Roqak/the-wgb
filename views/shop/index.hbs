@@ -2,23 +2,23 @@
 	<!-- main-slider -->
 		<ul id="demo1">
 			<li>
-				<img src="images/11.svg" alt="Slider Image 1" />
+				<img src="images/11.jpg" alt="Slider Image 1" />
 				<!--Slider Description example-->
 				<div class="slide-desc">
-					<!-- <h3>Buying at your convininence</h3> -->
+					<h3>Buying at your convininence</h3>
 				</div>
 			</li>
 			<li>
 				<img src="images/22.jpg" alt="Slider Image 2" />
 				  <div class="slide-desc">
-				<!--	<h3>Sell products faster</h3>-->
+					<h3>Selling products faster</h3>
 				</div>
 			</li>
 			
 			<li>
-				<img src="images/44.svg" alt="Slider Image 3" />
+				<img src="images/44.jpg" alt="Slider Image 3" />
 				<div class="slide-desc">
-				<!--	<h3>Reach your customers faster</h3>-->
+					<h3>Reaching more customers</h3>
 				</div>
 			</li>
 		</ul>
@@ -29,17 +29,18 @@
 		<h2>Special offers</h2>
 			<div class="container-fluid agile-tp">
 			  <p class="w3l-ad" style="color:">
-					We have pulled together our advertised offers into one place, so you won't miss out on any great deal.
+					<h4>We have pulled together our advertised offers into one place, so you won't miss out on any great deal.</h4>
 				</p>
 			</div>
 			<div class="agile_top_brands_grids">
-				<div class="col-md-6 col-md-offset-3">
+				
 					<div class="row">
+						<div class="col-md-9 col-md-offset-3">
 						{{# each products }}
 							{{# each this }}
-									<div class="card col-md-4">
+									<div class="card col-md-6 col-xs-3">
 										<div class="card-image">
-											<img class="img-responsive" src="images/ankara1.jpg">
+											<img class="img-responsive" src="images/laptop.png">
 										</div><!-- card image -->
 										<div class="card-content">
 											<span class="card-title">{{ this.title }}</span>                    
@@ -61,12 +62,12 @@
 											</button>
 											<p>
 												{{ this.description }}
-												Here is some more information about this product that is only revealed once clicked on.
-												{{this.price}}
+												Here are some more information about {{ this.title }} that is only revealed once clicked on.
+												<strong>₦{{ this.price }}</strong>
 											</p>
 										</div><!-- card reveal -->
 									</div>
-								{{/each}}
+								{{/each}}<br />
 						{{/each}}
 							</div>
         </div>
