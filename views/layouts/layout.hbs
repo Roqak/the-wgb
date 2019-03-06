@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{ title }}</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>WHOGOBUYAM | Online Campus Marketplace</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="online marketplace,Used,Clothings, Buy and sell electronics, cars, fashion, Apparel, collectibles,  goods, digital cameras, baby items, and everything else on eBay" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="freehtml5.co" />
+	<meta property="og:title" content=""/>
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content=""/>
+	<meta property="og:site_name" content=""/>
+	<meta property="og:description" content="online marketplace,Used,Clothings, Buy and sell electronics, cars, fashion, Apparel, collectibles,  goods, digital cameras, baby items, and everything else on eBay"/>
+	<meta name="twitter:title" content="" />
+	<meta name="twitter:image" content="" />
+	<meta name="twitter:url" content="" />
+	<meta name="twitter:card" content="" />
+	<meta name="theme-color" content="#56c590">
+
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
+	<link rel="manifest" href="/manifest.json"/>
+	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
+    <link rel='stylesheet' href='/stylesheets/font-awesome.css' />
+    <link rel='stylesheet' href='/stylesheets/skdslider.css' />
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<script src='/sw.js'></script>
+</head>
+<body>
+{{> header }}
+    <div> 
+        {{{body}}}
+    </div>
+{{> footer }}
+        
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        {{!-- <script src='/javascripts/jquery-1.11.1.min.js'></script> --}}
+		{{!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
+        <script src='/javascripts/bootstrap.min.js'></script>
+        <script src='/javascripts/move-top.js'></script>
+        <script src='/javascripts/responsiveslides.min.js'></script>
+        <!-- top-header and slider -->
+		<!-- here stars scrolling icon -->
+		<script type="text/javascript">
+		$(document).ready(function() {
+					$().UItoTop({ easingType: 'easeOutQuart' });
+			});
+		</script>
+		<!-- //here ends scrolling icon -->
+		<script src='/javascripts/minicart.min.js'></script>
+		<!-- main slider-banner -->
+		<script src='/javascripts/skdslider.min.js'></script>
+		<script type="text/javascript">
+				jQuery(document).ready(function(){
+					jQuery('#demo1').skdslider({'delay':5000, 'animationSpeed': 2000,'showNextPrev':true,'showPlayButton':true,'autoSlide':true,'animationType':'fading'});
+								
+					jQuery('#responsive').change(function(){
+					$('#responsive_wrapper').width(jQuery(this).val());
+					});
+					
+				});
+		</script>	
+		<!-- //main slider-banner --> 
+		<!--//CARD -->
+		<script type="text/javascript">
+		$(function(){
+			$('#show').on('click',function(){        
+				$('.card-reveal').slideToggle('slow');
+			});
+			$('.card-reveal .close').on('click',function(){
+				$('.card-reveal').slideToggle('slow');
+			});
+		});
+	</script>
+</body>
+</html>

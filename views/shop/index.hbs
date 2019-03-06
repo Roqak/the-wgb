@@ -1,0 +1,104 @@
+<link	rel='stylesheet' href='/stylesheets/card.css' />
+	<!-- main-slider -->
+		<ul id="demo1">
+			<li>
+				<img src="images/11.jpg" alt="Slider Image 1" />
+				<!--Slider Description example-->
+				<div class="slide-desc">
+					<h3>Buying at your convininence</h3>
+				</div>
+			</li>
+			<li>
+				<img src="images/22.jpg" alt="Slider Image 2" />
+				  <div class="slide-desc">
+					<h3>Selling products faster</h3>
+				</div>
+			</li>
+			
+			<li>
+				<img src="images/44.jpg" alt="Slider Image 3" />
+				<div class="slide-desc">
+					<h3>Reaching more customers</h3>
+				</div>
+			</li>
+		</ul>
+	<!-- //main-slider -->
+	<!-- top-brands -->
+	<div class="top-brands">
+		<div class="container">
+		<h2>Special offers</h2>
+			<div class="container-fluid agile-tp">
+			  <p class="w3l-ad" style="color:">
+					<h4>We have pulled together our advertised offers into one place, so you won't miss out on any great deal.</h4>
+				</p>
+			</div>
+			<div class="agile_top_brands_grids">
+				
+					<div class="row">
+						<div class="col-md-9 col-md-offset-3">
+						{{# each products }}
+							{{# each this }}
+									<div class="card col-md-6 col-xs-3">
+										<div class="card-image">
+											<img class="img-responsive" src="images/laptop.png">
+										</div><!-- card image -->
+										<div class="card-content">
+											<span class="card-title">{{ this.title }}</span>                    
+											<button type="button" id="show" class="btn btn-tertiary pull-right" aria-label="Left Align">
+												<strong>More Info</strong>
+												{{!-- <i class="fa fa-ellipsis-v"></i> --}}
+											</button>
+										</div><!-- card content -->
+										<div class="card-action">
+													<a href="#" target="new_blank"><strong style="color: midnightblue">₦{{ this.price }}</strong></a> 
+													<a href="#" target="new_blank">Cloth</a>
+													<a href="#" target="new_blank">Body Accessory</a>
+													<a href="#" target="new_blank">Ankara</a>     
+										</div><!-- card actions -->
+										<div class="card-reveal">
+											<span class="card-title">Card Title</span> 
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">×</span>
+											</button>
+											<p>
+												{{ this.description }}
+												Here are some more information about {{ this.title }} that is only revealed once clicked on.
+												<strong>₦{{ this.price }}</strong>
+											</p>
+										</div><!-- card reveal -->
+									</div>
+								{{/each}}<br />
+						{{/each}}
+							</div>
+        </div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+						</div>
+						<!-- SECOND TAB -->
+<!-- //top-brands -->
+
+
+
+
+<!--brands-->
+	<div class="brands">
+		<div class="container-fluid">
+		<h3>Brand Store</h3><br>
+			  <p class="footer-main" style="font-family:  Geneva, 'Segoe UI', Tahoma, Verdana, sans-serif;">
+			    Creativity helps stores stand out. Whogobuyam is doing something different that can help your bottom line a lot.We have built a website that offers unique products.
+				Great example of collections of online stores that stands out in the crowd.Our products 
+	           best suits you.{{!-- Selling breaks down for the customer and makes it enjoyable to look at. We have stunning design
+				to the other shops is that they sell their products on other platforms.  --}}
+				{{!-- However,we use our website for extra design functionality and to highlight everyone's story
+				So if you have it flaunt it, Also integrate your social media platforms in to your ecommerce website design. --}}
+				<iframe src="https://dev.to/notifications"></iframe>
+			  </p>
+		</div>
+	</div>
+<!--//brands-->
+
+
+	{{!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
+	<!-- Latest compiled and minified JavaScript -->
+

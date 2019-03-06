@@ -1,0 +1,103 @@
+	<style>
+		.products{
+			background-color:grey;
+			font-family:helevetica;
+		}
+	</style>
+	
+	<div class="products">
+		<div class="container">
+			<div class="col-md-4 products-left">
+				<div class="categories">
+					<h2>Account Details</h2>
+					<ul class="cate">
+                        <form action="#" method="post">
+                            <span class="input input--ichiro">
+                                <input class="input__field input__field--ichiro" type="email" id="email" name="email" value={{this.user}}  readonly required/>
+                                <label class="input__label input__label--ichiro" for="email">
+                                    <span class="input__label-content input__label-content--ichiro">Your Email</span>
+                                </label>
+                            </span>
+                            <span class="input input--ichiro">
+                                <input class="input__field input__field--ichiro" type="fullName" id="fullName" name="fullName" />
+                                <label class="input__label input__label--ichiro" for="fullName">
+                                    <span class="input__label-content input__label-content--ichiro">Full Name</span>
+                                </label>
+                            </span>
+                            <span class="input input--ichiro">
+                                <input class="input__field input__field--ichiro" type="tel" id="phoneNumber" name="phoneNumber"/>
+                                <label class="input__label input__label--ichiro" for="phoneNumber">
+                                    <span class="input__label-content input__label-content--ichiro">Phone Number</span>
+                                </label>
+                            </span>
+                            <span class="input input--ichiro">
+                                <input class="input__field input__field--ichiro" type="location" id="location" name="location" />
+                                <label class="input__label input__label--ichiro" for="location">
+                                    <span class="input__label-content input__label-content--ichiro">Location</span>
+                                </label>
+                            </span>
+                            <span class="input input--ichiro">
+                                <input type="submit" value="Update" style="outline: none;border: none;padding: 10px 0;font-size: 1em;color: #fff;display: block;width: 100%;background: #3399cc;margin: 1.5em 0 0;">
+                            </span>
+                        </form>
+                    </ul>
+				</div>																																												
+			</div>
+			<div class="col-md-8 products-right">
+						<h1>PUT DISPLY PICTURE</h1>
+						<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+
+
+
+    {{!-- <div class="container">
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <hr>
+        <h2>My Orders</h2>
+        <h1><a href="/mystore">GO TO MYSTORE</a></h1>
+        <h3>{{this.user}}</h3>
+        {{# each orders }}
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul class="list-group">
+                        {{# each this.items }}
+                            <li class="list-group-item">
+                                <span class="badge">{{ this.price }}</span>
+                                {{ this.item.title }} | {{ this.qty }} Units
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <strong>Total Price: ${{ this.cart.totalPrice }}</strong>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
+<hr> --}}
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     
