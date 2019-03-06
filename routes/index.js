@@ -17,7 +17,6 @@ var Order = require('../models/order');
 //     api_secret: 'a676b67565c6767a6767d6767f676fe1' 
 //   });
 
-
 var csrfProtection = csrf();
 router.use(csrfProtection);
 
@@ -37,14 +36,48 @@ router.get('/', function (req, res, next) {
          successMsg: successMsg, 
          noMessages: !successMsg
         });
+        /*JSON.stringify(
+        {
+            title: 'Wegobuyam', 
+        user: req.user,
+        products: productChunks,
+         successMsg: successMsg, 
+         noMessages: !successMsg
+        }));*/
     });
 });
-router.get('/mon',(req,res)=>{
-    Product.find({})
-    .then((ress)=>{
-        res.json({ress}).status(200)
-    })
-})
+////////////////////////
+
+router.get('/jsonproducts', function (req, res, next) {
+    var successMsg = req.flash('success')[0];
+    Product.find(function (err, docs) {
+        var productChunks = [];
+        var chunkSize = 3;
+        for (var i = 0; i < docs.length; i += chunkSize) {
+            productChunks.push(docs.slice(i, i + chunkSize));
+        }
+        res.send (JSON.stringify(
+            {
+                title: 'Wegobuyam', 
+            user: req.user,
+            products: productChunks,
+             successMsg: successMsg, 
+             noMessages: !successMsg
+            }));
+        /*JSON.stringify(
+        {
+            title: 'Wegobuyam', 
+        user: req.user,
+        products: productChunks,
+         successMsg: successMsg, 
+         noMessages: !successMsg
+        }));*/
+    });
+});
+
+
+
+///////////////////////////////
 
 //GET PRODUCT ROUTES
 router.get('/products' ,isLoggedIn, function (req, res, next) { 
@@ -77,9 +110,6 @@ router.get('/products' ,isLoggedIn, function (req, res, next) {
 
 router.post('/products', products.save, function(req, res) {
     var user = req.user.email;
-   // cloudinary.v2.uploader.upload("http://www.example.com/image.jpg", 
-    //function(error, result) {console.log(result, error);});
-
     console.log('Post a User: ' + JSON.stringify(req.body));
     // res.redirect('/products',{user: user});
     res.json({'msg':'lll'}).status(200);
@@ -203,12 +233,12 @@ router.post('/reset/:token', function(req, res) {
   });
 
 router.get('/stocks', function(req, res) {
-    var user = req.user.email;
+    //var user = req.user.email;
     var isAjaxRequest = req.xhr;
     console.log(isAjaxRequest);
         var successMsg = req.flash('success')[0];
         var productChunks = [];
-        Product.find({userId: user}).then((result)=>{
+        Product.find().then((result)=>{
             if(result){
                      for (var i = 0; i < result.length; i++) {
                 // productChunks.push(result[i]);
@@ -218,7 +248,6 @@ router.get('/stocks', function(req, res) {
                 // console.log(result[0].userId)
      res.render('user/stocks', 
             {title: 'Wegobuyam', 
-            user: req.user.email,
             products: productChunks,
             successMsg: successMsg, 
             noMessages: !successMsg
@@ -254,10 +283,10 @@ router.get('/stocks/:id', function(req, res){
 });
 
 router.get('/search', function(req, res){
-    console.log('Your search is ' + req.query.search);
+    console.log('Your search is ' + req.params.search);
     var successMsg = req.flash('success')[0];
     var productChunks = [];
-    Product.find({ category: req.query.search}).then((result)=>{
+    Product.find({ category: req.params.search}).then((result)=>{
         if(result){
                  for (var i = 0; i < result.length; i++) {
             // productChunks.push(result[i]);
@@ -267,7 +296,7 @@ router.get('/search', function(req, res){
         res.render('user/stocks',
             {title: 'Wegobuyam', 
             // user: req.user.email,
-            user: req.query.search,
+            user: req.params.search,
             products: productChunks,
             successMsg: successMsg, 
             noMessages: !successMsg
@@ -315,7 +344,6 @@ router.post('/signup', passport.authenticate('local.signup', {
     }
 });
 
-
 //GET SIGNIN ROUTES
 router.get('/signin', function (req, res, next) {
     var messages = req.flash('error'); res.render('user/signin', {
@@ -324,7 +352,6 @@ router.get('/signin', function (req, res, next) {
         messages: messages, 
         hasErrors: messages.length > 0});
 });
-
 
 //POST SIGNIN ROUTES
 router.post('/signin', passport.authenticate('local.signin', {

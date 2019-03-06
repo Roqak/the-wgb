@@ -1,7 +1,5 @@
-<!--- household --->
+{{!-- <!--- household --->
 <br>
-<div id="suc">
-</div>
 	<div class="products">
 		<div class="container">
 			<div class="col-md-4 products-left">
@@ -21,9 +19,9 @@
 						</li>
 						<li> 
 
-							<form class="addMyProduct" id="adda" method="POST">
+							<form class="addMyProduct" action="/products" method="post">
 									<input name="userId" id="userId" type="hidden" class="form-control" value="{{this.user}}">
-									<input type="text" name="title" id="title" placeholder="Goods name" class="form-control" ><br>
+									<input type="text" name="title" id="title" placeholder="Goods name" class="form-control" required><br>
 									<select name="category" id="category" class="form-control">
 										<option>Automobile</option>
 										<option>Body accessory</option>
@@ -33,20 +31,88 @@
 										<option>Office Appliance</option>
 										<option>Others</option>
 									</select><br>
-									<input name="price" id="price" type="number" class="form-control" placeholder="₦20000" ><br>
-									<textarea name="description" id="description" class="form-control" placeholder="description" ></textarea><br>
+									<input name="price" id="price" type="number" class="form-control" placeholder="₦20000"><br>
+									<textarea name="description" id="description" class="form-control" placeholder="description"></textarea><br>
 									<!--<input type="file" name="imagePath" id="imagePath" class="form-control"><br>-->
 									<input name="_csrf" type="hidden"  value="{{ csrfToken }}">
-									{{!-- <button type="submit" id="insertProduct"> Upload </button> --}}
-	<button id="changepicture2" style="border: 1px #038bd4 solid; border-radius: 10px; width: 100%" class="btn btn-white">Upload</button>
-
+									<button type="submit" id="insertProduct"> Upload </button>
 							</form>
 						</li>
 					</ul>
 				</div>																																												
+			</div> --}}
+		<div class="products">
+		<div class="container">
+			<div class="col-md-4 products-left">
+				<div class="categories">
+					<h2>Account Details</h2>
+					<ul class="cate">
+                        <form class="addMyProduct" action="/products" method="post">
+                            {{!-- <span class="input input--ichiro">
+                                <input class="input__field input__field--ichiro" type="email" name="userId" id="userId" value={{this.user}} />
+								<label class="input__label input__label--ichiro" for="userId">
+                                    <span class="input__label-content input__label-content--ichiro">Your Email</span>
+                                </label>
+                            </span> --}}
+							<input class="input__field input__field--ichiro" type="hidden" name="userId" id="userId" value="{{this.user}}" />
+                            <span class="input input--ichiro">
+                                <input class="input__field input__field--ichiro" type="text" name="title" id="title" placeholder="Goods name"/>
+                                <label class="input__label input__label--ichiro" for="title">
+                                    <span class="input__label-content input__label-content--ichiro">Product Name</span>
+                                </label>
+                            </span>
+                            <span class="input input--ichiro">
+                                	<select name="category" id="category" class="form-control">
+										<option>Automobile</option>
+										<option>Academic Maetrials</option>
+										<option>Body accessories</option>
+										<option>Clothings</option>
+										<option>Food Stuffs</option>
+										<option>Electronics</option>
+										<option>Home Appliance</option>
+										<option>Office Appliance</option>
+										<option>Others</option>
+									</select>
+                            </span>
+                            <span class="input input--ichiro">
+                                <input class="input__field input__field--ichiro" name="price" id="price" type="number" placeholder="₦20000" />
+                                <label class="input__label input__label--ichiro" for="price">
+                                    <span class="input__label-content input__label-content--ichiro">Product Price</span>
+                                </label>
+                            </span>
+							<span class="input input--ichiro">
+								{{!-- <textarea name="description" id="description" class="form-control" placeholder="description"></textarea><br> --}}
+                                <textarea class="input__field input__field--ichiro" name="description" id="description" placeholder="description"></textarea>
+                                <label class="input__label input__label--ichiro" for="description">
+                                    <span class="input__label-content input__label-content--ichiro">Product Description</span>
+                                </label>
+                            </span>
+						    {{!-- <span class="input input--ichiro">
+                                <input class="input__field input__field--ichiro" type="location" id="location" name="location" />
+                                <label class="input__label input__label--ichiro" for="location">
+                                    <span class="input__label-content input__label-content--ichiro">Location</span>
+                                </label>
+                            </span> --}}
+							{{!-- <span class="input input--ichiro">
+                                <input class="input__field input__field--ichiro" type="file" name="imagePath" id="imagePath" style="outline: none;border: none;padding: 10px 0;font-size: 1em;color: #fff;display: block;width: 100%;background: #3399cc;margin: 1.5em 0 0;" multiple />
+                                <label class="input__label input__label--ichiro" for="imagePath">
+                                    <span class="input__label-content input__label-content--ichiro">Upload Pictures</span>
+                                </label>
+                            </span> --}}
+                            <span class="input input--ichiro">
+								<input name="_csrf" type="hidden"  value="{{ csrfToken }}">
+                                {{!-- <input type="submit" id="insertProduct" value="Upload" style="outline: none;border: none;padding: 10px 0;font-size: 1em;color: #fff;display: block;width: 100%;background: #3399cc;margin: 1.5em 0 0;"> --}}
+								<button type="submit" id="insertProduct"> Upload </button>
+						    </span>
+                        </form>
+                    </ul>
+				</div>																																												
 			</div>
 
-				<div class="col-md-8 products-right" id="displayHere">
+
+
+
+			<!--	<div class="col-md-8 products-right" id="displayHere">
 				<div class="agile_top_brands_grids">
 					{{# each products }}
 					<div class="col-md-4 top_brand_left">
@@ -67,7 +133,7 @@
 											<div style="display:flex;" class="snipcart-details top_brand_home_details">
 											  <p>
 												{{!-- <button class="todo-list-group" id="delete-btn" data-id={{this._id}} onclick='return confirm("You are going to delete this record. Continue?")'>Delete</button> --}}
-												<!-- href='/delete?id=#'{{this._id}} -->
+												<!-- href='/delete?id=#'{{this._id}} 
 												<input type="text" value={{this._id}} id="current_id">
 												<button class="todo-list-group" id="delete-btn" data-id={{this._id}}>Delete</button>
 
@@ -85,86 +151,51 @@
 	
 				</div>
 				</div>
-				<nav class="numbering">
-					<ul class="pagination paging">
-						<li>
-							<a href="#" aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-						<li class="active"><a href="#">1<span class="sr-only">(current)</span></a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li>
-							<a href="#" aria-label="Next">
-							<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
-					</ul>
-				</nav>
 			</div>
 			<div class="clearfix"> </div>
 		</div>
+	</div>-->
+
+				<div class="col-md-8 products-right">
+				<div class="agile_top_brands_grids">
+					{{# each products }}
+					<div class="col-md-4 top_brand_left">
+						{{# each this }}
+						<div class="hover14 column">
+							<div class="agile_top_brand_left_grid">
+								<div class="agile_top_brand_left_grid1">
+									<figure>
+										<div class="snipcart-item block">
+											<div class="snipcart-thumb">
+												<a href="/"><img title=" " alt=" " src="images/pc1.png"></a>		
+												<p>
+													<p>{{ this.title }}</p>
+												    <h4>${{ this.price }}</h4>
+													<p>{{ this.description }}</p>
+												    <p>{{ this.category }}</p>
+												    <p>{{ this.userId }}</p>
+												</p>
+											</div>
+											<div class="snipcart-details top_brand_home_details">
+												<form action="/" method="post">
+													<fieldset>
+														<input type="submit" name="submit" value="Delete" class="button">
+													</fieldset>
+												</form>
+											</div>
+										</div>
+									</figure>
+								</div>
+							</div>
+						</div><br>
+						{{/each}}
+					</div>
+					{{/each}}
+						<div class="clearfix"> </div>
+				</div>
 	</div>
-
-<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-    document.getElementById("adda").addEventListener("submit", function(e){
-		e.preventDefault();
-		if($('#price').val() === ""){
-			alert("Please fill the price field")
-		}else if($('#description').val() === ""){
-					alert("Please fill the required fields")
-		}else if($('#title').val() === ""){
-					alert("Please fill the required fields")
-			}else{
-        	myWidget.open();
-		}
-    }, false);
-	var imgUrl = "";
-    var myWidget = cloudinary.createUploadWidget({
-            cloudName: 'akin',
-            uploadPreset: 'w75i41lo',
-            maxFiles: 1,
-            autoMinimize: false
-        },
-        (error, result) => {
-            // console.log(error, result)
-            //     console.table(result);
-            if (error){
-                console.log("Error");
-            } else if(result.info.public_id){
-                var sess = "dkdkl";
-                console.log(`Uploaded: ${result.info.public_id}`);
-				imgUrl = "https://res.cloudinary.com/akin/image/upload/v1543417522/"+result.info.public_id;
-                $.ajax({
-                    url: "/products",
-                    data: {
-                        image: "https://res.cloudinary.com/akin/image/upload/v1543417522/"+result.info.public_id,
-                        userId : $('#userId').val(),
-						title : $('#title').val(),
-						description : $('#description').val(),
-						price : $('#price').val(),
-						category : $('#category').val(),
-
-                    },
-                    method: "post",
-                    success: function(r){
-                        console.log("Hell yeah!!! I don dey...")
-                        console.log(r);
-                    },
-                    error: function(e){
-                        console.log("Oponu")
-                    }
-                });
-            }
-        });
-
-
-</script>
+	
+												
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
 
@@ -186,6 +217,29 @@
 				}
 			});
 	});
-	
+	$('.addMyProduct').on('submit',function(e){
+		e.preventDefault();
+		$.ajax({
+			url: "/products",
+			method: "post",
+			data: $('.addMyProduct').serialize(),
+			beforeSend: function(){
+				console.log("Sending....");
+				$("#insertProduct").html("Sending.....");
+			},
+			success: function(res){
+				alert('done');
+				$("#insertProduct").html("Upload");
+				$("#suc").html('<div class="alert alert-success"><p>Added Successfully</p></div>')
+			},
+			error: function(err){
+				alert("Not Done")
+				$("#suc").html('<div class="alert alert-danger"><p>Error Uploading Product</p></div>')
+				console.log(err);
+				$("#insertProduct").html("Upload");
+
+			}
+		})
+	})
 </script>
 

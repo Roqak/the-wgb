@@ -1,54 +1,51 @@
- <!-- header -->
-	<div class="agileits_header">
-		<div class="container">
-			<div class="w3l_offers">
-				<p><strong><a href="/stocks">SHOP NOW</a></strong></p>
-			</div>
-			<div class="agile-login">
-				<ul>
-					{{# if login }}
-					<li>
-						<a href="/shopping-cart/">
-                		  <i class="fa fa-shopping-cart" aria-hidden="true"></i> Wegobuyam
-                		  <span class="badge">{{session.cart.totalQty}}</span>
-            			</a>
-					</li>
-					<li><a href="/logout">logout</a></li>
-					<li><a href="/profile">User Account</a></li>
-					<li><a href="/products">Products</a></li>
-					{{ else }}
-					<li><a href="/signup"> Create Account </a></li>
-					<li><a href="/signin">Login</a></li>
-					<li><a href="/help">Contact Us</a></li>
-					{{/if}}
+<style>
+.navbar-toggle {
+    left: 39%;
+}
+.navbar-list{
+	font-size: 50px;
+	a:hover{
+			color:yellow;
+	}
+		
+}
+a.navbar-list{
+			color:green;
+		}
 
-				</ul>
-			</div><!--
-			<div class="product_list_header">  
-					<form action="/" method="post" class="last"> 
-						<input type="hidden" name="cmd" value="_cart">
-						<input type="hidden" name="display" value="1">
-						<a  >
-						<button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button>
-						</a>
-					</form>  
-			</div>-->
-			<div class="clearfix"> </div>
-		</div>
-	</div>
+@media (max-width: 400px) {
+.navbar-list{
+	margin-top: 7px;
+	margin-right: 5px;
+	font-style: ;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	a:hover{
+		color:;
+	}
 
+}
+@media (min-width: 400px) {
+.navbar-default .navbar-nav>li>a {
+	color: brown;
+}
+.navbar-list{
+	margin-top: 20px;
+
+}
+
+}
+
+.logo_products{
+	color: #333;
+}
+</style>
 	<div class="logo_products">
 		<div class="container">
-		<div class="w3ls_logo_products_left1">
-				<ul class="phone_email">
-					<li><i class="fa fa-phone" aria-hidden="true"></i>Order online or call us : (+0123) 234 567</li>
-				</ul>
-			</div>
 			<div class="w3ls_logo_products_left">
 				<h1><a href="/"><img src="images/logo2.png" width="70px" height="70px"/>whogobuyam</a></h1>
 			</div>
 		<div class="w3l_search">
-			<form action="/search" method="get">
+			<form action="/search" method="GET">
 				<input type="search" name="search" id="search" placeholder="Search for a Product..." required>
 				<button type="submit" class="btn btn-default search" aria-label="Left Align">
 					<i class="fa fa-search" aria-hidden="true"> </i>
@@ -67,16 +64,29 @@
 			<nav class="navbar navbar-default">
 							<!-- Brand and toggle get grouped for better mobile display -->
 							<div class="navbar-header nav_2">
-								<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+								<div style="display:flex;margin:7px;">
+								<ul class="handle nav navbar-nav" style="display:flex">
+										{{# if login }}
+											<li><a class="navbar-list" href="/logout">Logout</a></li>
+											<li><a class="navbar-list" href="/profile">Profile</a></li>
+											<li><a class="navbar-list" href="/products">Products</a></li>
+											{{ else }}
+											<li><a class="navbar-list" href="/signup">Sign Up</a></li>
+											<li><a class="navbar-list" href="/signin">Sign In</a></li>
+											<li><a class="navbar-list" href="/help">Contact Us</a></li>
+										{{/if}}
+	  							</ul>
+								<button type="button" class="navbar-toggle collapsed navbar-toggle1 left" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
 									<span class="sr-only">Toggle navigation</span>
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
 									<span class="icon-bar"></span>
 								</button>
-							</div> 
+								</div>
+							</div>
 							<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-								<ul class="nav navbar-nav">
-									<li class="active"><a href="/stocks" class="act">School Accessories</a></li>	
+								<ul class="nav navbar-nav navbar-right">
+									<li class=""><a href="/stocks" class="act">School Accessories</a></li>	
 									<!-- Mega Menu -->
 									<li class="dropdown">
 										<a href="/stocks" class="dropdown-toggle" data-toggle="dropdown">Body accessory<b class="caret"></b></a>
@@ -104,8 +114,6 @@
 														<li><a href="/stocks">Dust Pans</a></li>
 													</ul>
 												</div>
-												
-												
 											</div>
 										</ul>
 									</li>
@@ -116,5 +124,3 @@
 							</nav>
 			</div>
 		</div>
-		
-<!-- //navigation -->

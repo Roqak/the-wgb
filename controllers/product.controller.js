@@ -1,14 +1,8 @@
-
-var nodemailer = require('nodemailer');
-var xoauth2 = require('xoauth2');
 var async = require('async');
 var crypto = require('crypto');
-
 var multer = require('multer');
-
 var mg = require('nodemailer-mailgun-transport');
 var mailgun = require("mailgun-js");
-
 var User = require('../models/user');
 var cloudinary = require('cloudinary');
 var Product = require('../models/product');
@@ -51,10 +45,8 @@ exports.save =  (req, res,next) =>  {
         title : req.body.title,
         category: req.body.category,
         price: req.body.price,
-        description: req.body.description,
-        imagePath: req.body.image
+        description: req.body.description
     });
-    console.log(`Image path: ${req.body.imagePath}`);
     product.save()
     .then(data => {
             console.log('Saving to database');
@@ -64,7 +56,10 @@ exports.save =  (req, res,next) =>  {
             }).catch(err => {
             res.status(500).send({
             message: err.message
-          });
+        });
+        })
+        .catch((uploaderror)=>{
+          console.log(uploaderror);
         });
 };
 
