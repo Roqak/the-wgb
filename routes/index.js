@@ -25,7 +25,7 @@ router.get('/', function (req, res, next) {
     var successMsg = req.flash('success')[0];
     Product.find(function (err, docs) {
         var productChunks = [];
-        var chunkSize = 3;
+        var chunkSize = 300; //3
         for (var i = 0; i < docs.length; i += chunkSize) {
             productChunks.push(docs.slice(i, i + chunkSize));
         }
