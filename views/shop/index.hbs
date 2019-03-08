@@ -1,4 +1,13 @@
-<link	rel='stylesheet' href='/stylesheets/card.css' />
+<link	rel="stylesheet" href="/stylesheets/card.css" />
+<style type="text/css">
+	@media (max-width: @screen-xs-min) {
+  .modal-xs { width: @modal-sm; }
+}
+.modal-dialog {
+  width: 75%;
+  margin: 0 auto;
+}
+</style>
 	<!-- main-slider -->
 		<ul id="demo1">
 			<li>
@@ -28,17 +37,18 @@
 	<div class="top-brands">
 		<div class="container">
 		<h2>Special offers</h2>
-			<div class="container-fluid agile-tp">
-			  <p class="w3l-ad" style="color:">
+			<div class="agile-tp">
+			  <p class="w3l-ad">
 					<h4>We have pulled together our advertised offers into one place, so you won't miss out on any great deal.</h4>
 				</p>
 			</div>
 	 <div class="agile_top_brands_grids">		
 		<div class="row">
 		 <div class="col-md-9 col-md-offset-3">
+
 			{{# each products }}
 				{{# each this }}
-					<div class="card col-md-6 col-xs-3">
+					<div class="card col-sm-6 col-md-4">
 						<div class="card-image">
 							<img class="img-responsive" src="images/laptop.png">
 						</div><!-- card image -->
@@ -52,7 +62,7 @@
 						<div class="card-action">
 							<a href="#" target="new_blank"><strong style="color: midnightblue">₦{{ this.price }}</strong></a> 
 							<a href="#" target="new_blank">Cloth</a>
-							<a href="#" target="new_blank">Body Accessory</a>
+							<a href="#" target="new_blank">Electonics</a>
 							<a href="#" target="new_blank">Ankara</a>     
 						</div><!-- card actions -->
 
@@ -78,8 +88,9 @@
 							</div>
 						</div>
 					</div>
-				{{/each}}<br />
+				{{/each}}
 			{{/each}}
+
 			</div>
 		 </div>
 		<div class="clearfix"></div>
@@ -105,4 +116,3 @@
 		</div>
 	</div>
 <!--//brands-->
-

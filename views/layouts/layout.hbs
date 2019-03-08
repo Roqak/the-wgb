@@ -28,7 +28,10 @@
     <link rel='stylesheet' href='/stylesheets/font-awesome.css' />
     <link rel='stylesheet' href='/stylesheets/skdslider.css' />
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    	<script>
+    <style type="text/css">
+    	
+    </style>
+    <script>
 		addEventListener("load", function () {
 			setTimeout(hideURLbar, 0);
 		}, false);
@@ -40,12 +43,15 @@
 	<script src='/sw.js'></script>
 </head>
 <body>
-{{> header }}
+	<div>
+		{{> header }}
+	</div>
     <div> 
         {{{body}}}
     </div>
-{{> footer }}
-        
+    <div>
+    	{{> footer }}
+    </div>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
         {{!-- <script src='/javascripts/jquery-1.11.1.min.js'></script> --}}
 		{{!-- <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script> --}}
@@ -59,9 +65,7 @@
 					$().UItoTop({ easingType: 'easeOutQuart' });
 			});
 		</script>
-		<!-- //here ends scrolling icon -->
 		<script src='/javascripts/minicart.min.js'></script>
-		<!-- main slider-banner -->
 		<script src='/javascripts/skdslider.min.js'></script>
 		<script type="text/javascript">
 				jQuery(document).ready(function(){
@@ -74,39 +78,5 @@
 				});
 		</script>	
 		<!-- //main slider-banner --> 
-		<!--//CARD -->
-		<script type="text/javascript">
-		$(function(){
-			$('#show').on('click',function(){        
-				$('.card-reveal').slideToggle('slow');
-			});
-			$('.card-reveal .close').on('click',function(){
-				$('.card-reveal').slideToggle('slow');
-			});
-		});
-	</script>
-
-	        		<scrit type="text/javascript">
-		 {{!-- function getId(btn_name){
-		 	console.log("HELLO CONSOLE");
-			$('#'+ btn_name).on('click',function(){        
-				$('.card-reveal').slideToggle('slow');
-			});
-		 	$('.card-reveal .close').on('click',function(){
-		 		$('.card-reveal').slideToggle('slow');
-			});
-		 }
-		
-		 $(document).ready(function() {
-			$("button").click(function(event) {
-		  alert(this.id);
-		       var btn_name = this.id;
-		console.log(btn_name);
-			  getId(btn_name);
-		 	});
-		}); --}}
-			
-	</scrit>
-
 </body>
 </html>

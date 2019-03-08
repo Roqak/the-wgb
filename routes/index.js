@@ -283,10 +283,10 @@ router.get('/stocks/:id', function(req, res){
 });
 
 router.get('/search', function(req, res){
-    console.log('Your search is ' + req.params.search);
+    console.log('Your search is ' + req.query.search);
     var successMsg = req.flash('success')[0];
     var productChunks = [];
-    Product.find({ category: req.params.search}).then((result)=>{
+    Product.find({ category: req.query.search}).then((result)=>{
         if(result){
                  for (var i = 0; i < result.length; i++) {
             // productChunks.push(result[i]);
@@ -296,7 +296,7 @@ router.get('/search', function(req, res){
         res.render('user/stocks',
             {title: 'Wegobuyam', 
             // user: req.user.email,
-            user: req.params.search,
+            user: req.query.search,
             products: productChunks,
             successMsg: successMsg, 
             noMessages: !successMsg
