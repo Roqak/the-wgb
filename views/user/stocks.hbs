@@ -1,79 +1,133 @@
+
+<br><br><br><br>
 <!-- //navigation -->
-	<div class="breadcrumbs">
-		<div class="container">
-			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href=""><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Gourmet</li>
-			</ol>
-		</div>
-	</div>
-	<div class="products">
-		<div class="container">
-			<div class="col-md-4 products-left">
-				<div class="categories">
-					<h2>Categories</h2>
-					<ul class="cate">
-						<li><a href=""><i class="fa fa-arrow-right" aria-hidden="true"></i>Body Accessories</a></li>
-							<ul>
-								<li><a href="/stocks/female"><i class="fa fa-arrow-right" aria-hidden="true"></i>Female</a></li>
-								<li><a href="/stocks/male"><i class="fa fa-arrow-right" aria-hidden="true"></i>Male</a></li>
-							</ul>
-						<li><a href=""><i class="fa fa-arrow-right" aria-hidden="true"></i>School Accessories</a></li>
-							<ul>
-								<li><a href="/stocks/newitems"><i class="fa fa-arrow-right" aria-hidden="true"></i>New Items</a></li>
-								<li><a href="/stocks/useditems"><i class="fa fa-arrow-right" aria-hidden="true"></i>Used Items</a></li>
-							</ul>
-						<li><a href=""><i class="fa fa-arrow-right" aria-hidden="true"></i>Home Appliance</a></li>
-							<ul>
-								<li><a href="/stocks/babycare"><i class="fa fa-arrow-right" aria-hidden="true"></i>Baby Care</a> </li>
-								<li><a href="/stocks/babycare"><i class="fa fa-arrow-right" aria-hidden="true"></i>Baby Care</a> </li>
-								<li><a href="/stocks/babycare"><i class="fa fa-arrow-right" aria-hidden="true"></i>Baby Care</a> </li>
-								<li><a href="/stocks/babycare"><i class="fa fa-arrow-right" aria-hidden="true"></i>Baby Care</a> </li>
-							</ul>
-						<li><a href="/stocks/random"><i class="fa fa-arrow-right" aria-hidden="true"></i>Random</a></li>
-							<ul>
-								<li><a href="/stocks/randomitems"><i class="fa fa-arrow-right" aria-hidden="true"></i>Random Items</a> </li>
-							</ul>
-					</ul>
-				</div>																																												
-			</div>
-			<div class="col-md-8 products-right">
-				<div class="agile_top_brands_grids">
-					{{# each products }}
-					<div class="col-md-4 top_brand_left">
-						{{# each this }}
-						<div class="hover14 column">
-							<div class="agile_top_brand_left_grid">
-								<div class="agile_top_brand_left_grid1">
-									<figure>
-										<div class="snipcart-item block">
-											<div class="snipcart-thumb">
-												<a href="/"><img title=" " alt=" " src="images/pc1.png"></a>		
-												<p>
-													<p>{{ this.title }}</p>
-												    <h4>${{ this.price }}</h4>
-													<p>{{ this.description }}</p>
-												    <p>{{ this.category }}</p>
-												    <p>{{ this.userId }}</p>
-												</p>
-											</div>
-											<div class="snipcart-details top_brand_home_details">
-												<form action="/" method="post">
-													<fieldset>
-														<input type="submit" name="submit" value="Purchase" class="button">
-													</fieldset>
-												</form>
-											</div>
-										</div>
-									</figure>
-								</div>
-							</div>
-						</div><br>
-						{{/each}}
+		<div class="container-fluid">
+			<div class="row">
+				<!-- col-md-3 -->
+				<div class="col-md-3">
+					<!-- LIST GROUP -->
+					<div class="list-group-flush">
+					  <div class="list-group-item">
+					  	<span>Categories</span>
+					    <p class="mb-0">
+					    	<a href="/stocks/female">
+					    		<i class="far fa-image mr-4 grey p-3 white-text rounded-circle " aria-hidden="true"></i>Photos
+					    	</a>
+					 	</p>
+					  </div>
+					  <div class="list-group-item">
+					    <p class="mb-0"> 
+					    	<a href="/stocks/female">
+					    		<i class="fas fa-briefcase mr-4 mr-4 grey p-3 white-text rounded-circle" aria-hidden="true"></i>Cloths
+					    	</a>
+					    </p>
+					  </div>
+					  <div class="list-group-item">
+					    <p class="mb-0">
+					    	<a href="/stocks/female">
+					    		<i class="fas fa-anchor mr-4 mr-4 grey p-3 white-text rounded-circle" aria-hidden="true"></i>Vacation
+					    	</a>
+					    </p>
+					  </div>
+					  <div class="list-group-item">
+					    <p class="mb-0">
+					    	<a href="/stocks/female">
+					    		<i class="far fa-image mr-4 grey p-3 white-text rounded-circle " aria-hidden="true"></i>Photos
+					    	</a>
+					    </p>
+					  </div>
+					  <div class="list-group-item">
+					    <p class="mb-0"> 
+					    	<a href="/stocks/female">
+					    		<i class="fas fa-briefcase mr-4 mr-4 grey p-3 white-text rounded-circle" aria-hidden="true"></i>Work
+					    	</a>
+					    </p>
+					  </div>
+					  <div class="list-group-item">
+					    <p class="mb-0"> 
+					    	<a href="/stocks/female">
+					    		<i class="fas fa-briefcase mr-4 mr-4 grey p-3 white-text rounded-circle" aria-hidden="true"></i>Work
+					    	</a>
+					    </p>
+					  </div>
+					  <div class="list-group-item">
+					    <p class="mb-0"> 
+					    	<a href="/stocks/female">
+					    		<i class="fas fa-briefcase mr-4 mr-4 grey p-3 white-text rounded-circle" aria-hidden="true"></i>Work
+					    	</a>
+					    </p>
+					  </div>
+					  <!--// LIST GROUP -->					
 					</div>
-					{{/each}}
-						<div class="clearfix"> </div>
+					</div>
+													
+				<!-- col-md-8 -->
+				<div class="col-md-8">
+
+					      <!--Section: Products v.3-->
+      				<section class="text-center mb-4">
+			        <!--Grid row-->
+			        <div class="row wow fadeIn">
+			          <!--Grid column-->
+			          {{# each products }}
+			          <div class="col-lg-3 col-md-6 mb-4">
+			          	{{# each this }}
+			            <!--Card-->
+			            <div class="card">
+			              <!--Card image-->
+			              <div class="view overlay">
+			                <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12.jpg" class="card-img-top"
+			                  alt="">
+			                <a>
+			                  <div class="mask rgba-white-slight"></div>
+			                </a>
+			              </div>
+			              <!--Card image-->
+
+			              <!--Card content-->
+			              <div class="card-body text-center">
+			              	<span class="badge badge-pill danger-color">NEW/USED</span>
+			                <!--Category & Title-->
+			                <a href="" class="grey-text">
+			                  <h5>{{ this.title }}</h5>
+			                </a>
+			                <h5>
+			                  <strong>
+			                    <a href="" class="dark-grey-text">
+			                      <!-- <span class="badge badge-pill danger-color">NEW</span> -->
+			                      {{ this.category }}
+			                    </a>
+			                  </strong>
+			                </h5>
+			                <h4 class="font-weight-bold blue-text">
+			                  <strong>₦{{ this.price }}</strong>
+			                </h4>
+			              </div>
+			              <!--Card content-->
+			            </div>
+			            <!--Card-->
+			            {{/each}}
+				          </div>
+				          <!--Grid column-->
+				          {{/each}}
+				          </div>
+				          <!--Fourth column-->
+				        <!--Grid row-->
+    			   </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
 				</div>
-	</div>
-	
-												
+			</div>
+		</div>
+												<br><br>

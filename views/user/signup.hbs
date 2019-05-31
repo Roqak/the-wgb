@@ -1,45 +1,45 @@
-        <!-- //navigation -->
-<!-- breadcrumbs -->
-	<div class="breadcrumbs">
-		<div class="container">
-			<ol class="breadcrumb breadcrumb1 animated wow slideInLeft" data-wow-delay=".5s">
-				<li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-				<li class="active">Register Page</li>
-			</ol>
-			    {{#if hasErrors}}
+
+<br><br><br>
+<div class="container">
+    <div class="card mx-auto mt-5">
+      <div class="card-header">Register for your account</div>
+        {{#if hasErrors}}
             <div class="alert alert-danger">
                 {{# each messages }}
                     <p>{{this}}</p>
                 {{/each}}
             </div>
-    {{/if}}
-		</div>
-	</div>
-<!-- //breadcrumbs -->
-<!-- register -->
-	<div class="register">
-		<div class="container">
-			<h2>Register Here</h2>
-			<div class="login-form-grids">
-				<h5>profile information</h5>
-					<form action="/signup" method="POST">
-				<!--	<input type="text" placeholder="Full Name" >
-					<input type="text" placeholder="User Name"  > 	-->
-					<input type="email" id="email" name="email" placeholder="Email Address" required>
-					<input type="password" id="password" name="password" placeholder="Password" required=" " >
-				<!--		<input type="password" placeholder="Password Confirmation" > !-->
-					<div class="register-check-box">
-						<div class="check">
-							<label class="checkbox"><input type="checkbox" name="checkbox"><i> </i>I accept the terms and conditions</label>
-						</div>
-					</div>
-					<input type="hidden" name="_csrf" value="{{ csrfToken }}">
-					<input type="submit" value="Register">
-				</form>
-			</div>
-			<div class="register-home">
-				<a href="/">Home</a>
-			</div>
-		</div>
-	</div>
-<!-- //register -->
+        {{/if}}
+      <div class="card-body">
+        <form action="/signup" method="POST">
+          <div class="form-group">
+            <div class="form-label-group">
+              <label for="inputEmail">Email address</label>
+              <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-label-group">
+              <label for="inputPassword">Password</label>
+              <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="required">
+              <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" value="remember-me">
+                Remember my password
+              </label>
+            </div>
+          </div>
+          <input type="submit" value="Register" class="btn btn-primary btn-block"> 
+        </form>
+        <div class="form-group">
+        	<a href="/signin">Already have an account? Signin</a>
+        </div>
+      </div>
+    </div>
+</div>
+
+

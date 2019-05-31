@@ -1,9 +1,5 @@
-	<style>
-		.products{
-			background-color:grey;
-			font-family:helevetica;
-		}
-	</style>
+<br><br><br>
+    <script src='/javascripts/jquery-1.11.1.min.js'></script>
 	
 	<div class="products">
 		<div class="container">
@@ -30,12 +26,27 @@
                                     <span class="input__label-content input__label-content--ichiro">Phone Number</span>
                                 </label>
                             </span>
+        <button id="upload_widget" class="cloudinary-button">Upload Picture</button>
                             <span class="input input--ichiro">
                                 <input class="input__field input__field--ichiro" type="location" id="location" name="location" />
                                 <label class="input__label input__label--ichiro" for="location">
                                     <span class="input__label-content input__label-content--ichiro">Location</span>
                                 </label>
                             </span>
+                            {{!-- <span class="input input--ichiro">
+                                <select id="states" class="input__field input__field--ichiro"></select>
+                                <label class="input__label input__label--ichiro" for="location">
+                                    <span class="input__label-content input__label-content--ichiro">States:</span>
+                                </label>
+                            </span> --}}
+
+                            <div class="form-group"> 
+                                <label for=""></label>
+                                States:<select id="states" class="form-control form-control-sm"></select><br />
+                                LGAs: <select id="lgas" class="form-control form-control-sm"></select>
+                            </div>
+
+                            
                             <span class="input input--ichiro">
                                 <input type="submit" value="Update" style="outline: none;border: none;padding: 10px 0;font-size: 1em;color: #fff;display: block;width: 100%;background: #3399cc;margin: 1.5em 0 0;">
                             </span>
@@ -44,7 +55,7 @@
 				</div>																																												
 			</div>
 			<div class="col-md-8 products-right">
-						<h1>PUT DISPLY PICTURE</h1>
+						<h1>PUT DISPLAY PICTURE</h1>
 						<div class="clearfix"> </div>
 				</div>
 			</div>
@@ -52,6 +63,35 @@
 		</div>
 	</div>
 
+<script src="/javascripts/jquery.stateLga.js"></script>
+<script src="/javascripts/jquery.ucfirst.js"></script>
+
+<script>  
+  //DYNAMIC STATES AND CAPITAL
+var option = '';
+
+var states=$.nigeria.states();
+for (var i=0;i<states.length;i++){
+   option += '<option value="'+ states[i] + '">' + $.ucfirst(states[i]) + '</option>';
+}
+$('#states').append(option).on('change',function() {
+
+var option = '';
+option += '<option value="">Local government</option>';
+
+var lgas=eval('$.nigeria.'+this.value);
+
+for (var i=0;i<lgas.length;i++){
+   option += '<option value="'+ lgas[i] + '">' + $.ucfirst(lgas[i]) + '</option>';
+}
+
+$('#lgas').find('option')
+    .remove()
+    .end().append(option);
+
+}).trigger('change');
+
+</script>
 
 
     {{!-- <div class="container">

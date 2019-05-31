@@ -36,17 +36,8 @@ router.get('/', function (req, res, next) {
          successMsg: successMsg, 
          noMessages: !successMsg
         });
-        /*JSON.stringify(
-        {
-            title: 'Wegobuyam', 
-        user: req.user,
-        products: productChunks,
-         successMsg: successMsg, 
-         noMessages: !successMsg
-        }));*/
     });
 });
-////////////////////////
 
 router.get('/jsonproducts', function (req, res, next) {
     var successMsg = req.flash('success')[0];
@@ -170,6 +161,10 @@ router.get('/forgotpassword', function (req, res, next) {
         user: req.user,
         messages: messages, 
         hasErrors: messages.length > 0});
+});
+
+router.get('/dashboard', function (req, res, next) {
+     res.render('user/dashboard');
 });
 
 router.post('/forgotpassword', products.forgotpassword, function(req, res, next) {
@@ -306,6 +301,11 @@ router.get('/search', function(req, res){
             console.log("Error ",err);
         });
 
+});
+
+
+router.get('/seller', function(req, res) {
+    res.render('user/seller');
 });
 
 router.get('/help', function(req, res) {
