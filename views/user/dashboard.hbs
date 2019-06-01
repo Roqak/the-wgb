@@ -1,3 +1,4 @@
+ 
 <br><br><br>
 
   <!-- Bootstrap core CSS -->
@@ -10,7 +11,7 @@
   <div class="d-flex" id="wrapper">
       <!-- Sidebar -->
       <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading">User Name</div>
+        <div class="sidebar-heading">{{this.user}}</div>
           <div class="list-group list-group-flush">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
               <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Account</a><hr>
@@ -34,15 +35,19 @@
               <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                      <h1 class="mt-4">Manage Accounts</h1>
+                     <!--ERROR MESSAGE -->
+                     <div class="col-md-12" id="formMsg"></div>
+                     <!--//ERROR MESSAGE -->
                       <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Goto Add Product</a>
 
                       <!-- USER DETAILS UPDATE FORM-->
-                      <form>
+                      
+                      <!-- <form action="/update-user" method="post" class="userDetails">
                         <div class="form-group">
                           <div class="form-row">
                             <div class="col-md-6">
                               <div class="form-label-group">
-                                <input type="text" id="firstname" class="form-control" placeholder="First name">
+                                <input type="text" id="firstname" class="form-control" placeholder="First Name">
                               </div>
                             </div>
                             <div class="col-md-6">
@@ -58,7 +63,7 @@
                               <div class="form-label-group">
                                 <select name="" id="" class="form-control" placeholder="Product or Services">
                                   <option>Seller</option>
-                                  <option>Craftmann>
+                                  <option>Craftmann</option>
                                 </select>
                               </div>
                             </div>
@@ -73,12 +78,12 @@
                           <div class="form-row">
                             <div class="col-md-6">
                               <div class="form-label-group">
-                                <input type="" id="" class="form-control" placeholder="State">
+                                <select id="states" name="states" class="form-control" placeholder="State"></select> 
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-label-group">
-                                <input type="" id="" class="form-control" placeholder="Local Government">
+                                <select id="lgas" name="lgas" class="form-control" placeholder="Local Government"></select>
                               </div>
                             </div>
                           </div>
@@ -93,30 +98,34 @@
                             </div>
                           </div>
                         </div>
-                        <a class="btn btn-primary btn-block" href="/">Update</a>
-                     </form>
+                        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                        <input type="submit" class="btn btn-primary btn-block" id="userDetailsBtn" value="Update">
+                     </form> -->
                       <!--// USER DETAILS UPDATE FORM-->
 
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                      <h1 class="mt-4">Add Products</h1>
+                     <!-- ADD PRODUCT MESSAGE -->
+                     <div class="addProductMsg" id="addProductMsg"></div>
+                     <!--// ADD PRODUCT MESSAGE -->
 
-                     <form>
+                     <form class="addProduct" method="POST" action="/dashboard">
                         <div class="form-group">
                           <div class="form-row">
                             <div class="col-md-6">
                               <div class="form-label-group">
-                                <input type="text" name="product_name" id="product_name" placeholder="Product name" class="form-control">
+                                <input type="text" name="productName" id="productName" placeholder="Product name" class="form-control" required>
                               </div>
-                            </div>
+                            </div> 
                             <div class="col-md-6">
                               <div class="form-label-group">
-                                <select name="product_category" id="product_category" class="form-control">
-                                  <option>Automobile</option>
-                                  <option>Electronics</option>
-                                  <option>Home Appliance</option>
-                                  <option>Office Appliance</option>
-                                  <option>Others</option>
+                                <select name="productCategory" id="productCategory" class="form-control" required>
+                                  <option value="Automobile">Automobile</option>
+                                  <option value="Electronics">Electronics</option>
+                                  <option value="Home">Home Appliance</option>
+                                  <option value="Office">Office Appliance</option>
+                                  <option value="Others">Others</option>
                                 </select>
                               </div>
                             </div>
@@ -126,14 +135,14 @@
                           <div class="form-row">
                             <div class="col-md-6">
                               <div class="form-label-group">
-                                <input type="tel" class="form-control" name="product_price" id="product_price" type="number" placeholder="Product Price ₦20000">
+                                <input type="tel" class="form-control" name="productPrice" id="productPrice" type="number" placeholder="₦20000" required>
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-label-group">
-                                <select name="product_status" id="product_status" class="form-control" placeholder="Product Status">
-                                  <option>New</option>
-                                  <option>Used</option>
+                                <select name="productStatus" id="productStatus" class="form-control" placeholder="Product Status" required>
+                                  <option value="New">New Product</option>
+                                  <option value="Used">Used Product</option>
                                 </select>
                               </div>
                             </div>
@@ -143,7 +152,7 @@
                           <div class="form-row">
                             <div class="col-md-12">
                               <div class="form-label-group">
-                                <textarea type="" name="" id="" class="form-control" placeholder="Description"></textarea>
+                                <textarea type="text" name="productDescription" id="productDescription" class="form-control" placeholder="Description" required></textarea>
                               </div>
                             </div>
                           </div>
@@ -152,17 +161,19 @@
                           <div class="form-row">
                             <div class="col-md-4">
                               <div class="form-label-group">
-                                <button class="btn btn-primary btn-block">Add Image</button>
+                                <a class="btn btn-primary btn-block" id="uploadWidget">Add Image</a>
                               </div>
                             </div>
                             <div class="col-md-8">
                               <div class="form-label-group">
-                                <input type="" name="" class="form-control"> 
+                                <input type="text" name="productImage" id="productImage" class="form-control" > <!-- readonly -->
                               </div>
                             </div>
                           </div>
                         </div>
-                        <input type="submit" name="" value="Submit" class="btn btn-primary btn-block">
+                        <input type="hidden" name="email" value="{{this.user}}">
+                        <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+                        <button type="submit" value="Submit" id="addProductBtn" class="btn btn-primary btn-block">Submit</button>
                         <hr>
                      </form>
                     
@@ -180,29 +191,19 @@
                               <th>Header</th>
                             </tr>
                           </thead>
+                          {{# each products }} 
                           <tbody>
+                            {{# each this }}
                             <tr>
-                              <td>1,001</td>
+                              <td>{{ this.email }}</td>
                               <td>Lorem</td>
                               <td>ipsum</td>
                               <td>dolor</td>
                               <td>sit</td>
                             </tr>
-                            <tr>
-                              <td>1,002</td>
-                              <td>amet</td>
-                              <td>consectetur</td>
-                              <td>adipiscing</td>
-                              <td>elit</td>
-                            </tr>
-                            <tr>
-                              <td>1,003</td>
-                              <td>Integer</td>
-                              <td>nec</td>
-                              <td>odio</td>
-                              <td>Praesent</td>
-                            </tr>
+                          {{/each}}
                           </tbody>
+                          {{/each}}
                         </table>
                       </div>
                      <!-- //TABLE -->
@@ -230,24 +231,19 @@
 
 
 
-
-
   <!-- Bootstrap core JavaScript -->
   <script src="js/jquery-3.4.0.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 
   <!-- Menu Toggle Script -->
-  <script>
+  <script type="text/javascript">
     $("#menu-toggle").click(function(e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
   </script>
 
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script> -->
-
-<script type="text/javascript" >
+<!-- <script type="text/javascript">
   $('#delete-btn').on('click', function(event) {
     alert("");
     event.preventDefault();
@@ -265,28 +261,81 @@
         }
       });
   });
-  $('.addMyProduct').on('submit',function(e){
+
+  $('.userDetails').on('submit',function(e){
     e.preventDefault();
     $.ajax({
-      url: "/products",
+      url: "/update-user",
       method: "post",
-      data: $('.addMyProduct').serialize(),
+      data: $('.userDetails').serialize(),
       beforeSend: function(){
         console.log("Sending....");
-        $("#insertProduct").html("Sending.....");
+        $("#userDetailsBtn").html("Sending.....");
       },
       success: function(res){
         alert('done');
-        $("#insertProduct").html("Upload");
-        $("#suc").html('<div class="alert alert-success"><p>Added Successfully</p></div>')
+        $("#userDetailsBtn").html("Upload");
+        $("#formMsg").html('<div class="alert alert-success"><p>Added Successfully</p></div>')
       },
       error: function(err){
         alert("Not Done")
-        $("#suc").html('<div class="alert alert-danger"><p>Error Uploading Product</p></div>')
+        $("#formMsg").html('<div class="alert alert-danger"><p>Error Uploading Product</p></div>')
         console.log(err);
-        $("#insertProduct").html("Upload");
+        $("#userDetailsBtn").html("Upload");
 
       }
     })
   })
+</script> -->
+
+
+
+
+
+
+
+<script type="text/javascript">
+  //ADD NEW PRODUCT TO THE DB
+  $('.addProduct').on('submit', function(e){
+    e.preventDefault();
+    $.ajax({
+      url: "/dashboard",
+      method: "post",
+      data: $('.addProduct').serialize(),
+      beforeSend: function(){
+        console.log("Sending...");
+        $("#addProductBtn").html("Sending...");
+      },
+      success: function(res){
+        alert('done');
+        $("#addProductBtn").html("Upload");
+        $("#addProductMsg").html('<div class="alert alert-success"><p>Added Successfully</p></div>')
+      },
+      error: function(err){
+        alert("Not Done")
+        $("#addProductMsg").html('<div class="alert alert-danger"><p>Error Adding Product</p></div>')
+        console.log(err);
+        $("#addProductBtn").html("Upload");
+
+      }
+    })
+    reset();
+  })
+
+
+  function reset() {
+
+    $("#productName").val("");
+    $("#productCategory").val("");
+    $("#productPrice").val("");
+    $("#productStatus").val("");
+    $("#productDescription").val("");
+    $("#productImage").val("");
+    // $("#resetContainer").innerHTML = "";
+  }
+  
+         
 </script>
+
+
+

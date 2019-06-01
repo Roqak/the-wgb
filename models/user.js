@@ -6,7 +6,14 @@ var userSchema = new Schema({
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true},
     resetPasswordToken: {type: String},
-    resetPasswordExpires: {type: Date}
+    resetPasswordExpires: {type: Date},
+    firstname: {type: String, required: true},
+    lastname: {type: String, required: true},
+    whatsappNumber: {type: Number, required: true, unique: true},
+    state: {type: String, required: true},
+    lga: {type: String, required: true},
+    serviceType: {type: String, required: true}
+
 });
 
 //OLD CODE

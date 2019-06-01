@@ -19,48 +19,19 @@
 	<meta name="twitter:url" content="" />
 	<meta name="twitter:card" content="" />
 	<meta name="theme-color" content="#56c590">
-
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i,700" rel="stylesheet">
 	<link rel="manifest" href="/manifest.json"/>
 	<link rel="shortcut icon" type="image/png" href="/favicon.png"/>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-  <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <!-- Material Design Bootstrap -->
-  <link href="css/mdb.min.css" rel="stylesheet">
-  <!-- Your custom styles (optional) -->
-  <link href="css/style.min.css" rel="stylesheet">
-  <style type="text/css">
-    html,
-    body,
-    header,
-    .carousel {
-      height: 60vh;
-    }
-
-    @media (max-width: 740px) {
-
-      html,
-      body,
-      header,
-      .carousel {
-        height: 100vh;
-      }
-    }
-
-    @media (min-width: 800px) and (max-width: 850px) {
-
-      html,
-      body,
-      header,
-      .carousel {
-        height: 100vh;
-      }
-    }
-
-  </style>
+  	<!-- Font Awesome -->
+  	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
+ 	<!-- Bootstrap core CSS -->
+  	<link href="css/bootstrap.min.css" rel="stylesheet">
+  	<!-- Material Design Bootstrap -->
+  	<link href="css/mdb.min.css" rel="stylesheet">
+ 	<!-- Your custom styles (optional) -->
+ 	<link href="css/style.min.css" rel="stylesheet">
+  	<link rel="stylesheet" type="text/css" href="css/carousel.css">
 
 	<script src='/sw.js'></script>
 </head>
@@ -77,30 +48,62 @@
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
 
+		<script src="/js/jquery.stateLga.js"></script>
+    	<script src="/js/jquery.ucfirst.js"></script>
+    		<script>  
+			  //DYNAMIC STATES AND CAPITAL
+				var option = '';
+
+				var states=$.nigeria.states();
+				for (var i=0;i<states.length;i++){
+				   option += '<option value="'+ states[i] + '">' + $.ucfirst(states[i]) + '</option>';
+				}
+				$('#states').append(option).on('change',function() {
+
+				var option = '';
+				option += '<option value="">Local government</option>';
+
+				var lgas=eval('$.nigeria.'+this.value);
+
+				for (var i=0;i<lgas.length;i++){
+				   option += '<option value="'+ lgas[i] + '">' + $.ucfirst(lgas[i]) + '</option>';
+				}
+
+				$('#lgas').find('option')
+				    .remove()
+				    .end().append(option);
+
+				}).trigger('change');
+
+			</script>
+
+
 		<!--CLOUDINARY -->
 		<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>  
-		<script type="text/javascript">  
-		var myWidget = cloudinary.createUploadWidget({
-		cloudName: 'evolve-hostelier', 
-		uploadPreset: 'yistko3v'}, (error, result) => { 
-			if (!error && result && result.event === "success") { 
-			console.log('Done! Here is the image info: ' + result.info.url); 
-			let url = result.info.url;
-			document.getElementById('url').value = url;
-			/*$('#cloud_img').attr('src', url)
-			$('#img, #img_lecturer, #img_exco').attr('value', url);*/
-			//console.log(url);
-			return url;
-			}
-			else {
-			console.log(result.info.public_id)
-			}
-		}
-		)
+<!-- CLOUDINARY UPLOAD -->
+	<script type="text/javascript">  
+	var myWidget = cloudinary.createUploadWidget({
+	  cloudName: 'whogobuyam', 
+	  uploadPreset: 'ethewgbe'}, (error, result) => { 
+	    if (!error && result && result.event === "success") { 
+	       console.log('Done! Here is the image info: ' + result.info.url); 
+	       let url = result.info.url;
+	       document.getElementById('product_image').value = url;
+	       //console.log(url);
+	       return url;
+	    }
+	    else {
+	      console.log(result.info.public_id)
+	    }
+	  }
+	)
 
-		document.getElementById("upload_widget").addEventListener("click", function(){
-			myWidget.open();
-		}, false);
-		</script> 
+	document.getElementById("uploadWidget").addEventListener("click", function(){
+	    myWidget.open();
+	  }, false);
+	</script> 
+<!--// CLOUDINARY UPLOAD -->
+
+
 </body>
 </html>

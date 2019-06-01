@@ -4,18 +4,13 @@ var passport = require('passport');
 var csrf = require('csurf');
 var cloudinary = require('cloudinary');
 var bodyParser = require('body-parser');
-var xoauth2 = require('xoauth2');
-var products =   require('../controllers/product.controller.js');
 
+var products =   require('../controllers/product.controller.js');
 var Cart = require('../models/cart');
 var Product = require('../models/product');
 var Order = require('../models/order');
+var User = require('../models/user');
 
-// cloudinary.config({ 
-//     cloud_name: 'sample', 
-//     api_key: '874837483274837', 
-//     api_secret: 'a676b67565c6767a6767d6767f676fe1' 
-//   });
 
 var csrfProtection = csrf();
 router.use(csrfProtection);
@@ -66,46 +61,46 @@ router.get('/jsonproducts', function (req, res, next) {
     });
 });
 
-
-
-///////////////////////////////
-
-//GET PRODUCT ROUTES
-router.get('/products' ,isLoggedIn, function (req, res, next) { 
-    var user = req.user.email;
-    var isAjaxRequest = req.xhr;
-    console.log(isAjaxRequest);
-        var successMsg = req.flash('success')[0];
-        var productChunks = [];
-        Product.find({userId: user}).then((result)=>{
-            if(result){
-                     for (var i = 0; i < result.length; i++) {
-                // productChunks.push(result[i]);
-                productChunks.push([result[i]]);
-            }
-                // res.send({productChunks})
-                // console.log(result[0].userId)
-     res.render('user/products', 
-            {title: 'Wegobuyam', 
-            user: req.user.email,
-            products: productChunks,
-            successMsg: successMsg, 
-            noMessages: !successMsg,
-            csrfToken: req.csrfToken()
-            });
-            }
-        }).catch((err)=>{
-            console.log("Error ",err);
-        });
-    });
-
-router.post('/products', products.save, function(req, res) {
-    var user = req.user.email;
-    console.log('Post a User: ' + JSON.stringify(req.body));
-    // res.redirect('/products',{user: user});
-    res.json({'msg':'lll'}).status(200);
-});
 //
+router.post('/dashboard', products.save, function(req, res,next) {});
+
+// //UPDATE USER INFO
+// router.post('/update-user', function(req, res) {
+
+
+//     var userData = new User({
+//           //userId:req.body.userId,
+//           email:req.body.email,
+//           product_name : req.body.title,
+//           product_category: req.body.category,
+//           product_price: req.body.price,
+//           product_description: req.body.description,
+//           status: req.body.status,
+//           state: req.body.state,
+//           lga: req.body.lga,
+//           whatsapp_num: req.body.whatsapp_num
+//     });
+//     console.log(userData);
+//     userData.save()
+//         .then(data => {
+//             console.log('Saving to database');
+//             //res.send(data);
+//             console.log('Product Created successfully');
+//             next();
+//             }).catch(err => {
+//             res.status(500).send({
+//             message: err.message,
+//             csrfToken: req.csrfToken()
+//         });
+//         })
+//         .catch((uploaderror)=>{
+//           console.log(uploaderror);
+//         });
+//     // var user = req.user.email;
+//     // console.log('Post a User: ' + JSON.stringify(req.body));
+//     // // res.redirect('/products',{user: user});
+//     // res.json({'msg':'lll'}).status(200);
+// });
 
 /////
 router.post('/edit', function(req, res, next) {
@@ -136,23 +131,23 @@ router.post('/edit', function(req, res, next) {
   });
   
 //GET PROFILE ROUTES
-router.get('/profile', isLoggedIn, function (req, res, next) {
-  var email =  req.body.email;
-  var user = req.user.email;
-  console.log(email);
-    Order.find({user: req.user}, function(err, orders) {
-        if (err) {
-            //return res.write('Error!');
-            console.log('Error!');
-        }
-        var cart;
-        orders.forEach(function(order) {
-            cart = new Cart(order.cart);
-            order.items = cart.generateArray();
-        });
-        res.render('user/profile', {  user: user,orders: orders,email:email});
-    });
-});
+// router.get('/profile', isLoggedIn, function (req, res, next) {
+//   var email =  req.body.email;
+//   var user = req.user.email;
+//   console.log(email);
+//     Order.find({user: req.user}, function(err, orders) {
+//         if (err) {
+//             //return res.write('Error!');
+//             console.log('Error!');
+//         }
+//         var cart;
+//         orders.forEach(function(order) {
+//             cart = new Cart(order.cart);
+//             order.items = cart.generateArray();
+//         });
+//         res.render('user/profile', {  user: user,orders: orders,email:email});
+//     });
+// });
 
 router.get('/forgotpassword', function (req, res, next) {
     var messages = req.flash('error');
@@ -163,9 +158,35 @@ router.get('/forgotpassword', function (req, res, next) {
         hasErrors: messages.length > 0});
 });
 
-router.get('/dashboard', function (req, res, next) {
-     res.render('user/dashboard');
+// router.get('/dashboard', isLoggedIn, function (req, res, next) {
+
+//      var email =  req.body.email;
+//       var user = req.user.email;
+//       console.log(email);
+//         Order.find({user: req.user}, function(err, orders) {
+//             if (err) {
+//                 //return res.write('Error!');
+//                 console.log('Error!');
+//             }
+//             var cart;
+//             orders.forEach(function(order) {
+//                 cart = new Cart(order.cart);
+//                 order.items = cart.generateArray();
+//             });
+
+            
+//             res.render('user/dashboard', {  
+//                 user: user,
+//                 orders: orders,
+//                 email:email,
+//                 csrfToken: req.csrfToken()});
+//         });
+// });
+
+router.post('/add-product',isLoggedIn, function(req, res, next) {
+    res.render('forgotpassword',{user:req.user});
 });
+
 
 router.post('/forgotpassword', products.forgotpassword, function(req, res, next) {
     console.log('Post a User: ' + JSON.stringify(req.body));
@@ -227,6 +248,7 @@ router.post('/reset/:token', function(req, res) {
     });
   });
 
+//
 router.get('/stocks', function(req, res) {
     //var user = req.user.email;
     var isAjaxRequest = req.xhr;
