@@ -18,8 +18,7 @@ exports.save =  (req, res,next) =>  {
   
       console.log("POST: About to save new product");
       var price = req.body.productPrice;
-      var price2 = req.user.productPrice;
-      console.log(price + ' and ' + price2);
+      console.log( 'Your price  ' + price);
 
       var product = new Product({ 
             email:req.body.email,
@@ -31,6 +30,7 @@ exports.save =  (req, res,next) =>  {
             productStatus: req.body.productStatus
         });
       console.log(product);
+      
         product.save()
         .then(data => {
                 console.log('Saving to database');

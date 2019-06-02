@@ -8,7 +8,7 @@ var bodyParser = require('body-parser');
 var products =   require('../controllers/product.controller.js');
 var Cart = require('../models/cart');
 var Product = require('../models/product');
-var Order = require('../models/order');
+// var Order = require('../models/order');
 var User = require('../models/user');
 
 
@@ -61,6 +61,33 @@ router.get('/jsonproducts', function (req, res, next) {
     });
 });
 
+
+router.get('/dashboard', isLoggedIn, function (req, res, next) {
+        console.log("dashboard page");
+        var successMsg = req.flash('success')[0];
+
+        var user = req.user.email  || "";
+        var name = req.user.name  || "";
+
+        var productChunks = [];    
+        Product.find({email: user}).then((result) => {
+          if(result){
+          for (var i = 0; i < result.length; i++) {
+               productChunks.push([result[i]]);
+              }
+          }
+
+        res.render('user/dashboard',{ 
+                    user: req.user.email,
+                    products: productChunks,
+                    csrfToken: req.csrfToken(),
+                    name:name 
+            });     
+        });
+
+     });
+
+
 //
 router.post('/dashboard', products.save, function(req, res,next) {});
 
@@ -101,6 +128,35 @@ router.post('/dashboard', products.save, function(req, res,next) {});
 //     // // res.redirect('/products',{user: user});
 //     // res.json({'msg':'lll'}).status(200);
 // });
+
+
+//GET USER STORE
+//SIMILAR TO USER ACCOUNT
+router.get('/store/:id/:_id', function (req, res, next) {
+   // console.log('PARAMATER '+req.params.id +''+ _id);
+
+    console.log('PARAMATERS '+req.params._id+' and '+req.params.id);
+    var email = req.params.id
+    var itemId = req.params._id
+
+    var productChunks = [];
+    Product.find({'_id':itemId}).then((result) => {
+                if(result){
+                    for (var i = 0; i < result.length; i++) {
+                    productChunks.push([result[i]]);
+                    }
+                }
+                
+
+    // var messages = req.flash('error');
+    res.render('user/store', {
+        csrfToken: req.csrfToken(), 
+        user: req.user,
+        products: productChunks
+    });
+});
+});
+
 
 /////
 router.post('/edit', function(req, res, next) {
@@ -158,31 +214,9 @@ router.get('/forgotpassword', function (req, res, next) {
         hasErrors: messages.length > 0});
 });
 
-// router.get('/dashboard', isLoggedIn, function (req, res, next) {
 
-//      var email =  req.body.email;
-//       var user = req.user.email;
-//       console.log(email);
-//         Order.find({user: req.user}, function(err, orders) {
-//             if (err) {
-//                 //return res.write('Error!');
-//                 console.log('Error!');
-//             }
-//             var cart;
-//             orders.forEach(function(order) {
-//                 cart = new Cart(order.cart);
-//                 order.items = cart.generateArray();
-//             });
 
-            
-//             res.render('user/dashboard', {  
-//                 user: user,
-//                 orders: orders,
-//                 email:email,
-//                 csrfToken: req.csrfToken()});
-//         });
-// });
-
+//
 router.post('/add-product',isLoggedIn, function(req, res, next) {
     res.render('forgotpassword',{user:req.user});
 });
