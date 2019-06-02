@@ -133,6 +133,7 @@ router.post('/dashboard', products.save, function(req, res,next) {});
 //GET USER STORE
 //SIMILAR TO USER ACCOUNT
 router.get('/store/:id/:_id', function (req, res, next) {
+    var messages = req.flash('error');
    // console.log('PARAMATER '+req.params.id +''+ _id);
 
     console.log('PARAMATERS '+req.params._id+' and '+req.params.id);
@@ -141,21 +142,30 @@ router.get('/store/:id/:_id', function (req, res, next) {
 
     var productChunks = [];
     Product.find({'_id':itemId}).then((result) => {
-                if(result){
-                    for (var i = 0; i < result.length; i++) {
-                    productChunks.push([result[i]]);
-                    }
-                }
-                
+        if(result){
+          for (var i = 0; i < result.length; i++) {
+            productChunks.push([result[i]]);
+          }
+        }
 
-    // var messages = req.flash('error');
+    //LAST 3 PRODUCTS POSTED BY USER
+        var lastProducts = [];
+    Product.find({'email':req.params.id}).then((result) => {
+        if(result){
+          for (var i = 0; i < result.length; i++) {
+            lastProducts.push([result[i]]);
+          }
+        }
+                
     res.render('user/store', {
         csrfToken: req.csrfToken(), 
         user: req.user,
-        products: productChunks
+        products: productChunks,
+        recents: lastProducts
     });
 });
 });
+    });
 
 
 /////
@@ -313,7 +323,7 @@ router.get('/stocks/:id', function(req, res){
     console.log('Your parameters are ' + req.params.id);
     var successMsg = req.flash('success')[0];
     var productChunks = [];
-    Product.find({ category: req.params.id}).then((result)=>{
+    Product.find({ productCategory: req.params.id}).then((result)=>{
         if(result){
             for (var i = 0; i < result.length; i++) {
             // productChunks.push(result[i]);

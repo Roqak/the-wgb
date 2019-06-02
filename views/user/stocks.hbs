@@ -10,36 +10,36 @@
 					  <div class="list-group-item">
 					  	<span>Categories</span>
 					    <p class="mb-0">
-					    	<a href="/stocks/female">
-					    		<i class="far fa-image mr-4 grey p-3 white-text rounded-circle " aria-hidden="true"></i>Photos
+					    	<a href="/stocks/Electronics">
+					    		<i class="far fa-image mr-4 grey p-3 white-text rounded-circle " aria-hidden="true"></i>Electronics
 					    	</a>
 					 	</p>
 					  </div>
 					  <div class="list-group-item">
 					    <p class="mb-0"> 
-					    	<a href="/stocks/female">
-					    		<i class="fas fa-briefcase mr-4 mr-4 grey p-3 white-text rounded-circle" aria-hidden="true"></i>Cloths
+					    	<a href="/stocks/Automobile">
+					    		<i class="fas fa-briefcase mr-4 mr-4 grey p-3 white-text rounded-circle" aria-hidden="true"></i>Automobile
+					    	</a>
+					    </p>
+					  </div>
+					  <div class="list-group-item">
+					    <p class="mb-0">
+					    	<a href="/stocks/Others">
+					    		<i class="fas fa-anchor mr-4 mr-4 grey p-3 white-text rounded-circle" aria-hidden="true"></i>Others
 					    	</a>
 					    </p>
 					  </div>
 					  <div class="list-group-item">
 					    <p class="mb-0">
 					    	<a href="/stocks/female">
-					    		<i class="fas fa-anchor mr-4 mr-4 grey p-3 white-text rounded-circle" aria-hidden="true"></i>Vacation
-					    	</a>
-					    </p>
-					  </div>
-					  <div class="list-group-item">
-					    <p class="mb-0">
-					    	<a href="/stocks/female">
-					    		<i class="far fa-image mr-4 grey p-3 white-text rounded-circle " aria-hidden="true"></i>Photos
+					    		<i class="far fa-image mr-4 grey p-3 white-text rounded-circle " aria-hidden="true"></i>NOTWORKING
 					    	</a>
 					    </p>
 					  </div>
 					  <div class="list-group-item">
 					    <p class="mb-0"> 
 					    	<a href="/stocks/female">
-					    		<i class="fas fa-briefcase mr-4 mr-4 grey p-3 white-text rounded-circle" aria-hidden="true"></i>Work
+					    		<i class="fas fa-briefcase mr-4 mr-4 grey p-3 white-text rounded-circle" aria-hidden="true"></i>NOTWorkING
 					    	</a>
 					    </p>
 					  </div>
@@ -86,22 +86,23 @@
 
 			              <!--Card content-->
 			              <div class="card-body text-center">
-			              	<span class="badge badge-pill danger-color">NEW/USED</span>
+			              	<span class="badge badge-pill danger-color">{{ this.productStatus }}</span>
 			                <!--Category & Title-->
 			                <a href="" class="grey-text">
-			                  <h5>{{ this.title }}</h5>
+			                  <h5>{{ this.productName }}</h5>
 			                </a>
 			                <h5>
 			                  <strong>
 			                    <a href="" class="dark-grey-text">
 			                      <!-- <span class="badge badge-pill danger-color">NEW</span> -->
-			                      {{ this.category }}
+			                      {{ this.productCategory }}
 			                    </a>
 			                  </strong>
 			                </h5>
 			                <h4 class="font-weight-bold blue-text">
-			                  <strong>₦{{ this.price }}</strong>
+			                  <strong>₦{{ this.productPrice }}</strong>
 			                </h4>
+			                <a href="/store/{{this.email}}/{{this._id}}">link</a>
 			              </div>
 			              <!--Card content-->
 			            </div>
