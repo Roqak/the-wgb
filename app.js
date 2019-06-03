@@ -24,7 +24,7 @@ uDwhC-bLqn9nJY48SeRaOY0KHwg
  */
 
 mongoose.Promise = global.Promise;
-mongoose.connect(keys.mongodb.dbURI, { useMongoClient: true,useCreateIndex: true,useNewUrlParser: true }).then(//useNewUrlParser: true,
+mongoose.connect(keys.mongodb.dbURI, { useMongoClient: true}).then(//useNewUrlParser: true,
   function(res){
    console.log("Connected to Database Successfully.");
   }

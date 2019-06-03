@@ -121,10 +121,16 @@
                             <div class="col-md-6">
                               <div class="form-label-group">
                                 <select name="productCategory" id="productCategory" class="form-control" required>
+                                  <option>Select a category</option>
                                   <option value="Automobile">Automobile</option>
+                                  <option value="Body-Accessories">Body Accessories</option>
+                                  <option value="Clothings">Clothings</option>
+                                  <option value="Foods">Foods</option>
                                   <option value="Electronics">Electronics</option>
-                                  <option value="Home">Home Appliance</option>
-                                  <option value="Office">Office Appliance</option>
+                                  <option value="Home-Appliances">Home Appliance</option>
+                                  <option value="Services">Human Services or Labour</option>
+                                  <option value="Shoes">Shoes</option>
+                                  <option value="Office-Appliances">Office Appliance</option>
                                   <option value="Others">Others</option>
                                 </select>
                               </div>
@@ -141,6 +147,7 @@
                             <div class="col-md-6">
                               <div class="form-label-group">
                                 <select name="productStatus" id="productStatus" class="form-control" placeholder="Product Status" required>
+                                  <option>Select a status</option>
                                   <option value="New">New Product</option>
                                   <option value="Used">Used Product</option>
                                 </select>
@@ -195,11 +202,11 @@
                           <tbody>
                             {{# each this }}
                             <tr>
-                              <td>{{ this._id }}</td>
-                              <td>{{ this.productCategory}}</td>
+                              <td>{{@index}}</td>
                               <td>{{ this.productName}}</td>
-                              <td>{{ this.productDescription}}</td>
-                              <td>sit</td>
+                              <td>{{ this.productCategory}}</td>
+                              <td><a href="/edit"><button>Edit</button></a></td>
+                              <td><a href="/delete"><button>Delete</button></a></td>
                             </tr>
                           {{/each}}
                           </tbody>
