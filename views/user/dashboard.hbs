@@ -42,7 +42,7 @@
 
                       <!-- USER DETAILS UPDATE FORM-->
                       
-                      <!-- <form action="/update-user" method="post" class="userDetails">
+                      <form action="/update-user" method="post" class="userDetails">
                         <div class="form-group">
                           <div class="form-row">
                             <div class="col-md-6">
@@ -69,7 +69,7 @@
                             </div>
                             <div class="col-md-6">
                               <div class="form-label-group">
-                                <input type="tel" id="" class="form-control" placeholder="Whatsapp">
+                                <input type="tel" id="" class="form-control" placeholder="Whatsapp Number">
                               </div>
                             </div>
                           </div>
@@ -78,7 +78,7 @@
                           <div class="form-row">
                             <div class="col-md-6">
                               <div class="form-label-group">
-                                <select id="states" name="states" class="form-control" placeholder="State"></select> 
+                                <select id="states" name="states" class="form-control" placeholder="State or Region"></select> 
                               </div>
                             </div>
                             <div class="col-md-6">
@@ -100,7 +100,7 @@
                         </div>
                         <input type="hidden" name="_csrf" value="{{ csrfToken }}">
                         <input type="submit" class="btn btn-primary btn-block" id="userDetailsBtn" value="Update">
-                     </form> -->
+                     </form>
                       <!--// USER DETAILS UPDATE FORM-->
 
                 </div>
@@ -206,7 +206,7 @@
                               <td>{{ this.productName}}</td>
                               <td>{{ this.productCategory}}</td>
                               <td><a href="/edit"><button>Edit</button></a></td>
-                              <td><a href="/delete"><button>Delete</button></a></td>
+                              <td><a href="/delete/{{this._id}}"><button>Delete</button></a></td>
                             </tr>
                           {{/each}}
                           </tbody>

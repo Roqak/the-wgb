@@ -34,34 +34,7 @@ router.get('/', function (req, res, next) {
     });
 });
 
-router.get('/jsonproducts', function (req, res, next) {
-    var successMsg = req.flash('success')[0];
-    Product.find(function (err, docs) {
-        var productChunks = [];
-        var chunkSize = 3;
-        for (var i = 0; i < docs.length; i += chunkSize) {
-            productChunks.push(docs.slice(i, i + chunkSize));
-        }
-        res.send (JSON.stringify(
-            {
-                title: 'Wegobuyam', 
-            user: req.user,
-            products: productChunks,
-             successMsg: successMsg, 
-             noMessages: !successMsg
-            }));
-        /*JSON.stringify(
-        {
-            title: 'Wegobuyam', 
-        user: req.user,
-        products: productChunks,
-         successMsg: successMsg, 
-         noMessages: !successMsg
-        }));*/
-    });
-});
-
-
+//
 router.get('/dashboard', isLoggedIn, function (req, res, next) {
         console.log("dashboard page");
         var successMsg = req.flash('success')[0];
@@ -91,9 +64,27 @@ router.get('/dashboard', isLoggedIn, function (req, res, next) {
 //
 router.post('/dashboard', products.save, function(req, res,next) {});
 
+
+
+
+router.post('/edit', function(req, res, next) {
+    console.log('performing edit db post');
+    MongoClient.connect(dburl, function(err, db) {
+      if(err) { throw err;  }
+      var collection = db.collection('products');
+      var product = {'product_name': req.body.product_name, 'price': req.body.price, 'category': req.body.category};
+      collection.update({'_id':new mongodb.ObjectID(req.body.id)}, {$set:{'product_name': req.body.product_name, 'price': req.body.price, 'category': req.body.category}}, function(err, result) {
+      if(err) { throw err; }
+        db.close();
+        res.redirect('/products');
+       });
+    });
+  });
+
+
 // //UPDATE USER INFO
 // router.post('/update-user', function(req, res) {
-
+    console.log('performing edit db post');
 
 //     var userData = new User({
 //           //userId:req.body.userId,
@@ -168,26 +159,10 @@ router.get('/store/:id/:_id', function (req, res, next) {
     });
 
 
-/////
-router.post('/edit', function(req, res, next) {
-    console.log('performing edit db post');
-    MongoClient.connect(dburl, function(err, db) {
-      if(err) { throw err;  }
-      var collection = db.collection('products');
-      var product = {'product_name': req.body.product_name, 'price': req.body.price, 'category': req.body.category};
-      collection.update({'_id':new mongodb.ObjectID(req.body.id)}, {$set:{'product_name': req.body.product_name, 'price': req.body.price, 'category': req.body.category}}, function(err, result) {
-      if(err) { throw err; }
-        db.close();
-        res.redirect('/products');
-       });
-    });
-  });
-
-
   ////DELETE
-  router.post('/delete/:id', function(req, res) {//products.delete,
+  router.get('/delete/:id', function(req, res) {//products.delete,
     console.log(req.params.id);
-    product.deleteOne({ _id: req.params.id })
+    Product.deleteOne({ _id: req.params.id })
     .then(() => {
         res.json({ success: true });
     })
@@ -196,25 +171,7 @@ router.post('/edit', function(req, res, next) {
     });
   });
   
-//GET PROFILE ROUTES
-// router.get('/profile', isLoggedIn, function (req, res, next) {
-//   var email =  req.body.email;
-//   var user = req.user.email;
-//   console.log(email);
-//     Order.find({user: req.user}, function(err, orders) {
-//         if (err) {
-//             //return res.write('Error!');
-//             console.log('Error!');
-//         }
-//         var cart;
-//         orders.forEach(function(order) {
-//             cart = new Cart(order.cart);
-//             order.items = cart.generateArray();
-//         });
-//         res.render('user/profile', {  user: user,orders: orders,email:email});
-//     });
-// });
-
+  //FORGET PASSWORD ROUTE
 router.get('/forgotpassword', function (req, res, next) {
     var messages = req.flash('error');
      res.render('forgotpassword', {
@@ -370,13 +327,39 @@ router.get('/search', function(req, res){
 });
 
 
-router.get('/seller', function(req, res) {
-    res.render('user/seller');
-});
 
 router.get('/help', function(req, res) {
     res.render('user/help');
 });
+
+
+router.get('/jsonproducts', function (req, res, next) {
+    var successMsg = req.flash('success')[0];
+    Product.find(function (err, docs) {
+        var productChunks = [];
+        var chunkSize = 3;
+        for (var i = 0; i < docs.length; i += chunkSize) {
+            productChunks.push(docs.slice(i, i + chunkSize));
+        }
+        res.send (JSON.stringify(
+            {
+                title: 'Wegobuyam', 
+            user: req.user,
+            products: productChunks,
+             successMsg: successMsg, 
+             noMessages: !successMsg
+            }));
+        /*JSON.stringify(
+        {
+            title: 'Wegobuyam', 
+        user: req.user,
+        products: productChunks,
+         successMsg: successMsg, 
+         noMessages: !successMsg
+        }));*/
+    });
+});
+
 
 //GET LOGOUT ROUTES
 router.get('/logout', isLoggedIn, function (req, res, next) {
