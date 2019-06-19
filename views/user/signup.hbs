@@ -1,45 +1,47 @@
-
-<br><br><br>
+<br>
 <div class="container">
-    <div class="card mx-auto mt-5">
-      <div class="card-header">Register for your account</div>
-        {{#if hasErrors}}
-            <div class="alert alert-danger">
-                {{# each messages }}
-                    <p>{{this}}</p>
-                {{/each}}
-            </div>
-        {{/if}}
-      <div class="card-body">
-        <form action="/signup" method="POST">
-          <div class="form-group">
-            <div class="form-label-group">
-              <label for="inputEmail">Email address</label>
-              <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="form-label-group">
-              <label for="inputPassword">Password</label>
-              <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="required">
-              <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="remember-me">
-                Remember my password
-              </label>
-            </div>
-          </div>
-          <input type="submit" value="Register" class="btn btn-primary btn-block"> 
-        </form>
+  <div class="card mx-auto mt-5">
+    <div class="card-header">Create your account</div>
+    {{#if hasErrors}}
+    <div class="alert alert-danger">
+      {{# each messages }}
+      <p>{{this}}</p>
+      {{/each}}
+    </div>
+    {{/if}}
+    <div class="card-body">
+      <form action="/signup" method="POST">
         <div class="form-group">
-        	<a href="/signin">Already have an account? Signin</a>
+          <div class="form-label-group">
+            <label for="inputEmail">Email address</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email address"
+              required="required" autofocus="autofocus">
+          </div>
         </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+              required="required">
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="remember-me">
+              Remember my password
+            </label>
+          </div>
+        </div>
+        <input type="submit" value="Create Account" class="btn btn-primary btn-block">
+      </form>
+      <div class="form-group">
+        <p>
+          <a href="/signin">Already have an account? Signin</a>
+        </p>
       </div>
     </div>
+  </div>
 </div>
-
-
+<br>

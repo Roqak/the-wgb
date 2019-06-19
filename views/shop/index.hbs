@@ -127,17 +127,6 @@
   <!--/.Carousel Wrapper-->
 
   
-
-
-
-
-
-
-
-
-
-
-
   <!--Main layout-->
   <main>
     <div class="container">
@@ -146,7 +135,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark mdb-color lighten-3 mt-3 mb-5">
 
         <!-- Navbar brand -->
-        <span class="navbar-brand">Categories:</span>
+        <!-- <span class="navbar-brand">Categories:</span> -->
 
         <!-- Collapse button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -160,26 +149,32 @@
           <!-- Links -->
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">All
-                <span class="sr-only">(current)</span>
-              </a>
+              <a class="nav-link" href="/stocks">All</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Shirts</a>
+              <a class="nav-link" href="/stocks/Body-Accessories">Body Accessories</a>
+
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Sport wears</a>
+              <a class="nav-link" href="/stocks/Electronics">Electronics</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Outwears</a>
+              <a class="nav-link" href="/stocks/Clothings">Clothings</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/stocks/Food">Food<i class="fas fa-search"></i></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/stocks/Services">Services</a>
             </li>
 
           </ul>
           <!-- Links -->
 
-          <form class="form-inline">
+          <form class="form-inline"  action="/search">
             <div class="md-form my-0">
-              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+              <span><i class="fas fa-search ml-2"></i></span>
+              <input class="form-control mr-sm-2" name="search" type="text" placeholder="Search" aria-label="Search">
             </div>
           </form>
         </div>

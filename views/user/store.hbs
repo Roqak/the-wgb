@@ -1,156 +1,114 @@
-
-
-
-
-
-
-
 <!--Main layout-->
-  <main class="mt-5 pt-4">
-    <div class="container dark-grey-text mt-5">
-    	          <h3 class="my-4 h3">My Admin Store </h3>
-    	          <hr>
-      <!--Grid row-->
-      <div class="row wow fadeIn">
-      	{{# each products }}
-           {{# each this }}
-        <!--Grid column-->
-        <div class="col-md-6 mb-4">
-
-          <img src="{{this.productImage}}" class="img-fluid" alt="">
-
-        </div>
-        <!--Grid column-->
-
-        <!--Grid column-->
-        <div class="col-md-6 mb-4">
-
-          <!--Content-->
-          <div class="p-4">
-
-            <div class="mb-3">
-              <a href="">
-                <span class="badge purple mr-1">{{this.productCategory}}</span>
-              </a>
-              <a href="">
-                <span class="badge blue mr-1">New</span>
-              </a>
-              <a href="">
-                <span class="badge red mr-1">Bestseller</span>
-              </a>
-            </div>
-
-            <p class="lead">
-              <span>${{this.productPrice}}</span>
-            </p>
-
-            <p class="lead font-weight-bold">{{this.productName}}</p>
-
-            <p>{{this.productDescription}}Some raandom text.Some raandom text.Some raandom text.Some raandom text.Some raandom text.Some raandom text.Some raandom text.Some raandom text.Some raandom text.Some raandom text.
-
-              
-           
-           
-          </p>
-
-            <p class="d-flex justify-content-left">
-              <a href="https://api.whatsapp/"><i class="fab fa-whatsapp" style="color:#56c590;font-size: 35px;"></i></a>
-            </p>
-
-          </div>
-          <!--Content-->
-
-        </div>
-        <!--Grid column-->
-        {{/each}}{{/each}}
+<main class="mt-5 pt-4">
+  <div class="container dark-grey-text mt-5">
+    <!--Grid row-->
+    <div class="row wow fadeIn">
+      {{# each products }}
+      {{# each this }}
+      <!--Grid column-->
+      <div class="col-md-6 mb-4">
+        <img src="{{this.productImage}}" class="img-fluid" alt="">
       </div>
-      <!--Grid row-->
-
-      <hr>
-
-      <!--Grid row-->
-      <div class="row d-flex justify-content-center wow fadeIn">
-
-
-        <!--Grid column-->
-        <div class="col-md-6 text-center">
-
-          <h4 class="my-4 h4">Additional About Store ({{this.user.email}})</h4>
-
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
-            voluptates,
-            quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus suscipit modi sapiente illo soluta odit
-            voluptates,
-            quibusdam officia. Neque quibusdam quas a quis porro? Molestias illo neque eum in laborum</p>
-
+      <!--Grid column-->
+      <!--Grid column-->
+      <div class="col-md-6 mb-4">
+        <!--Content-->
+        <div class="p-4">
+          <div class="mb-3">
+            <a href="">
+              <span class="badge purple mr-1">{{this.productCategory}}</span>
+            </a>
+            <a href="">
+              <span class="badge blue mr-1">{{this.productStatus}}</span>
+            </a>
+            {{!-- <a href="">
+              <span class="badge red mr-1">Bestseller</span>
+            </a> --}}
+          </div>
+          <div class="mb-3">
+            <p class="lead font-weight-bold">{{this.productName}}</p>
+            <p>{{this.productDescription}}</p>
+            <p class="lead">
+              <span><strong>₦</strong>{{this.productPrice}}</span>
+            </p>
+          </div>
         </div>
-        <!--Grid column-->
+        <!--Content-->
+      </div>
+      <!--Grid column-->
+      {{/each}}
+      {{/each}}
+      <div class="container">
+        <div class="row float-right container">
+          <p class="d-flex justify-content-left" style="margin-right: 7px;">
+            <span style="text-transform: uppercase">
+              <i class="fas fa-map-marker-alt" style="font-size: 30px;"></i>
+              {{this.user.states}} State, {{this.user.lgas}} Local Govt
+            </span>
+          </p>
+          <p class="d-flex justify-content-left">
+            <a target="_blank"
+              href="https://api.whatsapp.com/send?phone=234{{this.user.whatsappNumber}}&text=I%20saw%20your%20store%20on%20https://whogobuyam.com%20I%20am%20interested%20in%20your%20product."><i
+                class="fab fa-whatsapp" style="color:#56c590;font-size: 30px;"></i></a>
+          </p>
+        </div>
+      </div>
+    </div>
 
 
 
+    <hr>
+
+    <!--Grid row-->
+    <div class="row d-flex justify-content-center wow fadeIn">
+      <div class="container">
         <!--Grid column-->
         <div class="col-md-6 text-center">
+          <div class="row wow fadeIn">
+            <h4 class="my-4 h4">About Store</h4>
+            <span>
+              {{this.user.aboutMe}}
+              My Email address is {{this.user.email}}
+            </span>
+          </div>
+        </div>
+      </div>
+      <!--Grid column-->
 
-          <h4 class="my-4 h4">Additional Products</h4>
-          <p>
+      <!--Grid column-->
+      <div class="col-md-6 text-center">
+        <h4 class="my-4 h4">Additional Products</h4>
+        <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> -->
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+          {{# each recents }}
+          {{# each this }}
+          <!--Grid column-->
+          <div class="col-lg-4 col-md-12 mb-4">
+            <a href="/store/{{this.email}}/{{this._id}}">
+              <img src="{{this.productImage}}" class="img-thumbnail img-fluid" alt="">
+            </a>
+            {{this.productName}}
+          </div>
+          <!--Grid column-->
+          {{/each}}
+          {{/each}}
+        </div>
+        <!--Grid row-->
+      </div>
+      <!--Grid column-->
 
-          		
+    </div>
+    <!--Grid row-->
 
-          </p>
+    <hr>
 
-          <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p> -->
-
-
-                <!--Grid row-->
-		      <div class="row wow fadeIn">
-		      	          	      	{{# each recents }}
-           {{# each this }}
-		        <!--Grid column-->
-		        <div class="col-lg-4 col-md-12 mb-4">
-		        	<a href="/store/{{this.email}}/{{this._id}}">
-		        		<img src="{{this.productImage}}" class="img-fluid" alt="">
-		        	</a>
-		          
-		          {{this.productName}}
-		        </div>
-		        <!--Grid column-->
-		            	{{/each}}{{/each}}
-
-		        <!-- Grid column
-		        <div class="col-lg-4 col-md-6 mb-4">
-
-		          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/12.jpg" class="img-fluid" alt="">
-
-		        </div>
-		        Grid column
-
-		        Grid column
-		        <div class="col-lg-4 col-md-6 mb-4">
-
-		          <img src="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Products/13.jpg" class="img-fluid" alt="">
-
-		        </div>
-		        Grid column--> 
-
-		      </div>
-		      <!--Grid row-->
-
-		        </div>
-		        <!--Grid column-->
-
-		      </div>
-		      <!--Grid row-->
-
-		      <hr>
-
-		      <!-- DISQUS COMMENT-->
-				      <!--Grid column-->
-		        <div class="col-md-12 mb-4">
-		        	 <h3>User review</h3>
-		        <div id="disqus_thread"></div>
-				<script>
-
+    <!-- DISQUS COMMENT-->
+    <!--Grid column-->
+    <div class="col-md-12 mb-4">
+      <h3>User review</h3>
+      <div id="disqus_thread"></div>
+      <script>
 				/**
 				*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
 				*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
@@ -160,18 +118,18 @@
 				this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
 				};
 				*/
-				(function() { // DON'T EDIT BELOW THIS LINE
-				var d = document, s = d.createElement('script');
-				s.src = 'https://whogobuyam.disqus.com/embed.js';
-				s.setAttribute('data-timestamp', +new Date());
-				(d.head || d.body).appendChild(s);
-				})();
-				</script>
-				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-		        </div>
-
+        (function () { // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          s.src = 'https://whogobuyam.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+          Disqus.</a></noscript>
     </div>
 
-  </main>
-  <!--Main layout-->
-  <script id="dsq-count-scr" src="//whogobuyam.disqus.com/count.js" async></script>
+  </div>
+</main>
+<!--Main layout-->
+<script id="dsq-count-scr" src="//whogobuyam.disqus.com/count.js" async></script>

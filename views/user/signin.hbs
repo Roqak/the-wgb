@@ -1,47 +1,49 @@
-
-<br><br><br>
-
+<br>
 <div class="container">
-    <div class="card mx-auto mt-5">
-      <div class="card-header">Sign into your account</div>
-        {{#if hasErrors}}
-            <div class="alert alert-danger">
-                {{# each messages }}
-                    <p>{{this}}</p>
-                {{/each}}
-            </div>
-        {{/if}}
-      <div class="card-body">
-        <form action="/signin" method="post">
-          <div class="form-group">
-            <div class="form-label-group">
-              <label for="inputEmail">Email address</label>
-              <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
-            </div>
+  <div class="card mx-auto mt-5">
+    <div class="card-header">Sign into your account</div>
+    {{#if hasErrors}}
+    <div class="alert alert-danger">
+      {{# each messages }}
+      <p>{{this}}</p>
+      {{/each}}
+    </div>
+    {{/if}}
+    <div class="card-body">
+      <form action="/signin" method="post">
+        <div class="form-group">
+          <div class="form-label-group">
+            <label for="inputEmail">Email address</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email address"
+              required="required" autofocus="autofocus">
           </div>
-          <div class="form-group">
-            <div class="form-label-group">
-              <label for="inputPassword">Password</label>
-              <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="required">
-              <input type="hidden" name="_csrf" value="{{ csrfToken }}">
-            </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+              required="required">
+            <input type="hidden" name="_csrf" value="{{ csrfToken }}">
           </div>
-          <div class="form-group">
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" value="remember-me">
-                Remember Password
-              </label>
-            </div>
+        </div>
+        <div class="form-group">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" value="remember-me">
+              Remember Password
+            </label>
           </div>
-          <input type="submit" value="login" class="btn btn-primary btn-block"> 
-        </form>
-        <div class="text-center">
-          <a class="d-block small mt-3" href="register.html">Register an Account</a>
-          <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+        </div>
+        <input type="submit" value="login" class="btn btn-primary btn-block">
+      </form>
+      <br>
+      <div class="form-group">
+        <div class="row">
+          <a class="col-sm-6" href="/signup">Create an Account</a>
+          <a class="col-sm-6" href="/forgotpassword">Forgot Your Password ?</a>
         </div>
       </div>
     </div>
+  </div>
 </div>
-
-
+<br>

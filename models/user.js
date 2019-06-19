@@ -3,26 +3,53 @@ var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = new Schema({
-    email: {type: String, required: true, unique: true},
-    password: {type: String, required: true},
-    resetPasswordToken: {type: String},
-    resetPasswordExpires: {type: Date},
-    firstname: {type: String, required: true},
-    lastname: {type: String, required: true},
-    whatsappNumber: {type: Number, required: true, unique: true},
-    state: {type: String, required: true},
-    lga: {type: String, required: true},
-    serviceType: {type: String, required: true}
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  password: {
+    type: String,
+    required: true
+  },
+  resetPasswordToken: {
+    type: String
+  },
+  resetPasswordExpires: {
+    type: Date
+  },
+  firstname: {
+    type: String
+  },
+  lastname: {
+    type: String
+  },
+  serviceType: {
+    type: String
+  },
+  whatsappNumber: {
+    type: Number
+  },
+  states: {
+    type: String
+  },
+  lgas: {
+    type: String
+  },
+  aboutMe: {
+    type: String
+  }
+
 
 });
 
 //OLD CODE
-userSchema.methods.encryptPassword = function(password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(5), null);  
+userSchema.methods.encryptPassword = function (password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(5), null);
 };
 
-userSchema.methods.validPassword = function(password) {
-  return bcrypt.compareSync(password, this.password);  
+userSchema.methods.validPassword = function (password) {
+  return bcrypt.compareSync(password, this.password);
 };
 
 /*
